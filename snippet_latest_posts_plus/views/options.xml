@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="s_latest_posts_place_in_tab" inherit_id="website.snippets">
+		<xpath expr="//div[@id='snippet_feature']/div[contains(@class, 'o_panel_body')]/t" position="before">
+			<t t-snippet="snippet_latest_posts_plus.s_latest_post_caroussel" t-thumbnail="/snippet_latest_posts_plus/static/src/img/blocks/latest_posts_caroussel.png" />
+		</xpath>
+	</template>
+</odoo>
