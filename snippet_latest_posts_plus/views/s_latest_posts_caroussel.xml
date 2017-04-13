@@ -2,7 +2,7 @@
 <odoo>
 	<!-- Snippet's Body -->
 	<template id="s_latest_post_caroussel" name="Latest Posts Caroussel">
-		<section class="s_latest_posts_big_picture">
+		<section class="s_latest_posts_big_picture container">
 			<h2 class="text-center sans-serif">Latest Posts</h2>
 			<div class="js_get_posts" data-loading="true" data-template="snippet_latest_posts_plus.s_latest_post_caroussel_template" />
 		</section>
@@ -13,9 +13,9 @@
 			<div class="o_blog_cover_container thumb">
 				<div class="o_blog_cover_component o_blog_cover_image" t-attf-style="background-image: #{properties.get('background-image')};">
 					<a t-att-href="'/blog/%s/post/%s' % (p.blog_id.id, p.id)">
-						<h3 t-esc="p.name" />
+						<h2 style="color: white" t-esc="p.name" />
 					</a>
-					<p t-esc="p.subtitle" />
+					<p style="color: white" t-esc="p.subtitle" />
 				</div>
 			</div>
 		</figure>
