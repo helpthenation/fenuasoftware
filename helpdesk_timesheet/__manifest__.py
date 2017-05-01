@@ -20,11 +20,12 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['helpdesk','hr_timesheet'],
+    'depends': ['helpdesk','hr_timesheet','website_helpdesk'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
         'views/helpdesk_ticket_views.xml',
+        'views/tickets_followup.xml',
     ],
 }
