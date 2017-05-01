@@ -12,6 +12,17 @@
 						<field name="tahiti_num" />
 						<field name="rcs_num" />
 					</xpath>
+					<xpath expr="//page[last()]" position="after">
+						<page string="En tête">
+							<field name="rml_header" />
+						</page>
+						<page string="Pied de page">
+							<group>
+								<field name="custom_footer" />
+								<field name="rml_footer" />
+							</group>
+						</page>
+					</xpath>
 				</data>
 			</field>
 		</record>
