@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="sample_theme_template">
+		<div class="o_mail_block_header_social">
+			<div class="o_mail_snippet_general">
+				<!-- Type your code here -->
+			</div>
+		</div>
+		<t t-call="mass_mailing.s_mail_block_footer_social" />
+	</template>
+</odoo>
