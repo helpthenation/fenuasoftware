@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="tinymce.FieldTextTinyMCESimple">
+    	<div id="dialog">
+	           <textarea t-if="!widget.get('effective_readonly')"></textarea>
+		</div>
+    </t>
+</templates>

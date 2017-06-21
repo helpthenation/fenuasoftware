@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<template id="assets_backend" name="petstore_assets" inherit_id="web.assets_backend">
+			<xpath expr="." position="inside">
+				<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+				<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" />
+				<script type="text/javascript" src="http://fiddle.tinymce.com/tinymce/4.5.4/jquery.tinymce.min.js" />
+			</xpath>
+		</template>
+	</data>
+</odoo>
