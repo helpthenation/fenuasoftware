@@ -1,0 +1,102 @@
+// Tender Color Set
+
+// =============================
+
+@color-alpha     : #61438e;
+@color-beta      : blue;
+@color-gamma     : green;
+@color-delta     : yellow;
+@color-epsilon   : orange;
+@color-text      : #119bbd;
+@color-footer    : #ffffff;
+
+
+// =============================
+// Bootstrap Colours ===========
+// =============================
+
+@brand-primary : @color-alpha;
+@brand-info    : #5877BA;
+@brand-success : #31B05E;
+@brand-info    : #4D68A3;
+@brand-warning : #EACF41;
+@brand-danger  : #CB3E3E;
+
+// =============================
+// Backgrounds Colours =========
+// =============================
+
+.graphene-layout-boxed() when (@graphene-layout-boxed = true)  {
+    #wrapwrap { background: @color-epsilon  }
+}
+.graphene-layout-boxed();
+
+.graphene-layout-postcard() when (@graphene-layout-postcard = true)  {
+    #wrapwrap { background: @color-epsilon  }
+
+    header#graph_header {
+        .navbar-brand, .navbar-default .navbar-brand {
+            color: white;
+        }
+
+        .navbar .navbar-nav > li.active > a,
+        .navbar .navbar-nav > li.active > a:hover,
+        .navbar .navbar-nav > li.active > a:focus {
+            color: white;
+        }
+
+        .navbar .navbar-nav > li > a {
+            color: lighten(@color-epsilon-light, 10%);
+            &:hover{
+                color: white;
+            }
+        }
+    }
+}
+.graphene-layout-postcard();
+
+
+//
+//
+// 
+@link-color			: #5c4574;
+
+body {
+	background-color: #1b1919;
+	color: @color-text;
+}
+
+footer {
+	background-color: #000000;
+	color: @color-footer;
+}
+
+a {
+	color: @link-color;
+}
+
+
+text-muted {
+	color: #b5abab;
+}
+
+//menu de navigation
+#graph_header .navbar, #graph_header_affix .navbar {
+	background-color: #000000;
+	border-bottom: 1px solid #eeeeee;
+}
+
+//menu de navigation afflix
+#wrapwrap #graph_header_affix .navbar {
+	background-color: #000000;
+}
+
+//lien dans menu de navigation
+#graph_header .navbar .navbar-nav > li > a, #graph_header_affix .navbar .navbar-nav > li > a {
+	color: white;
+}
+
+//lien actif dans menu de navigation
+#graph_header .navbar .navbar-nav > li.active > a, #graph_header_affix .navbar .navbar-nav > li.active > a, #graph_header .navbar .navbar-nav > li.active > a:hover, #graph_header_affix .navbar .navbar-nav > li.active > a:hover, #graph_header .navbar .navbar-nav > li.active > a:focus, #graph_header_affix .navbar .navbar-nav > li.active > a:focus {
+	color: white;
+}
