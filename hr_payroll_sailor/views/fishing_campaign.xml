@@ -30,13 +30,28 @@
             <h3>
               RECETTES BRUTES
             </h3>
-            <field name="invoice_line_ids">
+            <label for="customer_invoice_line_ids"/>
+            <field name="customer_invoice_line_ids">
             </field>
+            <group>
+              <group>
+              </group>
+              <group>
+                <field name="total_revenue_amount"/>
+              </group>
+            </group>
             <h3>
               CHARGES COMMUNES
             </h3>
-            <field name="invoice_line_ids">
+            <field name="supplier_invoice_line_ids">
             </field>
+            <group>
+              <group>
+              </group>
+              <group>
+                <field name="total_expense_amount"/>
+              </group>
+            </group>
             <h3>
               NET A PARTAGER
             </h3>
