@@ -24,7 +24,8 @@ class FishingCampaign(models.Model):
     crew_amount = fields.Float(string='Crew amount', readonly=True, compute='_compute_crew_amount')
     shipowner_percentage = fields.Float(string='Shipowner percentage')
     shipowner_amount = fields.Float(string='Shipowner amount', readonly=True, compute='_compute_shipowner_amount')
-    sailors = fields.Many2many(comodel_name='hr.employee', string='Crew')
+    fishing_campaign_share_distributions = fields.One2many(comodel_name='fishing.campaign.share.distribution',inverse_name='fishing_campaign')
+    total_share_weight = fields.Float(string='Calcul de la part', compute='_compute_total_share_weight')
 
     @api.multi
     def calcul(self):
@@ -62,6 +63,34 @@ class FishingCampaign(models.Model):
     def _compute_shipowner_amount(self):
         self.shipowner_amount = (self.total_net_amount * self.shipowner_percentage) / 100
 
+    def _compute_total_share_weight(self):
+        for fishing_campaign_share_distribution in self.fishing_campaign_share_distributions:
+            self.total_share_weight += fishing_campaign_share_distribution.share_weight
+
+        self.total_share_weight = self.crew_amount / self.total_share_weight
+
+class FishingCampaignShareDistribution(models.Model):
+    _name = 'fishing.campaign.share.distribution'
+    _description ='Fishing Campaign Share Distribution'
+
+    sailor = fields.Many2one(comodel_name='hr.employee', string='Sailor/Employee')
+    job = fields.Char(string='Job Title')
+    fishing_campaign = fields.Many2one(comodel_name='fishing.campaign', string='Fishing Campaign')
+    share_weight = fields.Float(string='Share Distribution')
+    wage = fields.Float(string='Wage',readonly=True, compute='_compute_wage')
+    deposit = fields.Float(string='Deposit')
+    residual = fields.Float(string='Amount Due', readonly=True, compute="_compute_residual")
+
+    @api.one
+    def _compute_wage(self):
+        self.wage = self.fishing_campaign.total_share_weight * self.share_weight;
+
+    @api.onchange('wage', 'deposit')
+    def _compute_residual(self):
+        for item in self:
+            item.residual = item.wage - item.deposit
+
+
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
@@ -72,7 +101,7 @@ class AccountInvoiceLine(models.Model):
 
     fishing_campaign = fields.Many2one('fishing.campaign', 'Fishing Campaign', ondelete='set null', index=True)
 
-class HrEmployee(models.Model):
+class HrEmployee(models.Model): 
     _inherit = 'hr.employee'
 
-    fishing_campaigns = fields.Many2many(comodel_name='fishing.campaign')
+    fishing_campaign_share_distributions = fields.One2many(comodel_name='fishing.campaign.share.distribution',inverse_name='sailor')
