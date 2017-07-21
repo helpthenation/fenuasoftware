@@ -1,0 +1,127 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="fishing_campaign_form_view">
+      <field name="name">fishing_campaign_form_view</field>
+      <field name="model">fishing.campaign</field>
+      <field name="arch" type="xml">
+        <form string="description">
+          <header>
+            <button name="calcul" type="object" string="calcul" class="oe_highlight"/>
+          </header>
+          <sheet>
+            <h1>
+              <label string="Feuille de marée (partage)"/>
+              <field name="name"/>
+            </h1>
+            <group>
+              <group>
+                <field name="shipname"/>
+                <field name="shipowner"/>
+                <field name="tahiti_num"/>
+                <field name="date"/>
+              </group>
+              <group>
+                <field name="sea_duration"/>
+                <field name="departure_preparation_duration"/>
+                <field name="works_on_boat_returned_duration"/>
+                <field name="total_duration"/>
+              </group>
+            </group>
+            <h3>
+              RECETTES BRUTES
+            </h3>
+            <field name="invoice_line_ids">
+            </field>
+            <h3>
+              CHARGES COMMUNES
+            </h3>
+            <field name="invoice_line_ids">
+            </field>
+            <h3>
+              NET A PARTAGER
+            </h3>
+            <group>
+              <field name="total_net_amount"/>
+            </group>
+            <group>
+              <group>
+                <field name="crew_percentage"/>
+                <field name="shipowner_percentage"/>
+              </group>
+              <group>
+                <field name="crew_amount"/>
+                <field name="shipowner_amount"/>
+              </group>
+            </group>
+            <h4>
+              CALCUL DE LA PART
+            </h4>
+            <field name="sailors"/>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <record id="fishing_campaign_dashboard_action" model="ir.actions.act_window">
+      <field name="name">Fishing Campaign</field>
+      <field name="res_model">fishing.campaign</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="fishing_campaign_root_menu" name="Fishing Campaign" parent="" action="fishing_campaign_dashboard_action"/>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="vct_sample_module.list">
+      <field name="name">vct_sample_module list</field>
+      <field name="model">vct_sample_module.vct_sample_module</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+  -->
+
+  <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="vct_sample_module.action_window">
+      <field name="name">vct_sample_module window</field>
+      <field name="res_model">vct_sample_module.vct_sample_module</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+  -->
+
+  <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="vct_sample_module.action_server">
+      <field name="name">vct_sample_module server</field>
+      <field name="model_id" ref="model_vct_sample_module_vct_sample_module"/>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+  -->
+
+  <!-- Top menu item -->
+    <!--
+    <menuitem name="vct_sample_module" id="vct_sample_module.menu_root"/>
+  -->
+  <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="vct_sample_module.menu_1" parent="vct_sample_module.menu_root"/>
+    <menuitem name="Menu 2" id="vct_sample_module.menu_2" parent="vct_sample_module.menu_root"/>
+  -->
+  <!-- actions -->
+    <!--
+    <menuitem name="List" id="vct_sample_module.menu_1_list" parent="vct_sample_module.menu_1"
+              action="vct_sample_module.action_window"/>
+    <menuitem name="Server to list" id="vct_sample_module" parent="vct_sample_module.menu_2"
+              action="vct_sample_module.action_server"/>
+            -->
+          </data>
+        </odoo>
