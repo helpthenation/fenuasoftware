@@ -67,7 +67,8 @@ class FishingCampaign(models.Model):
         for fishing_campaign_share_distribution in self.fishing_campaign_share_distributions:
             self.total_share_weight += fishing_campaign_share_distribution.share_weight
 
-        self.total_share_weight = self.crew_amount / self.total_share_weight
+        if self.total_share_weight > 0:
+            self.total_share_weight = self.crew_amount / self.total_share_weight
 
 class FishingCampaignShareDistribution(models.Model):
     _name = 'fishing.campaign.share.distribution'
