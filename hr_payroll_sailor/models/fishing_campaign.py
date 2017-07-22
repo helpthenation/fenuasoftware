@@ -10,7 +10,7 @@ class FishingCampaign(models.Model):
     name = fields.Char(string='Name', readonly=True)
     shipname = fields.Char(string='Ship Name', readonly=True, states={'draft': [('readonly', False)]})
     shipowner = fields.Many2one('res.partner', 'Shipowner', readonly=True, states={'draft': [('readonly', False)]})
-    tahiti_num = fields.Char(related='shipowner.name', readonly=True) #Voir res_company.py dans fsw_base
+    tahiti_num = fields.Char(related='shipowner.tahiti_num', string='Tahiti Number', readonly=True) #Voir res_company.py dans fsw_base
     date = fields.Date(string="Fishing campaign date", readonly=True, states={'draft': [('readonly', False)]})
     sea_duration = fields.Integer(string='Sea duration (days)', readonly=True, states={'draft': [('readonly', False)]})
     departure_preparation_duration = fields.Integer(string='Departure preparation (days)', readonly=True, states={'draft': [('readonly', False)]})
@@ -133,6 +133,7 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     fishing_campaigns = fields.One2many(comodel_name='fishing.campaign', inverse_name='shipowner', string='Fishing Campaign')
+    tahiti_num = fields.Char(string='Tahiti Number')
 
 class AccountInvoiceLine(models.Model):
     _inherit = 'account.invoice.line'
