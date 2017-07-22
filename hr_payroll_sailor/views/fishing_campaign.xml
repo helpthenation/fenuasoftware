@@ -1,12 +1,25 @@
 <odoo>
   <data>
+    <record model='ir.ui.view' id='fishing_campaign_tree'>
+      <field name='name'>fishing_campaign_tree</field>
+      <field name='model'>fishing.campaign</field>
+      <field name='arch' type='xml'>
+        <tree string='description'>
+          <field name='name'/>
+          <field name="shipowner"/>
+          <field name="state"/>
+        </tree>
+      </field>
+    </record>
     <record model="ir.ui.view" id="fishing_campaign_form_view">
       <field name="name">fishing_campaign_form_view</field>
       <field name="model">fishing.campaign</field>
       <field name="arch" type="xml">
         <form string="description">
           <header>
-            <button name="calcul" type="object" string="calcul" class="oe_highlight"/>
+            <button name="action_valid" type="object" string="VALIDATE" class="oe_highlight" states="draft"/>
+            <button name="action_cancel" type="object" string="CANCEL" class="oe_highlight" states="draft"/>
+            <field name="state" widget="statusbar"/>
           </header>
           <sheet>
             <h1>

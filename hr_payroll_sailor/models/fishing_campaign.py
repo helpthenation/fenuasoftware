@@ -6,26 +6,31 @@ class FishingCampaign(models.Model):
     _name = 'fishing.campaign'
     _description = 'Fishing campaign'
 
-    name = fields.Char(string='Name', required=True)
-    shipname = fields.Char(string='Ship Name')
-    shipowner = fields.Many2one('res.partner', 'Shipowner')
-    tahiti_num = fields.Char(related='shipowner.name') #Voir res_company.py dans fsw_base
-    date = fields.Date(string="Fishing campaign date")
-    sea_duration = fields.Integer(string='Sea duration (days)')
-    departure_preparation_duration = fields.Integer(string='Departure preparation (days)')
-    works_on_boat_returned_duration = fields.Integer(string='Works return boat (days)')
-    total_duration = fields.Integer(string='Total sea (days)', compute='_compute_total_duration')
+    name = fields.Char(string='Name', required=True, readonly=True, states={'draft': [('readonly', False)]})
+    shipname = fields.Char(string='Ship Name', readonly=True, states={'draft': [('readonly', False)]})
+    shipowner = fields.Many2one('res.partner', 'Shipowner', readonly=True, states={'draft': [('readonly', False)]})
+    tahiti_num = fields.Char(related='shipowner.name', readonly=True) #Voir res_company.py dans fsw_base
+    date = fields.Date(string="Fishing campaign date", readonly=True, states={'draft': [('readonly', False)]})
+    sea_duration = fields.Integer(string='Sea duration (days)', readonly=True, states={'draft': [('readonly', False)]})
+    departure_preparation_duration = fields.Integer(string='Departure preparation (days)', readonly=True, states={'draft': [('readonly', False)]})
+    works_on_boat_returned_duration = fields.Integer(string='Works return boat (days)', readonly=True, states={'draft': [('readonly', False)]})
+    total_duration = fields.Integer(string='Total sea (days)', compute='_compute_total_duration', readonly=True, states={'draft': [('readonly', False)]})
     customer_invoice_line_ids = fields.One2many(comodel_name='account.invoice.line', inverse_name='fishing_campaign', string='Customer Invoice Lines', domain=[('invoice_id.state', '=', 'open'), ('invoice_id.type', '=', 'out_invoice')], readonly=True, )
     supplier_invoice_line_ids = fields.One2many(comodel_name='account.invoice.line', inverse_name='fishing_campaign', string='Supplier Invoice Lines', domain=[('invoice_id.state', '=', 'open'), ('invoice_id.type', '=', 'in_invoice')], readonly=True, )
     total_revenue_amount = fields.Float(string='Total revenue', readonly=True, compute='_compute_total_revenue_amount')
     total_expense_amount = fields.Float(string='Total expense', readonly=True, compute='_compute_total_expense_amount')
     total_net_amount = fields.Float(string='Total to share', readonly=True, compute='_compute_total_net_amount')
-    crew_percentage = fields.Float(string='Crew percentage')
+    crew_percentage = fields.Float(string='Crew percentage', readonly=True, states={'draft': [('readonly', False)]})
     crew_amount = fields.Float(string='Crew amount', readonly=True, compute='_compute_crew_amount')
-    shipowner_percentage = fields.Float(string='Shipowner percentage')
+    shipowner_percentage = fields.Float(string='Shipowner percentage', readonly=True, states={'draft': [('readonly', False)]})
     shipowner_amount = fields.Float(string='Shipowner amount', readonly=True, compute='_compute_shipowner_amount')
-    fishing_campaign_share_distributions = fields.One2many(comodel_name='fishing.campaign.share.distribution',inverse_name='fishing_campaign')
-    total_share_weight = fields.Float(string='Calcul de la part', compute='_compute_total_share_weight')
+    fishing_campaign_share_distributions = fields.One2many(comodel_name='fishing.campaign.share.distribution',inverse_name='fishing_campaign', readonly=True, states={'draft': [('readonly', False)]})
+    total_share_weight = fields.Float(string='Calcul de la part', readonly=True, compute='_compute_total_share_weight')
+    state = fields.Selection([
+            ('draft', 'Draft'),
+            ('valid', 'Validated'),
+            ('cancel', 'Canceled'),
+            ],default='draft')
 
     @api.multi
     def calcul(self):
@@ -69,6 +74,12 @@ class FishingCampaign(models.Model):
 
         if self.total_share_weight > 0:
             self.total_share_weight = self.crew_amount / self.total_share_weight
+
+    def action_valid(self):
+        self.state = 'valid'
+
+    def action_cancel(self):
+        self.state = 'cancel'
 
 class FishingCampaignShareDistribution(models.Model):
     _name = 'fishing.campaign.share.distribution'
