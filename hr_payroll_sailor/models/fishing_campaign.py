@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api
+from odoo import models, fields, api, _
+from odoo.exceptions import Warning
 
 class FishingCampaign(models.Model):
     _name = 'fishing.campaign'
@@ -77,8 +78,16 @@ class FishingCampaign(models.Model):
 
     def action_valid(self):
         for item in self.fishing_campaign_share_distributions:
+            print item.sailor.display_name
             if item.sailor.contract_id:
-                item.sailor.contract_id.wage = item.residual
+                self.env['hr.payslip'].create({
+                        'employee_id': item.sailor.id,
+                        'contract_id': item.sailor.contract_id.id,
+                        'struct_id': item.sailor.contract_id.struct_id.id,
+                        'fishing_campaign_wage': item.residual
+                        })
+            else:
+                raise Warning(_('Aucun contrat pour '+ item.sailor.display_name))
 
         self.state = 'valid'
 
@@ -121,3 +130,8 @@ class HrEmployee(models.Model):
     _inherit = 'hr.employee'
 
     fishing_campaign_share_distributions = fields.One2many(comodel_name='fishing.campaign.share.distribution',inverse_name='sailor')
+
+class HrPayslip(models.Model):
+    _inherit = 'hr.payslip'
+
+    fishing_campaign_wage = fields.Float(string='Salaire brut')
