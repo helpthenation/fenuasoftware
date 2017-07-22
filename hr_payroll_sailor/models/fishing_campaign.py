@@ -76,6 +76,10 @@ class FishingCampaign(models.Model):
             self.total_share_weight = self.crew_amount / self.total_share_weight
 
     def action_valid(self):
+        for item in self.fishing_campaign_share_distributions:
+            if item.sailor.contract_id:
+                item.sailor.contract_id.wage = item.residual
+
         self.state = 'valid'
 
     def action_cancel(self):
