@@ -22,10 +22,12 @@
             <field name="state" widget="statusbar"/>
           </header>
           <sheet>
-            <h1>
-              <label string="Feuille de marée (partage)"/>
-              <field name="name"/>
+            <h1 style='text-align: center;'>
+              Campagne de pêche n° <field name="name"/>
             </h1>
+            <h2 style='text-align: center;'>
+              FEUILLE DE MAREE PARTAGE
+            </h2>
             <group>
               <group>
                 <field name="shipname"/>

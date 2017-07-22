@@ -7,7 +7,7 @@ class FishingCampaign(models.Model):
     _name = 'fishing.campaign'
     _description = 'Fishing campaign'
 
-    name = fields.Char(string='Name', required=True, readonly=True, states={'draft': [('readonly', False)]})
+    name = fields.Char(string='Name', readonly=True)
     shipname = fields.Char(string='Ship Name', readonly=True, states={'draft': [('readonly', False)]})
     shipowner = fields.Many2one('res.partner', 'Shipowner', readonly=True, states={'draft': [('readonly', False)]})
     tahiti_num = fields.Char(related='shipowner.name', readonly=True) #Voir res_company.py dans fsw_base
@@ -32,6 +32,14 @@ class FishingCampaign(models.Model):
             ('valid', 'Validated'),
             ('cancel', 'Canceled'),
             ],default='draft')
+
+    @api.model
+    def create(self, vals):
+        print "create"
+        res = super(FishingCampaign, self).create(vals)
+        res.name = self.env['ir.sequence'].sudo().next_by_code('fishing.campaign') 
+        print res.display_name
+        return res
 
     @api.multi
     def calcul(self):
@@ -93,6 +101,11 @@ class FishingCampaign(models.Model):
 
     def action_cancel(self):
         self.state = 'cancel'
+
+    def action_sequence(self):
+        print "action_sequence"
+        res = self.env['ir.sequence'].sudo().next_by_code('fishing.campaign') 
+        print res
 
 class FishingCampaignShareDistribution(models.Model):
     _name = 'fishing.campaign.share.distribution'

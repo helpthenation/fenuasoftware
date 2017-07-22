@@ -23,6 +23,9 @@ Gestion de la paie des marins en Polynésie Française - En accord avec le fichi
 
     # always loaded
     'data': [
+        #data
+        'data/ir_sequence.xml',
+        
         #security
         'security/ir.model.access.csv',
 
