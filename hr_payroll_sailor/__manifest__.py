@@ -29,6 +29,7 @@ Gestion de la paie des marins en Polynésie Française - En accord avec le fichi
         #views
         'views/account_invoice_view.xml',
         'views/fishing_campaign.xml',
+        'views/hr_views.xml',
         'views/templates.xml',
     ],
 }
