@@ -15,7 +15,7 @@ class FishingCampaign(models.Model):
     sea_duration = fields.Integer(string='Sea duration (days)', readonly=True, states={'draft': [('readonly', False)]})
     departure_preparation_duration = fields.Integer(string='Departure preparation (days)', readonly=True, states={'draft': [('readonly', False)]})
     works_on_boat_returned_duration = fields.Integer(string='Works return boat (days)', readonly=True, states={'draft': [('readonly', False)]})
-    total_duration = fields.Integer(string='Total sea (days)', compute='_compute_total_duration', readonly=True, states={'draft': [('readonly', False)]})
+    total_duration = fields.Integer(string='Total sea (days)', compute='_compute_total_duration', readonly=True)
     customer_invoice_line_ids = fields.One2many(comodel_name='account.invoice.line', inverse_name='fishing_campaign', string='Customer Invoice Lines', domain=[('invoice_id.state', '=', 'open'), ('invoice_id.type', '=', 'out_invoice')], readonly=True, )
     supplier_invoice_line_ids = fields.One2many(comodel_name='account.invoice.line', inverse_name='fishing_campaign', string='Supplier Invoice Lines', domain=[('invoice_id.state', '=', 'open'), ('invoice_id.type', '=', 'in_invoice')], readonly=True, )
     total_revenue_amount = fields.Float(string='Total revenue', readonly=True, compute='_compute_total_revenue_amount')
