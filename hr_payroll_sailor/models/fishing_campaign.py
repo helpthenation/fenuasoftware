@@ -32,6 +32,7 @@ class FishingCampaign(models.Model):
             ('valid', 'Validated'),
             ('cancel', 'Canceled'),
             ],default='draft')
+    payslip_count = fields.Integer(compute='_compute_payslip_count')
 
     @api.model
     def create(self, vals):
@@ -84,6 +85,10 @@ class FishingCampaign(models.Model):
         if self.total_share_weight > 0:
             self.total_share_weight = self.crew_amount / self.total_share_weight
 
+    def _compute_payslip_count(self):
+        self.payslip_count = self.env['hr.payslip'].search_count([['fishing_campaign_share_distribution.name', '=', self.name]])
+
+
     def action_valid(self):
         for item in self.fishing_campaign_share_distributions:
             print item.sailor.display_name
@@ -92,7 +97,7 @@ class FishingCampaign(models.Model):
                         'employee_id': item.sailor.id,
                         'contract_id': item.sailor.contract_id.id,
                         'struct_id': item.sailor.contract_id.struct_id.id,
-                        'fishing_campaign_wage': item.residual
+                        'fishing_campaign_share_distribution': item.id
                         })
             else:
                 raise Warning(_('Aucun contrat pour '+ item.sailor.display_name))
@@ -107,10 +112,17 @@ class FishingCampaign(models.Model):
         res = self.env['ir.sequence'].sudo().next_by_code('fishing.campaign') 
         print res
 
+    def action_view_payslip(self):
+        action = self.env.ref('hr_payroll.action_view_hr_payslip_form')
+        result = action.read()[0]
+        result['domain'] = "[('fishing_campaign_share_distribution.name','=', '" + self.name + "')]"
+        return result
+
 class FishingCampaignShareDistribution(models.Model):
     _name = 'fishing.campaign.share.distribution'
     _description ='Fishing Campaign Share Distribution'
 
+    name = fields.Char(related='fishing_campaign.name', readonly=True, )
     sailor = fields.Many2one(comodel_name='hr.employee', string='Sailor/Employee')
     job = fields.Char(string='Job Title')
     fishing_campaign = fields.Many2one(comodel_name='fishing.campaign', string='Fishing Campaign')
@@ -148,4 +160,5 @@ class HrEmployee(models.Model):
 class HrPayslip(models.Model):
     _inherit = 'hr.payslip'
 
-    fishing_campaign_wage = fields.Float(string='Salaire brut')
+    fishing_campaign_wage = fields.Float(related='fishing_campaign_share_distribution.residual', string='Salaire brut')
+    fishing_campaign_share_distribution = fields.Many2one(comodel_name='fishing.campaign.share.distribution', string='Fishing Campaign Share Distribution', readonly=True, ondelete='set null', index=True)

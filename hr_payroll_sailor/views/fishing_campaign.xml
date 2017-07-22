@@ -22,6 +22,11 @@
             <field name="state" widget="statusbar"/>
           </header>
           <sheet>
+            <div class="oe_button_box" name="button_box">
+                <button type="object" name="action_view_payslip" class="oe_stat_button" icon="fa-truck">
+                    <field name="payslip_count" widget="statinfo" string="Payslip" help="Generated Payslip"/>
+                </button>
+            </div>
             <h1 style='text-align: center;'>
               Campagne de pêche n° <field name="name"/>
             </h1>

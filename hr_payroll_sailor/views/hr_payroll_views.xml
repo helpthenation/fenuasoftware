@@ -6,6 +6,7 @@
             <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
             <field name="arch" type="xml">
             	<xpath expr="//field[@name='struct_id']" position='after'>
+                    <field name='fishing_campaign_share_distribution'/>
             		<field name='fishing_campaign_wage'/>
             	</xpath>
             </field>
