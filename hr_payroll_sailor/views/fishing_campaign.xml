@@ -41,6 +41,14 @@
                 <field name="works_on_boat_returned_duration"/>
                 <field name="total_duration"/>
               </group>
+              <group>
+                <field name="crew_percentage"/>
+                <field name="shipowner_percentage"/>
+              </group>
+              <group>
+                <field name="crew_amount"/>
+                <field name="shipowner_amount"/>
+              </group>
             </group>
             <h3>
               RECETTES BRUTES
@@ -74,14 +82,7 @@
               <field name="total_net_amount"/>
             </group>
             <group>
-              <group>
-                <field name="crew_percentage"/>
-                <field name="shipowner_percentage"/>
-              </group>
-              <group>
-                <field name="crew_amount"/>
-                <field name="shipowner_amount"/>
-              </group>
+              
             </group>
             <group>
               <field name="total_share_weight"/>
