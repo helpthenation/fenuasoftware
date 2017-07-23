@@ -25,6 +25,10 @@ Gestion de la paie des marins en Polynésie Française - En accord avec le fichi
     'data': [
         #data
         'data/ir_sequence.xml',
+
+        #reports
+        'reports/fishing_campaign_report.xml',
+        'reports/report_fishing_campaign.xml',
         
         #security
         'security/ir.model.access.csv',

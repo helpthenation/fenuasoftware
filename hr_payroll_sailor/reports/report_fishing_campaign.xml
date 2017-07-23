@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<!-- Fishing Campaign Document -->
+		<template id="report_fishing_campaign_document">
+			<t t-call="report.external_layout">
+				<t t-set="doc" t-value="doc.with_context({'lang':doc.shipowner.lang})" />
+				<div class="page">
+					<div class="row">
+						<h1>Campagne de pêche n° <span t-esc='doc.name'/></h1>
+
+						<div class="row mt32 mb32">
+							<div class="col-xs-2">
+								<strong>Armateur : </strong>
+								<span t-field='doc.shipowner'/>
+							</div>
+							<div class="col-xs-2">
+								<strong>Tahiti N° : </strong>
+								<span t-field='doc.tahiti_num'/>
+							</div>
+							<div class="col-xs-2">
+								<strong>Date : </strong>
+								<span t-field='doc.date'/>
+							</div>
+							<div class="col-xs-2">
+								<strong>Durée en mer : </strong>
+								<span t-field='doc.sea_duration'/>
+							</div>
+						</div>
+
+						<h3>RECETTES BRUTES</h3>
+						<table class="table table-condensed">
+							<thead>
+								<tr>
+									<th>Description</th>
+									<th>Quantity</th>
+									<th>Unit Price</th>
+									<th>Discount(%)</th>
+									<th>Amount</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr t-foreach="doc.customer_invoice_line_ids" t-as="line">
+									<td><span t-field="line.product_id.display_name"/></td>
+									<td><span t-field="line.quantity"/></td>
+									<td><span t-field="line.price_unit"/></td>
+									<td><span t-field="line.discount"/></td>
+									<td><span t-field="line.discount"/></td>
+								</tr>
+							</tbody>
+						</table>
+						<h4>Total des recettes: <span t-field="doc.total_revenue_amount"/></h4>
+
+						<h3>CHARGES COMMUNES</h3>
+						<table class="table table-condensed">
+							<thead>
+								<tr>
+									<th>Description</th>
+									<th>Quantity</th>
+									<th>Unit Price</th>
+									<th>Discount(%)</th>
+									<th>Amount</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr t-foreach="doc.supplier_invoice_line_ids" t-as="line">
+									<td><span t-field="line.product_id.display_name"/></td>
+									<td><span t-field="line.quantity"/></td>
+									<td><span t-field="line.price_unit"/></td>
+									<td><span t-field="line.discount"/></td>
+									<td><span t-field="line.discount"/></td>
+								</tr>
+							</tbody>
+						</table>
+						<h4>Total des dépenses: <span t-field="doc.total_expense_amount"/></h4>
+
+						<h3>NET A PARTAGER</h3>
+						<table class="table table-condensed">
+							<thead>
+								<tr>
+									<th>Employée</th>
+									<th>Fonction</th>
+									<th>Part</th>
+									<th>Salaire brut</th>
+									<th>Avance</th>
+									<th>Reste à payer</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr t-foreach="doc.fishing_campaign_share_distributions" t-as="line">
+									<td><span t-field="line.sailor"/></td>
+									<td><span t-field="line.job"/></td>
+									<td><span t-field="line.share_weight"/></td>
+									<td><span t-field="line.wage"/></td>
+									<td><span t-field="line.deposit"/></td>
+									<td><span t-field="line.residual"/></td>
+								</tr>
+							</tbody>
+						</table>
+						<h4>Part Armateur: <span t-field="doc.shipowner_amount"/></h4>
+						<h4>Part Equipage: <span t-field="doc.crew_amount"/></h4>
+					</div>
+				</div>
+			</t>
+		</template>
+
+		<!-- Fishing Campaign -->
+		<template id="report_fishing_campaign">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="doc">
+					<t t-call="hr_payroll_sailor.report_fishing_campaign_document" t-lang="doc.shipowner.lang"/>
+				</t>
+			</t>
+		</template>
+	</data>
+</odoo>
