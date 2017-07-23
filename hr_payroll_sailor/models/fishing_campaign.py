@@ -100,7 +100,7 @@ class FishingCampaign(models.Model):
                         'fishing_campaign_share_distribution': item.id
                         })
             else:
-                raise Warning(_('Aucun contrat pour '+ item.sailor.display_name))
+                raise Warning(_('Aucun contrat pour '+ str(item.sailor.display_name)))
 
         self.state = 'valid'
 
