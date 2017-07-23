@@ -106,13 +106,17 @@
         </form>
       </field>
     </record>
+
+    <!-- Actions -->
     <record id="fishing_campaign_dashboard_action" model="ir.actions.act_window">
       <field name="name">Fishing Campaign</field>
       <field name="res_model">fishing.campaign</field>
       <field name="view_type">form</field>
       <field name="view_mode">tree,form</field>
     </record>
-    <menuitem id="fishing_campaign_root_menu" name="Fishing Campaign" parent="" action="fishing_campaign_dashboard_action"/>
+
+    <!-- Menus -->
+    <menuitem id="fishing_campaign_root_menu" name="Fishing Campaign" parent="" action="fishing_campaign_dashboard_action" web_icon="hr_payroll_sailor,static/description/icon.png"/>
 
   </data>
 </odoo>
