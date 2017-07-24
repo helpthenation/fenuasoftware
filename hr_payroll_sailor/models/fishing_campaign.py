@@ -93,12 +93,13 @@ class FishingCampaign(models.Model):
         for item in self.fishing_campaign_share_distributions:
             print item.sailor.display_name
             if item.sailor.contract_id:
-                self.env['hr.payslip'].create({
+                payslip = self.env['hr.payslip'].create({
                         'employee_id': item.sailor.id,
                         'contract_id': item.sailor.contract_id.id,
                         'struct_id': item.sailor.contract_id.struct_id.id,
                         'fishing_campaign_share_distribution': item.id
                         })
+                payslip.compute_sheet()
             else:
                 raise Warning(_('Aucun contrat pour '+ str(item.sailor.display_name)))
 
@@ -106,6 +107,9 @@ class FishingCampaign(models.Model):
 
     def action_cancel(self):
         self.state = 'cancel'
+
+    def action_draft(self):
+        self.state = 'draft';
 
     def action_sequence(self):
         print "action_sequence"
