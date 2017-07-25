@@ -24,9 +24,9 @@
           </header>
           <sheet>
             <div class="oe_button_box" name="button_box">
-                <button type="object" name="action_view_payslip" class="oe_stat_button" icon="fa-truck" states="valid">
-                    <field name="payslip_count" widget="statinfo" string="Payslip" help="Generated Payslip"/>
-                </button>
+              <button type="object" name="action_view_payslip" class="oe_stat_button" icon="fa-truck" states="valid">
+                <field name="payslip_count" widget="statinfo" string="Payslip" help="Generated Payslip"/>
+              </button>
             </div>
             <h1 style='text-align: center;'>
               Campagne de pêche n° <field name="name"/>
@@ -103,12 +103,23 @@
       </field>
     </record>
 
+    <!-- Pivot -->
+    <record model="ir.ui.view" id="fishing_campaign_pivot">
+      <field name="name">fishing_campaign_pivot</field>
+      <field name="model">fishing.campaign</field>
+      <field name="arch" type="xml">
+        <pivot string="Fishing Campaign" display_quantity="true">
+          <field name="name"/>
+        </pivot>
+      </field>
+    </record>
+
     <!-- Actions -->
     <record id="fishing_campaign_dashboard_action" model="ir.actions.act_window">
       <field name="name">Fishing Campaign</field>
       <field name="res_model">fishing.campaign</field>
       <field name="view_type">form</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">tree,form,pivot</field>
     </record>
 
     <!-- Menus -->
