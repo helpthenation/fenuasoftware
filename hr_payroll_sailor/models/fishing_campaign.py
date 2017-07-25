@@ -16,15 +16,15 @@ class FishingCampaign(models.Model):
     departure_preparation_duration = fields.Integer(string='Departure preparation (days)', readonly=True, states={'draft': [('readonly', False)]})
     works_on_boat_returned_duration = fields.Integer(string='Works return boat (days)', readonly=True, states={'draft': [('readonly', False)]})
     total_duration = fields.Integer(string='Total sea (days)', compute='_compute_total_duration', readonly=True)
-    total_revenue_amount = fields.Float(string='Total revenue', readonly=True, compute='_compute_total_revenue_amount')
-    total_expense_amount = fields.Float(string='Total expense', readonly=True, compute='_compute_total_expense_amount')
-    total_net_amount = fields.Float(string='Total to share', readonly=True, compute='_compute_total_net_amount')
     customer_invoice_line_ids = fields.One2many(comodel_name='account.invoice.line', inverse_name='fishing_campaign', string='Customer Invoice Lines', domain=[('invoice_id.state', 'in', ('open', 'paid')), ('invoice_id.type', '=', 'out_invoice')], readonly=True, )
     supplier_invoice_line_ids = fields.One2many(comodel_name='account.invoice.line', inverse_name='fishing_campaign', string='Supplier Invoice Lines', domain=[('invoice_id.state', 'in', ('open', 'paid')), ('invoice_id.type', '=', 'in_invoice')], readonly=True, )
+    total_revenue_amount = fields.Float(string='Total revenue', readonly=True, compute='_compute_total_revenue_amount', store=True,)
+    total_expense_amount = fields.Float(string='Total expense', readonly=True, compute='_compute_total_expense_amount', store=True,)
+    total_net_amount = fields.Float(string='Total to share', readonly=True, compute='_compute_total_net_amount', store=True,)
     crew_percentage = fields.Float(string='Crew percentage', readonly=True, states={'draft': [('readonly', False)]})
-    crew_amount = fields.Float(string='Crew amount', readonly=True, compute='_compute_crew_amount')
+    crew_amount = fields.Float(string='Crew amount', readonly=True, compute='_compute_crew_amount', store=True,)
     shipowner_percentage = fields.Float(string='Shipowner percentage', readonly=True, states={'draft': [('readonly', False)]})
-    shipowner_amount = fields.Float(string='Shipowner amount', readonly=True, compute='_compute_shipowner_amount')
+    shipowner_amount = fields.Float(string='Shipowner amount', readonly=True, compute='_compute_shipowner_amount', store=True,)
     fishing_campaign_share_distributions = fields.One2many(comodel_name='fishing.campaign.share.distribution',inverse_name='fishing_campaign', readonly=True, states={'draft': [('readonly', False)]})
     total_share_weight = fields.Float(string='Calcul de la part', readonly=True, compute='_compute_total_share_weight')
     state = fields.Selection([
@@ -42,11 +42,17 @@ class FishingCampaign(models.Model):
         print res.display_name
         return res
 
-    @api.multi
-    def calcul(self):
+    @api.depends('customer_invoice_line_ids', 'supplier_invoice_line_ids', )
+    def compute_sheet(self):
+        print "compute_sheet"
     	self._compute_total_revenue_amount()
         self._compute_total_expense_amount()
         self._compute_total_net_amount()
+
+        self._compute_crew_amount()
+        self._compute_shipowner_amount()
+
+        self._compute_total_share_weight()
 
     @api.onchange('sea_duration', 'departure_preparation_duration','works_on_boat_returned_duration')
     def _compute_total_duration(self):
@@ -91,13 +97,12 @@ class FishingCampaign(models.Model):
 
     def action_valid(self):
         for item in self.fishing_campaign_share_distributions:
-            print item.sailor.display_name
             if item.sailor.contract_id:
                 payslip = self.env['hr.payslip'].create({
                         'employee_id': item.sailor.id,
                         'contract_id': item.sailor.contract_id.id,
                         'struct_id': item.sailor.contract_id.struct_id.id,
-                        'fishing_campaign_share_distribution': item.id
+                        'fishing_campaign_share_distribution': item.id,
                         })
                 payslip.compute_sheet()
             else:

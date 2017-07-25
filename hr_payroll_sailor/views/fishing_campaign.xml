@@ -51,48 +51,43 @@
                 <field name="crew_percentage"/>
                 <field name="shipowner_percentage"/>
               </group>
-              <group>
-                <field name="crew_amount"/>
-                <field name="shipowner_amount"/>
-              </group>
             </group>
             <h3>
               RECETTES BRUTES
             </h3>
-            <label for="customer_invoice_line_ids"/>
             <field name="customer_invoice_line_ids">
             </field>
-            <group>
-              <group>
-              </group>
-              <group>
-                <field name="total_revenue_amount"/>
-              </group>
+            <group class="oe_subtotal_footer oe_right" colspan="2">
+              <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                <label for="total_revenue_amount"/>
+                <button name="compute_sheet" string="(update)" type="object" class="oe_edit_only oe_link"/>
+              </div>
+              <field name="total_revenue_amount" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
             </group>
             <h3>
               CHARGES COMMUNES
             </h3>
             <field name="supplier_invoice_line_ids">
             </field>
-            <group>
-              <group>
-              </group>
-              <group>
-                <field name="total_expense_amount"/>
-              </group>
+            <group class="oe_subtotal_footer oe_right" colspan="2">
+              <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                <label for="total_expense_amount"/>
+                <button name="compute_sheet" string="(update)" type="object" class="oe_edit_only oe_link"/>
+              </div>
+              <field name="total_expense_amount" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
             </group>
             <h3>
               NET A PARTAGER
             </h3>
-            <group>
+            <group colspan="2">
               <field name="total_net_amount"/>
-            </group>
-            <group>
-              
-            </group>
-            <group>
               <field name="total_share_weight"/>
             </group>
+            <group>
+              <field name="crew_amount"/>
+              <field name="shipowner_amount"/>
+            </group>
+            <button name="compute_sheet" string="(update)" type="object" class="oe_edit_only oe_link"/>
             <field name="fishing_campaign_share_distributions">
               <tree string="Marins" editable="bottom">
                 <field name="sailor"/>
