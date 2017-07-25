@@ -114,12 +114,24 @@
       </field>
     </record>
 
+    <!-- Graph -->
+    <record model="ir.ui.view" id="fish_campaign_graph">
+      <field name="name">fish_campaign_graph</field>
+      <field name="model">fishing.campaign</field>
+      <field name="arch" type="xml">
+        <graph string="Fishing Campaign">
+          <field name="date"/>
+          <field name="shipowner_amount" type="measure"/>
+        </graph>
+      </field>
+    </record>
+
     <!-- Actions -->
     <record id="fishing_campaign_dashboard_action" model="ir.actions.act_window">
       <field name="name">Fishing Campaign</field>
       <field name="res_model">fishing.campaign</field>
       <field name="view_type">form</field>
-      <field name="view_mode">tree,form,pivot</field>
+      <field name="view_mode">tree,form,pivot,graph</field>
     </record>
 
     <!-- Menus -->
