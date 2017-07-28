@@ -36,7 +36,7 @@
             </h2>
             <group>
               <group>
-                <field name="shipname"/>
+                <field name="ship"/>
                 <field name="shipowner"/>
                 <field name="tahiti_num"/>
                 <field name="date"/>

@@ -8,9 +8,9 @@ class FishingCampaign(models.Model):
     _description = 'Fishing campaign'
 
     name = fields.Char(string='Name', readonly=True)
-    shipname = fields.Char(string='Ship Name', readonly=True, states={'draft': [('readonly', False)]})
-    shipowner = fields.Many2one('res.partner', 'Shipowner', readonly=True, states={'draft': [('readonly', False)]})
-    tahiti_num = fields.Char(related='shipowner.tahiti_num', string='Tahiti Number', readonly=True) #Voir res_company.py dans fsw_base
+    ship = fields.Many2one(comodel_name='fleet.ship', string='Ship', readonly=True, states={'draft': [('readonly', False)]})
+    shipowner = fields.Many2one(related='ship.shipowner', string='Shipowner', readonly=True)
+    tahiti_num = fields.Char(related='ship.shipowner.tahiti_num', string='Tahiti Number', readonly=True) #Voir res_company.py dans fsw_base
     date = fields.Date(string="Fishing campaign date", readonly=True, states={'draft': [('readonly', False)]})
     sea_duration = fields.Integer(string='Sea duration (days)', readonly=True, states={'draft': [('readonly', False)]})
     departure_preparation_duration = fields.Integer(string='Departure preparation (days)', readonly=True, states={'draft': [('readonly', False)]})
@@ -149,6 +149,11 @@ class FishingCampaignShareDistribution(models.Model):
         for item in self:
             item.residual = item.wage - item.deposit
 
+
+class FleetShip(models.Model):
+    _inherit = 'fleet.ship'
+
+    fishing_campaigns = fields.One2many(comodel_name='fishing.campaign', inverse_name='ship', string='Fishing Campaign')    
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
