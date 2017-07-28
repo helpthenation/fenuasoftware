@@ -17,9 +17,10 @@
       <field name="arch" type="xml">
         <form string="description">
           <header>
+            <button name="compute_sheet" type="object" string="CALCUL" class="oe_highlight" states="draft"/>
             <button name="action_valid" type="object" string="VALIDATE" class="oe_highlight" states="draft"/>
-            <button name="action_cancel" type="object" string="CANCEL" class="oe_highlight" states="draft"/>
             <button name="action_draft" type="object" string="BROUILLON" class="oe_highlight" groups="base.group_no_one"/>
+            <button name="action_cancel" type="object" string="CANCEL" states="draft"/>
             <field name="state" widget="statusbar"/>
           </header>
           <sheet>
