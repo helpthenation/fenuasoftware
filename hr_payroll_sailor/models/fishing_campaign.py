@@ -159,6 +159,8 @@ class FishingCampaignShareDistribution(models.Model):
     @api.one
     def _compute_wage(self):
         self.wage = self.fishing_campaign.total_share_weight * self.share_weight;
+        if self.wage < 90000:
+            self.wage = 90000
 
     @api.onchange('wage', 'deposit')
     def _compute_residual(self):
