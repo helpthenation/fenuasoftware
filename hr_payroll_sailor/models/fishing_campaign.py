@@ -2,6 +2,7 @@
 
 from odoo import models, fields, api, _
 from odoo.exceptions import Warning
+from odoo.exceptions import UserError, RedirectWarning, ValidationError
 
 class FishingCampaign(models.Model):
     _name = 'fishing.campaign'
@@ -96,7 +97,22 @@ class FishingCampaign(models.Model):
 
 
     def action_valid(self):
+        if not self.fishing_campaign_share_distributions:
+            raise UserError(_('Please add employees first'))
+        if self.total_revenue_amount == 0:
+            raise UserError(_('Total revenue can not be 0'))
+        if self.total_expense_amount == 0:
+            raise UserError(_('Total expense can not be 0'))
+        if self.crew_amount == 0:
+            raise UserError(_('Crew amount can not be 0'))
+        if self.shipowner_amount == 0:
+            raise UserError(_('Shipowner amount can not be 0'))
+        if self.total_share_weight == 0:
+            raise UserError(_('Share amount can not be 0'))
+
         for item in self.fishing_campaign_share_distributions:
+            if item.wage == 0:
+                raise UserError(_('Employee ' + str(item.sailor.display_name) + " can not have a wage of 0"))
             if item.sailor.contract_id:
                 payslip = self.env['hr.payslip'].create({
                         'employee_id': item.sailor.id,
