@@ -149,7 +149,7 @@ class FishingCampaignShareDistribution(models.Model):
 
     name = fields.Char(related='fishing_campaign.name', readonly=True, )
     sailor = fields.Many2one(comodel_name='hr.employee', string='Sailor/Employee', required=True,)
-    job = fields.Char(string='Job Title')
+    job = fields.Many2one(related='sailor.job_id', string='Job Title', readonly=True, )
     fishing_campaign = fields.Many2one(comodel_name='fishing.campaign', string='Fishing Campaign')
     share_weight = fields.Float(string='Share Distribution')
     wage = fields.Float(string='Wage',readonly=True, compute='_compute_wage')
