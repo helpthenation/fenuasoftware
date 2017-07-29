@@ -1,8 +1,84 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api, _
+import time
+from datetime import datetime, timedelta
+from dateutil import relativedelta
+
+import babel
+
+from odoo import models, fields, api, _, tools
 from odoo.exceptions import Warning
 from odoo.exceptions import UserError, RedirectWarning, ValidationError
+
+class FishingCampaignRun(models.Model):
+    _name = 'fishing.campaign.run'
+    _description = 'Fishing Campaign Batchs'
+
+    name = fields.Char(string='Name', readonly=True)
+    date_from = fields.Date(string='Date From', readonly=True, required=True, default=time.strftime('%Y-%m-01'), states={'draft': [('readonly', False)]})
+    date_to = fields.Date(string='Date To', readonly=True, required=True, default=str(datetime.now() + relativedelta.relativedelta(months=+1, day=1, days=-1))[:10], states={'draft': [('readonly', False)]})
+    state = fields.Selection([
+        ('draft', 'Draft'),
+        ('valid', 'Validated'),
+        ('cancel', 'Canceled'),
+    ], string='Status', index=True, readonly=True, copy=False, default='draft')
+    fishing_campaign_share_distributions = fields.One2many(comodel_name='fishing.campaign.share.distribution',inverse_name='fishing_campaign_run', readonly=True)
+    payslips = fields.One2many(comodel_name='hr.payslip',inverse_name='fishing_campaign_run', readonly=True)
+    payslip_count = fields.Integer(compute='_compute_payslip_count')
+
+    @api.model
+    def create(self, vals):
+        res = super(FishingCampaignRun, self).create(vals)
+        if (not res.date_from) or (not res.date_to):
+            return
+
+        ttyme = datetime.fromtimestamp(time.mktime(time.strptime(res.date_from, "%Y-%m-%d")))
+        locale = self.env.context.get('lang', 'en_US')
+        res.name = _('%s') % (tools.ustr(babel.dates.format_date(date=ttyme, format='MMMM-y', locale=locale)))
+
+        return res
+
+    def _compute_payslip_count(self):
+        self.payslip_count = self.env['hr.payslip'].search_count([['fishing_campaign_run.id', '=', self.id]])
+
+    def compute_payslips(self):
+        self.payslips.unlink()
+        for item in self.fishing_campaign_share_distributions:
+            payslips = self.payslips.search([('fishing_campaign_run', '=', self.id), ('employee_id', '=', item.sailor.id)])
+            print payslips
+            if payslips:
+                print "EXIST"
+                for payslip in payslips:
+                    payslip.fishing_campaign_wage += item.residual
+            else:
+                print "NOT EXIST"
+                payslip = self.env['hr.payslip'].create({
+                            'employee_id': item.sailor.id,
+                            'contract_id': item.sailor.contract_id.id,
+                            'struct_id': item.sailor.contract_id.struct_id.id,
+                            'fishing_campaign_run': self.id,
+                            'fishing_campaign_wage': item.residual 
+                            })
+
+        for payslip in self.payslips:
+            payslip.compute_sheet();
+
+    def action_valid(self):
+        for payslip in self.payslips:
+            payslip.action_payslip_done();
+        self.state = 'valid'
+
+    def action_cancel(self):
+        self.state = 'cancel'
+
+    def action_draft(self):
+        self.state = 'draft';
+
+    def action_view_payslip(self):
+        action = self.env.ref('hr_payroll.action_view_hr_payslip_form')
+        result = action.read()[0]
+        result['domain'] = "[('fishing_campaign_run.id','=', '" + str(self.id) + "')]"
+        return result
 
 class FishingCampaign(models.Model):
     _name = 'fishing.campaign'
@@ -32,8 +108,9 @@ class FishingCampaign(models.Model):
             ('draft', 'Draft'),
             ('valid', 'Validated'),
             ('cancel', 'Canceled'),
-            ],default='draft')
+            ], string='Status', index=True, readonly=True, copy=False, default='draft')
     payslip_count = fields.Integer(compute='_compute_payslip_count')
+    fishing_campaign_run = fields.Many2one(comodel_name='fishing.campaign.run', string='Fishing Campaign Batches', readonly=True, copy=False, states={'draft': [('readonly', False)]})
 
     @api.model
     def create(self, vals):
@@ -46,6 +123,9 @@ class FishingCampaign(models.Model):
     @api.depends('customer_invoice_line_ids', 'supplier_invoice_line_ids', )
     def compute_sheet(self):
         print "compute_sheet"
+        self.onchange_fishing_campaign_run()
+
+
     	self._compute_total_revenue_amount()
         self._compute_total_expense_amount()
         self._compute_total_net_amount()
@@ -95,6 +175,16 @@ class FishingCampaign(models.Model):
     def _compute_payslip_count(self):
         self.payslip_count = self.env['hr.payslip'].search_count([['fishing_campaign_share_distribution.name', '=', self.name]])
 
+    @api.onchange('fishing_campaign_run')
+    def onchange_fishing_campaign_run(self):
+        if self.fishing_campaign_run:
+            for item in self.fishing_campaign_share_distributions:
+                item.fishing_campaign_run = self.fishing_campaign_run
+
+    @api.onchange('fishing_campaign_share_distributions')
+    def onchange_fishing_campaign_share_distributions(self):
+        self.compute_sheet()
+        print "onchange_fishing_campaign_share_distributions"
 
     def action_valid(self):
         if not self.fishing_campaign_share_distributions:
@@ -113,16 +203,18 @@ class FishingCampaign(models.Model):
         for item in self.fishing_campaign_share_distributions:
             if item.wage == 0:
                 raise UserError(_('Employee ' + str(item.sailor.display_name) + " can not have a wage of 0"))
-            if item.sailor.contract_id:
-                payslip = self.env['hr.payslip'].create({
-                        'employee_id': item.sailor.id,
-                        'contract_id': item.sailor.contract_id.id,
-                        'struct_id': item.sailor.contract_id.struct_id.id,
-                        'fishing_campaign_share_distribution': item.id,
-                        })
-                payslip.compute_sheet()
-            else:
-                raise Warning(_('Aucun contrat pour '+ str(item.sailor.display_name)))
+            if not self.fishing_campaign_run:
+                if item.sailor.contract_id:
+                    payslip = self.env['hr.payslip'].create({
+                            'employee_id': item.sailor.id,
+                            'contract_id': item.sailor.contract_id.id,
+                            'struct_id': item.sailor.contract_id.struct_id.id,
+                            'fishing_campaign_share_distribution': item.id,
+                            'fishing_campaign_wage': item.residual 
+                            })
+                    payslip.compute_sheet()
+                else:
+                    raise Warning(_('Aucun contrat pour '+ str(item.sailor.display_name)))
 
         self.state = 'valid'
 
@@ -151,22 +243,21 @@ class FishingCampaignShareDistribution(models.Model):
     sailor = fields.Many2one(comodel_name='hr.employee', string='Sailor/Employee', required=True,)
     job = fields.Many2one(related='sailor.job_id', string='Job Title', readonly=True, )
     fishing_campaign = fields.Many2one(comodel_name='fishing.campaign', string='Fishing Campaign')
+    fishing_campaign_date = fields.Date(relative='fishing_campaign.date', string='Date', readonly=True, )
     share_weight = fields.Float(string='Share Distribution')
     wage = fields.Float(string='Wage',readonly=True, compute='_compute_wage')
     deposit = fields.Float(string='Deposit')
     residual = fields.Float(string='Amount Due', readonly=True, compute="_compute_residual")
+    fishing_campaign_run = fields.Many2one(comodel_name='fishing.campaign.run', string='Fishing Campaign Batches')
 
     @api.one
     def _compute_wage(self):
         self.wage = self.fishing_campaign.total_share_weight * self.share_weight;
-        if self.wage < 90000:
-            self.wage = 90000
 
     @api.onchange('wage', 'deposit')
     def _compute_residual(self):
         for item in self:
             item.residual = item.wage - item.deposit
-
 
 class FleetShip(models.Model):
     _inherit = 'fleet.ship'
@@ -192,5 +283,6 @@ class HrEmployee(models.Model):
 class HrPayslip(models.Model):
     _inherit = 'hr.payslip'
 
-    fishing_campaign_wage = fields.Float(related='fishing_campaign_share_distribution.residual', string='Salaire brut')
-    fishing_campaign_share_distribution = fields.Many2one(comodel_name='fishing.campaign.share.distribution', string='Fishing Campaign Share Distribution', readonly=True, ondelete='set null', index=True)
+    fishing_campaign_wage = fields.Float(string='Salaire brut')
+    fishing_campaign_share_distribution = fields.Many2one(comodel_name='fishing.campaign.share.distribution', string='Fishing Campaign Share Distribution', readonly=True, ondelete='set null', index=True) 
+    fishing_campaign_run = fields.Many2one(comodel_name='fishing.campaign.run', string='Fishing Campaign Batches')

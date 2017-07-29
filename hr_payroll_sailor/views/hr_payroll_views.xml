@@ -5,10 +5,13 @@
             <field name="model">hr.payslip</field>
             <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
             <field name="arch" type="xml">
-            	<xpath expr="//field[@name='struct_id']" position='after'>
-                    <field name='fishing_campaign_share_distribution'/>
-            		<field name='fishing_campaign_wage'/>
-            	</xpath>
+                <xpath expr="//sheet/group" position='after'> 
+                    <group string="Fishing Campaign">
+                        <field name='fishing_campaign_wage'/>
+                        <field name='fishing_campaign_run' attrs="{'invisible': [('fishing_campaign_run', '=', False)]}"/>
+                        <field name='fishing_campaign_share_distribution' attrs="{'invisible': [('fishing_campaign_share_distribution', '=', False)]}"/>
+                    </group>
+                </xpath>
             </field>
         </record>
 	</data>

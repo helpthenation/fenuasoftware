@@ -19,7 +19,7 @@ Gestion de la paie des marins en Polynésie Française - En accord avec le fichi
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['l10n_fr', 'account', 'hr', 'hr_payroll', 'fleet'],
+    'depends': ['l10n_fr', 'account', 'hr', 'hr_payroll', 'fleet_plus'],
 
     # always loaded
     'data': [
