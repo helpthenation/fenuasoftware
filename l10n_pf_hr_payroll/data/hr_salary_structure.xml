@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!-- Structure des salaires -->
+		<record id="hr_payroll.structure_base" model="hr.payroll.structure">
+			<field name="name">Structure de base</field>
+			<field name="code">BASE</field>
+			<field name="parent_id" ref=""/>
+			<field name="rule_ids" eval="[(6, 0, [
+				ref('hr_payroll.hr_rule_basic'),
+				])]"/>
+		</record>
+		<record id="hr_payroll.with_allowance_and_gross" model="hr.payroll.structure">
+			<field name="name">avec allocation et brute</field>
+			<field name="code">GROSS</field>
+			<field name="parent_id" ref="hr_payroll.structure_base"/>
+			<field name="rule_ids" eval="[(6, 0, [
+				ref('l10n_pf_hr_payroll.hs25'),
+				ref('hr_payroll.hr_rule_taxable'),
+				])]"/>
+		</record>
+		<record id="hr_payroll.with_deduction_and_net" model="hr.payroll.structure">
+			<field name="name">avec cotisations et Net</field>
+			<field name="code">NET</field>
+			<field name="parent_id" ref="hr_payroll.with_allowance_and_gross"/>
+			<field name="rule_ids" eval="[(6, 0, [
+				ref('l10n_pf_hr_payroll.cps_A'),
+				ref('l10n_pf_hr_payroll.cps_A_plus'),
+				ref('l10n_pf_hr_payroll.cps_B'),
+				ref('l10n_pf_hr_payroll.cps_B_plus'),
+				ref('l10n_pf_hr_payroll.cps_sickness'),
+				ref('l10n_pf_hr_payroll.cps_sickness_plus'),
+				ref('l10n_pf_hr_payroll.cps_fsr'),
+				ref('l10n_pf_hr_payroll.cps_fsr_plus'),
+				ref('l10n_pf_hr_payroll.total_cps'),
+				ref('l10n_pf_hr_payroll.cst_1'),
+				ref('l10n_pf_hr_payroll.cst_1_plus'),
+				ref('l10n_pf_hr_payroll.cst_2'),
+				ref('l10n_pf_hr_payroll.cst_2_plus'),
+				ref('l10n_pf_hr_payroll.cst_3'),
+				ref('l10n_pf_hr_payroll.cst_3_plus'),
+				ref('l10n_pf_hr_payroll.cst_4'),
+				ref('l10n_pf_hr_payroll.cst_4_plus'),
+				ref('l10n_pf_hr_payroll.total_cst'),
+				ref('hr_payroll.hr_rule_net'),
+				])]"/>
+		</record>
+		<record id="hr_payroll.with_empoyer" model="hr.payroll.structure">
+			<field name="name">avec cotisations patronales</field>
+			<field name="code">EMPLOER</field>
+			<field name="parent_id" ref="hr_payroll.with_deduction_and_net"/>
+			<field name="rule_ids" eval="[(6, 0, [
+				ref('l10n_pf_hr_payroll.hab'),
+				ref('l10n_pf_hr_payroll.hab_plus'),
+				ref('l10n_pf_hr_payroll.af'),
+				ref('l10n_pf_hr_payroll.af_plus'),
+				ref('l10n_pf_hr_payroll.avt'),
+				ref('l10n_pf_hr_payroll.avt_plus'),
+				ref('l10n_pf_hr_payroll.at'),
+				ref('l10n_pf_hr_payroll.at_plus'),
+				ref('l10n_pf_hr_payroll.ret_a'),
+				ref('l10n_pf_hr_payroll.ret_a_plus'),
+				ref('l10n_pf_hr_payroll.ret_b'),
+				ref('l10n_pf_hr_payroll.ret_b_plus'),
+				ref('l10n_pf_hr_payroll.am'),
+				ref('l10n_pf_hr_payroll.am_plus'),
+				ref('l10n_pf_hr_payroll.fsr'),
+				ref('l10n_pf_hr_payroll.fsr_plus'),
+				ref('l10n_pf_hr_payroll.fpc'),
+				ref('l10n_pf_hr_payroll.fpc_plus'),
+				ref('l10n_pf_hr_payroll.employer_total'),
+				])]"/>
+		</record>
+	</data>
+</odoo>
