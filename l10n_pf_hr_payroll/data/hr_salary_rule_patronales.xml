@@ -3,7 +3,7 @@
 	<data>
 		<!-- PATRONALE -->
 		<record id="hab" model="hr.salary.rule">
-			<field name="sequence" eval="201"/>
+			<field name="sequence" eval="301"/>
 			<field name="name">H.A.B</field>
 			<field name="category_id" ref="l10n_pf_hr_payroll.category_employer"/>
 			<field name="code">PAT_HAB</field>
@@ -26,7 +26,7 @@
 			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_cps"/>
 		</record>
 		<record id="hab_plus" model="hr.salary.rule">
-			<field name="sequence" eval="202"/>
+			<field name="sequence" eval="302"/>
 			<field name="name">H.A.B+</field>
 			<field name="category_id" ref="l10n_pf_hr_payroll.category_employer"/>
 			<field name="code">PAT_HAB+</field>
@@ -49,7 +49,7 @@
 			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_cps"/>
 		</record>
 		<record id="af" model="hr.salary.rule">
-			<field name="sequence" eval="203"/>
+			<field name="sequence" eval="303"/>
 			<field name="name">A.F</field>
 			<field name="category_id" ref="l10n_pf_hr_payroll.category_employer"/>
 			<field name="code">PAT_AF</field>
@@ -72,7 +72,7 @@
 			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_cps"/>
 		</record>
 		<record id="af_plus" model="hr.salary.rule">
-			<field name="sequence" eval="204"/>
+			<field name="sequence" eval="304"/>
 			<field name="name">A.F+</field>
 			<field name="category_id" ref="l10n_pf_hr_payroll.category_employer"/>
 			<field name="code">PAT_AF+</field>
@@ -95,7 +95,7 @@
 			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_cps"/>
 		</record>
 		<record id="avt" model="hr.salary.rule">
-			<field name="sequence" eval="205"/>
+			<field name="sequence" eval="305"/>
 			<field name="name">A.V.T</field>
 			<field name="category_id" ref="l10n_pf_hr_payroll.category_employer"/>
 			<field name="code">PAT_AVT</field>
@@ -118,7 +118,7 @@
 			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_cps"/>
 		</record>
 		<record id="avt_plus" model="hr.salary.rule">
-			<field name="sequence" eval="206"/>
+			<field name="sequence" eval="306"/>
 			<field name="name">A.V.T+</field>
 			<field name="category_id" ref="l10n_pf_hr_payroll.category_employer"/>
 			<field name="code">PAT_AVT+</field>
@@ -141,7 +141,7 @@
 			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_cps"/>
 		</record>
 		<record id="at" model="hr.salary.rule">
-			<field name="sequence" eval="205"/>
+			<field name="sequence" eval="305"/>
 			<field name="name">A.T</field>
 			<field name="category_id" ref="l10n_pf_hr_payroll.category_employer"/>
 			<field name="code">PAT_AT</field>
@@ -164,7 +164,7 @@
 			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_cps"/>
 		</record>
 		<record id="at_plus" model="hr.salary.rule">
-			<field name="sequence" eval="206"/>
+			<field name="sequence" eval="306"/>
 			<field name="name">A.T+</field>
 			<field name="category_id" ref="l10n_pf_hr_payroll.category_employer"/>
 			<field name="code">PAT_AT+</field>
@@ -187,7 +187,7 @@
 			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_cps"/>
 		</record>
 		<record id="ret_a" model="hr.salary.rule">
-			<field name="sequence" eval="207"/>
+			<field name="sequence" eval="307"/>
 			<field name="name">RETRAITE A</field>
 			<field name="category_id" ref="l10n_pf_hr_payroll.category_employer"/>
 			<field name="code">PAT_RET_A</field>
@@ -210,7 +210,7 @@
 			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_cps"/>
 		</record>
 		<record id="ret_a_plus" model="hr.salary.rule">
-			<field name="sequence" eval="208"/>
+			<field name="sequence" eval="308"/>
 			<field name="name">RETRAITE A+</field>
 			<field name="category_id" ref="l10n_pf_hr_payroll.category_employer"/>
 			<field name="code">PAT_RET_A+</field>
@@ -233,7 +233,7 @@
 			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_cps"/>
 		</record>
 		<record id="ret_b" model="hr.salary.rule">
-			<field name="sequence" eval="209"/>
+			<field name="sequence" eval="309"/>
 			<field name="name">RETRAITE B</field>
 			<field name="category_id" ref="l10n_pf_hr_payroll.category_employer"/>
 			<field name="code">PAT_RET_B</field>
@@ -256,7 +256,7 @@
 			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_cps"/>
 		</record>
 		<record id="ret_b_plus" model="hr.salary.rule">
-			<field name="sequence" eval="210"/>
+			<field name="sequence" eval="310"/>
 			<field name="name">RETRAITE B+</field>
 			<field name="category_id" ref="l10n_pf_hr_payroll.category_employer"/>
 			<field name="code">PAT_RET_B+</field>
@@ -279,7 +279,7 @@
 			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_cps"/>
 		</record>
 		<record id="am" model="hr.salary.rule">
-			<field name="sequence" eval="211"/>
+			<field name="sequence" eval="311"/>
 			<field name="name">AM</field>
 			<field name="category_id" ref="l10n_pf_hr_payroll.category_employer"/>
 			<field name="code">PAT_AM</field>
@@ -302,7 +302,7 @@
 			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_cps"/>
 		</record>
 		<record id="am_plus" model="hr.salary.rule">
-			<field name="sequence" eval="212"/>
+			<field name="sequence" eval="312"/>
 			<field name="name">AM+</field>
 			<field name="category_id" ref="l10n_pf_hr_payroll.category_employer"/>
 			<field name="code">PAT_AM+</field>
@@ -325,7 +325,7 @@
 			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_cps"/>
 		</record>
 		<record id="fsr" model="hr.salary.rule">
-			<field name="sequence" eval="213"/>
+			<field name="sequence" eval="313"/>
 			<field name="name">F.S.R</field>
 			<field name="category_id" ref="l10n_pf_hr_payroll.category_employer"/>
 			<field name="code">PAT_FSR</field>
@@ -348,7 +348,7 @@
 			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_cps"/>
 		</record>
 		<record id="fsr_plus" model="hr.salary.rule">
-			<field name="sequence" eval="214"/>
+			<field name="sequence" eval="314"/>
 			<field name="name">F.S.R+</field>
 			<field name="category_id" ref="l10n_pf_hr_payroll.category_employer"/>
 			<field name="code">PAT_FSR+</field>
@@ -371,7 +371,7 @@
 			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_cps"/>
 		</record>
 		<record id="fpc" model="hr.salary.rule">
-			<field name="sequence" eval="215"/>
+			<field name="sequence" eval="315"/>
 			<field name="name">F.P.C</field>
 			<field name="category_id" ref="l10n_pf_hr_payroll.category_employer"/>
 			<field name="code">PAT_FPC</field>
@@ -394,7 +394,7 @@
 			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_cps"/>
 		</record>
 		<record id="fpc_plus" model="hr.salary.rule">
-			<field name="sequence" eval="216"/>
+			<field name="sequence" eval="316"/>
 			<field name="name">F.P.C+</field>
 			<field name="category_id" ref="l10n_pf_hr_payroll.category_employer"/>
 			<field name="code">PAT_FPC+</field>
@@ -417,7 +417,7 @@
 			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_cps"/>
 		</record>
 		<record id="employer_total" model="hr.salary.rule">
-			<field name="sequence" eval="217"/>
+			<field name="sequence" eval="317"/>
 			<field name="name">TOTAL CHARGE PATRONALES</field>
 			<field name="category_id" ref="l10n_pf_hr_payroll.category_employer"/>
 			<field name="code">TOTPATRON</field>

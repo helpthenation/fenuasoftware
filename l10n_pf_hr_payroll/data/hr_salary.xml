@@ -97,5 +97,43 @@
 			<!-- Contribution de la société -->
 			<field name="register_id" ref=""/>
 		</record>
+		<record id="hr_rule_advance" model="hr.salary.rule">
+			<field name="sequence" eval="201"/>
+			<field name="name">Avance sur salaire</field>
+			<field name="category_id" ref="hr_payroll.NET"/>
+			<field name="code">AVANCE</field>
+			<field name="active" eval="True"/>
+			<field name="appears_on_payslip" eval="True"/>
+			
+			<!-- Conditions -->
+			<field name="condition_select">none</field>
+
+			<!-- Calcul -->
+			<field name="amount_select">percentage</field>
+			<field name="amount_percentage_base">inputs.AVANCE.amount</field>
+			<field name="quantity">1</field>
+			<field name="amount_percentage" eval="100"/>
+
+			<!-- Contribution de la société -->
+			<field name="register_id" ref=""/>
+		</record>
+		<record id="hr_rule_net_to_pay" model="hr.salary.rule">
+			<field name="sequence" eval="202"/>
+			<field name="name">Net à payer</field>
+			<field name="category_id" ref="hr_payroll.NET"/>
+			<field name="code">NET_TO_PAY</field>
+			<field name="active" eval="True"/>
+			<field name="appears_on_payslip" eval="True"/>
+			
+			<!-- Conditions -->
+			<field name="condition_select">none</field>
+
+			<!-- Calcul -->
+			<field name="amount_select">code</field>
+			<field name="amount_python_compute">result = categories.NET</field>
+
+			<!-- Contribution de la société -->
+			<field name="register_id" ref=""/>
+		</record>
 	</data>
 </odoo>

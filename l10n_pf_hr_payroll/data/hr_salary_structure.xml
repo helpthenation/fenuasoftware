@@ -43,6 +43,8 @@
 				ref('l10n_pf_hr_payroll.cst_4_plus'),
 				ref('l10n_pf_hr_payroll.total_cst'),
 				ref('hr_payroll.hr_rule_net'),
+				ref('hr_rule_advance'),
+				ref('hr_rule_net_to_pay'),
 				])]"/>
 		</record>
 		<record id="hr_payroll.with_empoyer" model="hr.payroll.structure">
