@@ -22,12 +22,14 @@ This module applies to companies based in French Polynesia.
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['l10n_fr'],
+    'depends': ['l10n_fr', 'account_accountant'],
 
     # always loaded
     'data': [
         #data
         'data/res_currency.xml',
         'data/res_company.xml',
+
+        'wizard/report_sage_views.xml',
     ],
 }

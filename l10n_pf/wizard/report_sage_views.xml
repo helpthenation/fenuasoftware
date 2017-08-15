@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    	<record model="ir.ui.view" id="wizard_form_view">
+            <field name="name">Report SAGE</field>
+            <field name="model">report.sage</field>
+            <field name="arch" type="xml">
+                <form string="Report SAGE">
+                    <field invisible="1" name="state"/>
+                    <group states="choose" string="Export Settings">
+                        <group>
+                            <p class="oe_grey">
+                                Cliquer sur Export pour générer le fichier de report SAGE
+                            </p>
+                        </group>
+                    </group>
+                    <div states="get">
+                        <h2>Export Complete</h2>
+                        <p>Here is the exported SAGE file: <field name="data" readonly="1" filename="name"/></p>
+                    </div>
+                    <footer states="choose">
+                        <button name="act_getfile" string="Export" type="object" class="btn-primary"/>
+                        <button special="cancel" string="Cancel" type="object" class="btn-default"/>
+                    </footer>
+                    <footer states="get">
+                        <button special="cancel" string="Close" type="object" class="btn-primary"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="report_sage_action"
+            name="Report SAGE"
+            context=""
+            res_model="report.sage"
+            view_mode="form"
+            target="new"
+            key2="client_action_multi" />
+
+        <!-- Menuitem -->
+        <menuitem name="Report SAGE" parent="account.menu_finance_entries" id="report_sage_menuitem" sequence="2" action="report_sage_action"/>
+
+    </data>
+</odoo>
