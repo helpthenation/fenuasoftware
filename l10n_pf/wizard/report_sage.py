@@ -28,27 +28,33 @@ class PRNFile(object):
         self.buffer.write(str("Z").ljust(1))
         self.buffer.write("\n")
 
-    def write(self, account_move_line):
-        self.buffer.write(account_move_line.journal_id.code.ljust(3))
-        self.buffer.write(parser.parse(account_move_line.date).strftime('%d%m%y'))
-        self.buffer.write(str("OD").ljust(2))
-        self.buffer.write(str(account_move_line.account_id.code.encode('utf-8')).ljust(13))
-        if account_move_line.partner_id:
-            self.buffer.write("X")
-            self.buffer.write(str(account_move_line.partner_id.name.encode('utf-8')).ljust(13))
-        else:
-            self.buffer.write(''.ljust(13))
-        self.buffer.write(account_move_line.move_id.name.ljust(13))
-        self.buffer.write(str(account_move_line.name.encode('utf-8')).ljust(25))
-        self.buffer.write(str("S").ljust(1))
-        self.buffer.write(str(parser.parse(account_move_line.date_maturity).strftime('%d%m%y')).ljust(6))
+    def write_data(self, text, size, align='<'):
+        self.buffer.write('{text:{fill}{align}{width}.{size}}'.format(text=text, fill=' ', align=align, width=size, size=size))
 
+    def write(self, account_move_line):
+        self.write_data(account_move_line.journal_id.code, 3)
+        self.buffer.write(parser.parse(account_move_line.date).strftime('%d%m%y'))
+        self.write_data("OD", 2)
+        self.write_data(account_move_line.account_id.code.encode('latin-1'), 13)
+        if account_move_line.journal_id.type in 'purchase':
+            self.buffer.write("A")
+            self.write_data(account_move_line.partner_id.name.encode('latin-1'), 13)
+        else:
+            if account_move_line.partner_id:
+                self.buffer.write("X")
+                self.write_data(account_move_line.partner_id.name.encode('latin-1'), 13)
+            else:
+                self.buffer.write(''.ljust(13))
+        self.write_data(account_move_line.move_id.name, 13)
+        self.write_data(account_move_line.name.encode('latin-1'), 25)
+        self.buffer.write("S")
+        self.write_data(parser.parse(account_move_line.date_maturity).strftime('%d%m%y'), 6)
         if account_move_line.debit and account_move_line.debit > 0:
             self.buffer.write("D")
-            self.buffer.write(str(account_move_line.debit).rjust(20))
+            self.write_data(account_move_line.debit, 20, '>')
         elif account_move_line.credit and account_move_line.credit > 0:
             self.buffer.write("C")
-            self.buffer.write(str(account_move_line.credit).rjust(20))
+            self.write_data(account_move_line.credit, 20, '>')
         else:
             raise UserError(_('Cannot generate file.'))
         self.buffer.write("N")
