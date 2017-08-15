@@ -19,7 +19,7 @@ This module applies to companies based in French Polynesia.
     # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/module/module_data.xml
     # for the full list
     'category': 'Localization',
-    'version': '0.1',
+    'version': '0.2',
 
     # any module necessary for this one to work correctly
     'depends': ['l10n_fr', 'account_accountant'],
