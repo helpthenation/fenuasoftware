@@ -30,6 +30,6 @@ This module applies to companies based in French Polynesia.
         'data/res_currency.xml',
         'data/res_company.xml',
 
-        'wizard/report_sage_views.xml',
+        'views/report_sage_views.xml',
     ],
 }

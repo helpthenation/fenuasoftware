@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="report_sage_form_view">
+            <field name="name">Report SAGE</field>
+            <field name="model">report.sage</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="compute" type="object" string="CALCUL" class="oe_highlight" states="draft"/>
+                        <button name="action_validate" type="object" string="VALIDATE" class="oe_highlight" states="draft"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <label for="name"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                        <group>
+                            <group>
+                                <field name="date_from"/>
+                                <field name="date_to"/>
+                            </group>
+                            <group>
+                                <field name="filename" class="hidden"/>
+                                <field name="filedata" readonly="1" filename="filename"/>
+                            </group>
+                        </group>
+                        <field name="account_move_lines">
+                            <tree create="false" editable="bottom" string="Partner entries">
+                                <field name="date"/>
+                                <field name="move_id"/>
+                                <field name="ref"/>
+                                <field name="name"/>
+                                <field name="partner_id"/>
+                                <field name="account_id"/>
+                                <field name="debit" sum="Total debit"/>
+                                <field name="credit" sum="Total credit"/>
+                                <field name="date_maturity"/>
+                            </tree>
+                        </field>
+                    </sheet>
+                    <div class="oe_chatter">... content of the bottom part ...</div>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="report_sage_action">
+            <field name="name">Report SAGE</field>
+            <field name="res_model">report.sage</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <!-- Menuitem -->
+        <menuitem name="Report SAGE" parent="account.menu_finance_entries" id="report_sage_menuitem" sequence="2"
+                  action="report_sage_action"/>
+
+    </data>
+</odoo>
