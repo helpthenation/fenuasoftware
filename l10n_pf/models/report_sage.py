@@ -24,17 +24,18 @@ class AccountMoveLine(models.Model):
 class ReportSAGE(models.TransientModel):
     _name = "report.sage"
     _description = "Report account.move in a FILE"
+    _inherit = ['mail.thread']
 
     name=fields.Char(string="Reference", readonly=True)
-    date_from = fields.Date(string="Date de début", readonly=True, required=True, default=time.strftime('%Y-%m-01'), states={'draft': [('readonly', False)]})
-    date_to = fields.Date(string="Date de fin", readonly=True, required=True, default=str(datetime.now() + relativedelta.relativedelta(months=+1, day=1, days=-1))[:10], states={'draft': [('readonly', False)]})
+    date_from = fields.Date(string="Date de début", readonly=True, required=True, default=time.strftime('%Y-%m-01'), states={'draft': [('readonly', False)]}, track_visibility='always')
+    date_to = fields.Date(string="Date de fin", readonly=True, required=True, default=str(datetime.now() + relativedelta.relativedelta(months=+1, day=1, days=-1))[:10], states={'draft': [('readonly', False)]}, track_visibility='always')
     account_move_lines = fields.One2many(comodel_name="account.move.line", inverse_name="report_sage", string="Ecriture comptable", readonly=True, states={'draft': [('readonly', False)]} )
     state = fields.Selection([
         ('draft', 'Draft'),
         ('valid', 'Validated'),
         ('cancel', 'Canceled'),
-    ], string='Status', index=True, readonly=True, copy=False, default='draft')
-    filename = fields.Char('File Name', readonly=True)
+    ], string='Status', index=True, readonly=True, copy=False, default='draft', track_visibility='always')
+    filename = fields.Char('File Name', readonly=True, track_visibility='always')
     filedata = fields.Binary('File', readonly=True)
 
     @api.model
@@ -49,12 +50,13 @@ class ReportSAGE(models.TransientModel):
         return res
 
     def compute(self):
-        print "compute"
+        self.message_post(body='Calcul sur la période ' + str(self.date_from) + ' à ' + str(self.date_to))
         account_move_lines = self.env['account.move.line'].search([('date', '<=', self.date_to), ('date', '>', self.date_from)])
         for account_move_line in account_move_lines:
             account_move_line.report_sage = self.id
 
     def action_validate(self):
+        self.message_post(body='Validation du report avec génération du fichier')
         with contextlib.closing(cStringIO.StringIO()) as buf:
             self.reportSage(buf)
             out = base64.encodestring(buf.getvalue())
