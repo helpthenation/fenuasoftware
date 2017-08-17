@@ -21,9 +21,9 @@ class AccountMoveLine(models.Model):
 
     report_sage = fields.Many2one(commodel_name="report.sage", string="Report SAGE")
 
-class ReportSAGE(models.TransientModel):
+class ReportSAGE(models.Model):
     _name = "report.sage"
-    _description = "Report account.move in a FILE"
+    _description = "Report SAGE"
     _inherit = ['mail.thread']
 
     name=fields.Char(string="Reference", readonly=True)
