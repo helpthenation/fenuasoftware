@@ -50,7 +50,7 @@ class ReportSAGE(models.TransientModel):
 
     def compute(self):
         print "compute"
-        account_move_lines = self.env['account.move.line'].search([])
+        account_move_lines = self.env['account.move.line'].search([('date', '<=', self.date_to), ('date', '>', self.date_from)])
         for account_move_line in account_move_lines:
             account_move_line.report_sage = self.id
 
