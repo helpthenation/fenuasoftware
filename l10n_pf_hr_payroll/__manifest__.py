@@ -30,8 +30,15 @@ Payroll in French Polynesia. CPS, CST, etc.
         'data/hr_salary_rule_cotisations.xml',
         'data/hr_salary_rule_patronales.xml',
         'data/hr_salary_structure.xml',
+
+        #reports
+        'reports/declaration_prealable_a_l_embauche.xml',
+        
         # 'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
+    ],
+    'qweb' : [
+        'static/src/xml/*.xml',
     ],
 }
