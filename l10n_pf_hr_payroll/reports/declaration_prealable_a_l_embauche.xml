@@ -3,7 +3,7 @@
     <data>
         <record id="cps_a4" model="report.paperformat">
             <field name="name">European A4</field>
-            <field name="default" eval="True" />
+            <field name="default" eval="True"/>
             <field name="format">A4</field>
             <field name="page_height">0</field>
             <field name="page_width">0</field>
@@ -12,26 +12,26 @@
             <field name="margin_bottom">5</field>
             <field name="margin_left">7</field>
             <field name="margin_right">7</field>
-            <field name="header_line" eval="False" />
+            <field name="header_line" eval="False"/>
             <field name="header_spacing">35</field>
             <field name="dpi">90</field>
         </record>
 
         <!-- QWeb Reports -->
-        <report 
-            id="cps_declaration_prealable_a_l_embauche"
-            model="hr.employee"
-            string="Déclaration préalable à l'embauche"
-            report_type="qweb-pdf"
-            name="l10n_pf_hr_payroll.report_cps_declaration_prealable_a_l_embauche"
-            file="l10n_pf_hr_payroll.report_cps_declaration_prealable_a_l_embauche"
-            attachment_use="True"
-            paperformat="cps_a4"
-            attachment="('emp.pdf')"
+        <report
+                id="cps_declaration_prealable_a_l_embauche"
+                model="hr.employee"
+                string="Déclaration préalable à l'embauche"
+                report_type="qweb-pdf"
+                name="l10n_pf_hr_payroll.report_cps_declaration_prealable_a_l_embauche"
+                file="l10n_pf_hr_payroll.report_cps_declaration_prealable_a_l_embauche"
+                attachment_use="True"
+                paperformat="cps_a4"
+                attachment="('emp.pdf')"
         />
 
         <template id="report_cps_declaration_prealable_a_l_embauche_document">
-            <t t-set="doc" t-value="doc.with_context({'lang':doc.user_id.lang})" />
+            <t t-set="doc" t-value="doc.with_context({'lang':doc.user_id.lang})"/>
             <div class="page">
                 <div class="row">
                     <table class="table">
@@ -40,7 +40,9 @@
                                 <img style="width:150px;height:75px" src="/l10n_pf_hr_payroll/static/src/img/cps.png"/>
                             </td>
                             <td>
-                                <h3 style="text-align: center"><strong>Déclaration Préalable à l'Embauche</strong></h3>
+                                <h3 style="text-align: center">
+                                    <strong>Déclaration Préalable à l'Embauche</strong>
+                                </h3>
                                 <p style="text-align: center">Article LP⋅1211-9 du code du travail</p>
                             </td>
                         </tr>
@@ -49,9 +51,13 @@
                     <table class="table table-condensed">
                         <tr style="text-align: center; font-size: small" class="border-black">
                             <td>
-                                A faire parvenir au Service Cotisations ou à votre antenne Caisse de prévoyance Sociale dans les 8 jours précédant la date prévisible d'embauche.
+                                A faire parvenir au Service Cotisations ou à votre antenne Caisse de prévoyance Sociale
+                                dans
+                                les 8 jours précédant la date prévisible d'embauche.
                                 <br/>
-                                Le non respect de l'obligation de déclaration préalable à l'embauche donne lieu à sanctions (article LP. 1213-1 du code du travail).
+                                Le non respect de l'obligation de déclaration préalable à l'embauche donne lieu à
+                                sanctions
+                                (article LP. 1213-1 du code du travail).
                             </td>
                         </tr>
                     </table>
@@ -90,10 +96,14 @@
                         </tr>
                         <tr>
                             <td style="border-left: 1px solid black">
-                                NOM, Prénoms<br/>
-                                ou<br/>
-                                Dénomination<br/>
-                                SOCIALE<br/>
+                                NOM, Prénoms
+                                <br/>
+                                ou
+                                <br/>
+                                Dénomination
+                                <br/>
+                                SOCIALE
+                                <br/>
                             </td>
                             <td style="border-right: 1px solid black" colspan="3">
                                 <span t-esc="doc.company_id.name"/>
@@ -191,7 +201,9 @@
                         </tr>
                         <tr class="border-black">
                             <td style="text-align: center;" colspan="10">
-                                Si le salarié n'est pas immatriculé, veuillez fournir un extrait d'acte de naissance à dé"faut une pièce d'identité avec ce formulaire rempli ou au plus trad lors de la déclaration de main d'oeuvre
+                                Si le salarié n'est pas immatriculé, veuillez fournir un extrait d'acte de naissance à
+                                dé"faut une pièce d'identité avec ce formulaire rempli ou au plus trad lors de la
+                                déclaration de main d'oeuvre
                             </td>
                         </tr>
                         <tr>
@@ -234,7 +246,7 @@
                             <td style="border-left: 1px solid black">
                                 Nom maritale
                             </td>
-                            <td  style="border-right: 1px solid black" colspan="3">
+                            <td style="border-right: 1px solid black" colspan="3">
                                 <span t-esc="doc.name"/>
                             </td>
                         </tr>
@@ -290,18 +302,22 @@
                             </td>
                             <td>
                                 <p>
-                                    SISTRA <input type="checkbox"/>
+                                    SISTRA
+                                    <input type="checkbox"/>
                                 </p>
                             </td>
                             <td style="border-right: 1px solid black">
                                 <p>
-                                    AMT-CGPME <input type="checkbox"/>
+                                    AMT-CGPME
+                                    <input type="checkbox"/>
                                 </p>
                             </td>
                         </tr>
                         <tr>
-                            <td style="border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black;" colspan="4">
-                                (La visite médicale n'est pas obligatoire pour les salariés à domicile employés par un particulier)
+                            <td style="border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black;"
+                                colspan="4">
+                                (La visite médicale n'est pas obligatoire pour les salariés à domicile employés par un
+                                particulier)
                             </td>
                         </tr>
                         <tr style="border-bottom: 1px solid black;">
@@ -324,14 +340,135 @@
                             </td>
                             <td style="border-right: 1px solid black;"></td>
                         </tr>
-                        <tr  style="text-align: center; font-size: x-small" class="border-black">
+                        <tr style="text-align: center; font-size: x-small" class="border-black">
                             <td colspan="4">
-                                CPS - Servic e Cotisations -BP 1 - 98713 Papeete - TAHITI - Tél : 416812 - Fax: 545738 - E-mail: dpae@cps.pf - Site Web : www.cps.pf - CPS N°Tahiti 183707
+                                CPS - Servic e Cotisations -BP 1 - 98713 Papeete - TAHITI - Tél : 416812 - Fax: 545738 -
+                                E-mail: dpae@cps.pf - Site Web : www.cps.pf - CPS N°Tahiti 183707
                                 <br/>
-                                Conformément à la loi n°78-17 du 6 janvier 1978, vous bénéficiez d'un droit d'accès et de rectification aux informations qui vous concernent auprès de notre organisme.
+                                Conformément à la loi n°78-17 du 6 janvier 1978, vous bénéficiez d'un droit d'accès et
+                                de
+                                rectification aux informations qui vous concernent auprès de notre organisme.
                             </td>
                         </tr>
                     </table>
+
+                    <p style="page-break-before:always;"></p>
+
+                    <p style="text-align: center;">
+                        <strong>
+                            <u>DECLARATION PREALABLE A L'EMBAUCHE ( DPAE ) : MODE D'EMPLOI</u>
+                        </strong>
+                    </p>
+                    <br/>
+                    <br/>
+                    <strong>
+                        <u>POURQUOI FAIRE UNE DPAE ? UNE SEULE DECLARATION POUR 5 FORMALITES !</u>
+                    </strong>
+                    <br/>
+                    <br/>
+                    <p>Cette déclaration constitue pour vous le moyen unique de déclaration de l'embauche à réaliser, eu
+                        égard à vos obligations en tant qu'employeur en matière de droit du travail et de protection
+                        sociale
+                        :
+                        elle vaut déclaration d'emploi du salarié à la CPS, demande d'immatriculation du salarié à la
+                        CPS,
+                        inscription à la médecine du travail, demande de visite d'embauche à la médecine du travail,
+                        déclaration d'embauche à l'Inspection du travail.
+                    </p>
+                    <br/>
+                    <strong>
+                        <u>QUAND ET COMMENT FAIRE UNE DPAE ?</u>
+                    </strong>
+                    <br/>
+                    <br/>
+                    <ul>
+                        <li>- Vous ne pouvez faire travailler un salarié qu'après avoir effectué une DPAE</li>
+                        <li>- Vous devez établir une déclaration par contrat</li>
+                        <li>- Vous devez adresser la DPAE au plus tôt 8 jours avant la date de début de travail par l'un
+                            des
+                            moyens suivants :
+                            <ul style="list-style-type:disc">
+                                <li>o Télécopie ( 54.57.38 ) ou mail ( dpae@cps.pf )</li>
+                                <li>o Lettre datée et signée par l'employeur, postée en recommandé, le cachet de la
+                                    poste
+                                    faisant foi
+                                </li>
+                                <li>o Dépôt au siège de la CPS ou dans l'une de ses antennes</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <strong>
+                        <u>COMMENT REMPLIR</u>
+                    </strong>
+                    <br/>
+                    <br/>
+                    <strong>
+                        <u>A- ETABLISSEMENT EMPLOYEUR</u>
+                    </strong>
+                    <br/>
+                    <br/>
+                    <p><strong>Si vous embauchez pour la première fois,</strong> vous devrez concomitamment à la déclaration
+                        préalable de l'embauche, remplir une demande d'inscription au répertoire des employeurs
+                        (disponible au siège ou dans les antennes de la CPS, également téléchargeable sur le site
+                        internet de la CPS: www.cps.pf).
+                    </p>
+                    <br/>
+                    <strong>
+                        <u>B- FUTUR SALARIE</u>
+                    </strong>
+                    <br/>
+                    <br/>
+                    <p>
+                        - <strong>Date prévisible d'embauche = date à laquelle vous prévoyez de faire travailler le salarié</strong>
+                        <br/>
+                        - <strong>Service de santé au travail choisi</strong> = Votre salarié doit bénéficier d'un examen
+                        médical avant l'embauche ou au plus tard trente (30) jours après son engagement. A
+                        cet effet, vous devez <strong>obligatoirement</strong> choisir l'un des deux services de santé au travail
+                        figurant au recto de ce document. Toutefois, les particuliers employeurs de personnel
+                        à domicile ne sont pas obligés de souscrire à cette obligation de médecine du travail
+                        en l’état actuel de la réglementation.
+                        <br/>
+                        L'examen médical doit avoir lieu avant l'embauche pour les salariés affectés à certains
+                        travaux comportant des exigences ou des risques spéciaux, les salariés qui viennent de
+                        changer de type d'activité, les handicapés, les femmes enceintes, les mères d'un enfant
+                        de moins de deux ans ou les travailleurs de moins de dix-huit ans. Pour plus de
+                        précisions, contactez le service de santé au travail choisi.<br/>
+                        <strong>SISTRA</strong> : PAPEETE; 50.19.99. <strong>AMT CGPME </strong>: ARUE; 50.21.21.
+                    </p>
+                    <br/>
+                    <strong>
+                        <u>QUE VA-T-IL SE PASSER APRES MA DPAE ?</u>
+                    </strong>
+                    <br/>
+                    <br/>
+                    <p>
+                        - La CPS vous adresse dans les 5 jours ouvrables suivant la réception de la DPAE un document
+                        accusant réception de la déclaration et mentionnant les informations enregistrées.
+                        <br/>
+                        - Si vous ne contestez pas les informations figurant sur ce document dans les 2 jours suivant sa
+                        réception, celui-ci vaut preuve de la déclaration préalable à l'embauche.
+                        <br/>
+                        - Vous devez conserver cet accusé de réception jusqu'à la délivrance du premier bulletin de paie
+                        au
+                        salarié. Vous devez pouvoir le présenter à toute réquisition des agents de contrôle de la CPS
+                        ainsi
+                        que des inspecteurs et contrôleurs du travail.
+                    </p>
+                    <br/>
+                    <strong style="color: red">
+                        <u>ATTENTION !</u>
+                    </strong>
+                    <br/>
+                    <br/>
+                    <p>
+                        Si vous ne respectez pas la formalité de la DPAE, vous êtes passible d'une amende
+                        administrative,
+                        indépendamment des poursuites pénales.
+                        En outre,
+                        <strong>le non respect de cette formalité vous fera perdre le bénéfice du DARSE pour
+                            l’ensemble des salariés sur le mois au cours duquel la DPAE aurait dû être faite.
+                        </strong>
+                    </p>
                 </div>
             </div>
         </template>
@@ -339,7 +476,8 @@
         <template id="report_cps_declaration_prealable_a_l_embauche">
             <t t-call="report.html_container">
                 <t t-foreach="docs" t-as="doc">
-                    <t t-call="l10n_pf_hr_payroll.report_cps_declaration_prealable_a_l_embauche_document" t-lang="doc.user_id.lang"/>
+                    <t t-call="l10n_pf_hr_payroll.report_cps_declaration_prealable_a_l_embauche_document"
+                       t-lang="doc.user_id.lang"/>
                 </t>
             </t>
         </template>
