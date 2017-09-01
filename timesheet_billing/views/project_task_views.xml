@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_task_form2_inherited" model="ir.ui.view">
+		<field name="name">project.task.form.inherited</field>
+		<field name="model">project.task</field>
+		<field name="priority">20</field>
+		<field name="inherit_id" ref="hr_timesheet.view_task_form2_inherited" />
+		<field name="arch" type="xml">
+			<data>
+				<!--
+				<xpath expr="//field[@name='progress']" position="after">
+					<field name="billable" />
+				</xpath>
+				 -->
+				<xpath expr="//field[@name='unit_amount']" position="replace">
+					<field name="billed" readonly="True" invisible="True" />
+					<field name="unit_amount" string="Duration" widget="float_time" attrs="{'readonly': [('billed','=',True)]}" />
+				</xpath>
+			</data>
+		</field>
+	</record>
+
+	<record id="hr_timesheet_line_tree_inherited" model="ir.ui.view">
+		<field name="name">account.analytic.line.tree.hr_timesheet.inherited</field>
+		<field name="model">account.analytic.line</field>
+		<field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree" />
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='date']" position="replace">
+				<field name="billed" invisible="True" />
+				<field name="date" attrs="{'readonly': [('billed','=',True)]}" />
+			</xpath>
+			<xpath expr="//field[@name='name']" position="replace">
+				<field name="name" />
+				<field name="product_id" attrs="{'readonly': [('billed','=',True)]}" domain="[('type','=','service'), ('invoice_policy','=','delivery')]" help="Type de produit service facturé à la livraison" />
+			</xpath>
+			<xpath expr="//field[@name='project_id']" position="replace">
+				<field name="project_id" required="1" attrs="{'readonly': [('billed','=',True)]}" />
+				<field name="account_id" attrs="{'readonly': [('billed','=',True)]}" />
+			</xpath>
+			<xpath expr="//field[@name='task_id']" position="replace">
+				<field name="task_id" context="{'default_project_id': project_id}" domain="[('project_id', '=', project_id)]" attrs="{'readonly': [('billed','=',True)]}" />
+			</xpath>
+			<xpath expr="//field[@name='unit_amount']" position="replace">
+				<field name="unit_amount" string="Duration" sum="Total time" widget="float_time" attrs="{'readonly': [('billed','=',True)]}" />
+				<!-- <field name="billable" /> -->
+				<field name="billed_amount" string="Durée facturée" sum="Total time" widget="float_time" readonly="True" />
+			</xpath>
+		</field>
+	</record>
+
+	<record id="view_timesheet_grid_inherited" model="ir.ui.view">
+		<field name="name">Timesheet grid inherited</field>
+		<field name="model">account.analytic.line</field>
+		<field name="inherit_id" ref="timesheet_grid.view_timesheet_grid" />
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='task_id']" position="after">
+				<field name="account_id" type="row" />
+			</xpath>
+		</field>
+	</record>
+
+	<!-- Cron -->
+	<record id="projet_task_alert_on_budget" model="ir.cron">
+		<field name="name">Alerte de consommation de budget</field>
+		<field name="user_id" ref="base.user_root" />
+		<field name="active" eval="True" />
+		<field name="priority">5</field>
+		<field name="model">project.task</field>
+		<field name="function">alert</field>
+		<field name="args">()</field>
+	</record>
+
+</odoo>
