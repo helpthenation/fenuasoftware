@@ -35,8 +35,8 @@ Payroll in French Polynesia. CPS, CST, etc.
         'reports/declaration_prealable_a_l_embauche.xml',
         
         # 'security/ir.model.access.csv',
+        'views/assets.xml',
         'views/views.xml',
-        'views/templates.xml',
     ],
     'qweb' : [
         'static/src/xml/*.xml',
