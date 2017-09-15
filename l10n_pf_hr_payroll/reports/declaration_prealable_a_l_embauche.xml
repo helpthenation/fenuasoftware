@@ -25,9 +25,7 @@
                 report_type="qweb-pdf"
                 name="l10n_pf_hr_payroll.report_cps_declaration_prealable_a_l_embauche"
                 file="l10n_pf_hr_payroll.report_cps_declaration_prealable_a_l_embauche"
-                attachment_use="True"
                 paperformat="cps_a4"
-                attachment="('emp.pdf')"
         />
 
         <template id="report_cps_declaration_prealable_a_l_embauche_document">
@@ -40,16 +38,16 @@
                                 <img style="width:150px;height:75px" src="/l10n_pf_hr_payroll/static/src/img/cps.png"/>
                             </td>
                             <td>
-                                <h3 style="text-align: center">
+                                <h3 class="text-center">
                                     <strong>Déclaration Préalable à l'Embauche</strong>
                                 </h3>
-                                <p style="text-align: center">Article LP⋅1211-9 du code du travail</p>
+                                <p class="text-center">Article LP⋅1211-9 du code du travail</p>
                             </td>
                         </tr>
                     </table>
 
                     <table class="table table-condensed">
-                        <tr style="text-align: center; font-size: small" class="border-black">
+                        <tr class="text-center border-black">
                             <td>
                                 A faire parvenir au Service Cotisations ou à votre antenne Caisse de prévoyance Sociale
                                 dans
@@ -64,7 +62,7 @@
 
                     <table class="table table-condensed">
                         <tr class="border-black">
-                            <td style="text-align: center;" colspan="10">
+                            <td class="text-center" colspan="10">
                                 A - ETABLISSEMENT EMPLOYEUR
                             </td>
                         </tr>
@@ -195,12 +193,12 @@
                             </td>
                         </tr>
                         <tr class="border-black">
-                            <td style="text-align: center;" colspan="10">
+                            <td class="text-center" colspan="10">
                                 B - FUTUR SALARIE
                             </td>
                         </tr>
                         <tr class="border-black">
-                            <td style="text-align: center;" colspan="10">
+                            <td class="text-center" colspan="10">
                                 Si le salarié n'est pas immatriculé, veuillez fournir un extrait d'acte de naissance à
                                 dé"faut une pièce d'identité avec ce formulaire rempli ou au plus trad lors de la
                                 déclaration de main d'oeuvre
@@ -340,7 +338,7 @@
                             </td>
                             <td style="border-right: 1px solid black;"></td>
                         </tr>
-                        <tr style="text-align: center; font-size: x-small" class="border-black">
+                        <tr class="text-center border-black">
                             <td colspan="4">
                                 CPS - Servic e Cotisations -BP 1 - 98713 Papeete - TAHITI - Tél : 416812 - Fax: 545738 -
                                 E-mail: dpae@cps.pf - Site Web : www.cps.pf - CPS N°Tahiti 183707
@@ -354,7 +352,7 @@
 
                     <p style="page-break-before:always;"></p>
 
-                    <p style="text-align: center;">
+                    <p class="text-center">
                         <strong>
                             <u>DECLARATION PREALABLE A L'EMBAUCHE ( DPAE ) : MODE D'EMPLOI</u>
                         </strong>
