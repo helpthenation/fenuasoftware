@@ -30,9 +30,20 @@ This module applies to companies based in French Polynesia.
         'data/res_currency.xml',
         'data/res_company.xml',
 
+        #report
+        'reports/vat_real_report.xml',
+        'reports/vat_real_templates.xml',
+
         #security
         'security/ir.model.access.csv',
 
+        #views
+        'views/assets.xml',
+        'views/dicp_views.xml',
         'views/report_sage_views.xml',
+
+        #wizard
+        'wizard/vat_real_report_views.xml',
+
     ],
 }
