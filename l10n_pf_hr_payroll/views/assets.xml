@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <template id="assets_common" name="stock_location_barcodes pdf assets" inherit_id="report.assets_common">
-        <xpath expr="." position="inside">
-            <link href="/l10n_pf_hr_payroll/static/src/less/report.less" rel="stylesheet"/>
-        </xpath>
-    </template>
-</odoo>

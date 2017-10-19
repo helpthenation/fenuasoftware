@@ -1,2 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_l10n_pf_report_sage,report_sage,model_report_sage,account.group_account_manager,True,True,True,False

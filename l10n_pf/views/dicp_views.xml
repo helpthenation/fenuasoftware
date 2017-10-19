@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <data>
-        <menuitem id="dicp_menu" name="DICP" parent="account.menu_finance_reports" groups="account.group_account_manager"/>
-        <menuitem id="dicp_vat_menu" name="TVA" parent="dicp_menu" groups="account.group_account_manager"/>
-    </data>
-</odoo>
