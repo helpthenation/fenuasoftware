@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!-- CPS -->
+		<record id="cps_A" model="hr.salary.rule">
+			<field name="sequence" eval="101"/>
+			<field name="name">Retraite tranche A</field>
+			<field name="category_id" ref="l10n_pf_hr_payroll.category_cps"/>
+			<field name="code">RET_TRCH_A</field>
+			<field name="active" eval="True"/>
+			<field name="appears_on_payslip" eval="True"/>
+			
+			<!-- Conditions -->
+			<field name="condition_select">range</field>
+			<field name="condition_range">categories.GROSS</field>
+			<field name="condition_range_min" eval="0"/>
+			<field name="condition_range_max" eval="257000"/>
+
+			<!-- Calcul -->
+			<field name="amount_select">percentage</field>
+			<field name="amount_percentage_base">categories.GROSS</field>
+			<field name="quantity">1</field>
+			<field name="amount_percentage" eval="6.78"/>
+
+			<!-- Contribution de la société -->
+			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_cps"/>
+		</record>
+		<record id="cps_A_plus" model="hr.salary.rule">
+			<field name="sequence" eval="102"/>
+			<field name="name">Retraite tranche A+</field>
+			<field name="category_id" ref="l10n_pf_hr_payroll.category_cps"/>
+			<field name="code">RET_TRCH_A+</field>
+			<field name="active" eval="True"/>
+			<field name="appears_on_payslip" eval="True"/>
+			
+			<!-- Conditions -->
+			<field name="condition_select">range</field>
+			<field name="condition_range">categories.GROSS</field>
+			<field name="condition_range_min" eval="257000"/>
+			<field name="condition_range_max" eval="999999999"/>
+
+			<!-- Calcul -->
+			<field name="amount_select">percentage</field>
+			<field name="amount_percentage_base">257000</field>
+			<field name="quantity">1</field>
+			<field name="amount_percentage" eval="6.78"/>
+
+			<!-- Contribution de la société -->
+			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_cps"/>
+		</record>
+		<record id="cps_B" model="hr.salary.rule">
+			<field name="sequence" eval="103"/>
+			<field name="name">Retraite tranche B</field>
+			<field name="category_id" ref="l10n_pf_hr_payroll.category_cps"/>
+			<field name="code">RET_TRCH_B</field>
+			<field name="active" eval="True"/>
+			<field name="appears_on_payslip" eval="True"/>
+			
+			<!-- Conditions -->
+			<field name="condition_select">range</field>
+			<field name="condition_range">categories.GROSS</field>
+			<field name="condition_range_min" eval="257000"/>
+			<field name="condition_range_max" eval="514000"/>
+
+			<!-- Calcul -->
+			<field name="amount_select">percentage</field>
+			<field name="amount_percentage_base">categories.GROSS-257000</field>
+			<field name="quantity">1</field>
+			<field name="amount_percentage" eval="5.81"/>
+
+			<!-- Contribution de la société -->
+			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_cps"/>
+		</record>
+		<record id="cps_B_plus" model="hr.salary.rule">
+			<field name="sequence" eval="104"/>
+			<field name="name">Retraite tranche B+</field>
+			<field name="category_id" ref="l10n_pf_hr_payroll.category_cps"/>
+			<field name="code">RET_TRCH_B+</field>
+			<field name="active" eval="True"/>
+			<field name="appears_on_payslip" eval="True"/>
+			
+			<!-- Conditions -->
+			<field name="condition_select">range</field>
+			<field name="condition_range">categories.GROSS</field>
+			<field name="condition_range_min" eval="514000"/>
+			<field name="condition_range_max" eval="999999999"/>
+
+			<!-- Calcul -->
+			<field name="amount_select">percentage</field>
+			<field name="amount_percentage_base">514000</field>
+			<field name="quantity">1</field>
+			<field name="amount_percentage" eval="5.81"/>
+
+			<!-- Contribution de la société -->
+			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_cps"/>
+		</record>
+		<record id="cps_sickness" model="hr.salary.rule">
+			<field name="sequence" eval="105"/>
+			<field name="name">Maladie</field>
+			<field name="category_id" ref="l10n_pf_hr_payroll.category_cps"/>
+			<field name="code">MALADIE</field>
+			<field name="active" eval="True"/>
+			<field name="appears_on_payslip" eval="True"/>
+			
+			<!-- Conditions -->
+			<field name="condition_select">range</field>
+			<field name="condition_range">categories.GROSS</field>
+			<field name="condition_range_min" eval="0"/>
+			<field name="condition_range_max" eval="5000000"/>
+
+			<!-- Calcul -->
+			<field name="amount_select">percentage</field>
+			<field name="amount_percentage_base">categories.GROSS</field>
+			<field name="quantity">1</field>
+			<field name="amount_percentage" eval="5.43"/>
+
+			<!-- Contribution de la société -->
+			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_cps"/>
+		</record>
+		<record id="cps_sickness_plus" model="hr.salary.rule">
+			<field name="sequence" eval="106"/>
+			<field name="name">Maladie+</field>
+			<field name="category_id" ref="l10n_pf_hr_payroll.category_cps"/>
+			<field name="code">MALADIE+</field>
+			<field name="active" eval="True"/>
+			<field name="appears_on_payslip" eval="True"/>
+			
+			<!-- Conditions -->
+			<field name="condition_select">range</field>
+			<field name="condition_range">categories.GROSS</field>
+			<field name="condition_range_min" eval="5000000"/>
+			<field name="condition_range_max" eval="999999999"/>
+
+			<!-- Calcul -->
+			<field name="amount_select">percentage</field>
+			<field name="amount_percentage_base">categories.GROSS</field>
+			<field name="quantity">1</field>
+			<field name="amount_percentage" eval="5.43"/>
+
+			<!-- Contribution de la société -->
+			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_cps"/>
+		</record>
+		<record id="cps_fsr" model="hr.salary.rule">
+			<field name="sequence" eval="107"/>
+			<field name="name">F.S.R</field>
+			<field name="category_id" ref="l10n_pf_hr_payroll.category_cps"/>
+			<field name="code">FSR</field>
+			<field name="active" eval="True"/>
+			<field name="appears_on_payslip" eval="True"/>
+			
+			<!-- Conditions -->
+			<field name="condition_select">range</field>
+			<field name="condition_range">categories.GROSS</field>
+			<field name="condition_range_min" eval="0"/>
+			<field name="condition_range_max" eval="257000"/>
+
+			<!-- Calcul -->
+			<field name="amount_select">percentage</field>
+			<field name="amount_percentage_base">categories.GROSS</field>
+			<field name="quantity">1</field>
+			<field name="amount_percentage" eval="0.17"/>
+
+			<!-- Contribution de la société -->
+			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_cps"/>
+		</record>
+		<record id="cps_fsr_plus" model="hr.salary.rule">
+			<field name="sequence" eval="108"/>
+			<field name="name">F.S.R+</field>
+			<field name="category_id" ref="l10n_pf_hr_payroll.category_cps"/>
+			<field name="code">FSR+</field>
+			<field name="active" eval="True"/>
+			<field name="appears_on_payslip" eval="True"/>
+			
+			<!-- Conditions -->
+			<field name="condition_select">range</field>
+			<field name="condition_range">categories.GROSS</field>
+			<field name="condition_range_min" eval="257000"/>
+			<field name="condition_range_max" eval="999999999"/>
+
+			<!-- Calcul -->
+			<field name="amount_select">percentage</field>
+			<field name="amount_percentage_base">257000</field>
+			<field name="quantity">1</field>
+			<field name="amount_percentage" eval="0.17"/>
+
+			<!-- Contribution de la société -->
+			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_cps"/>
+		</record>
+		<record id="total_cps" model="hr.salary.rule">
+			<field name="sequence" eval="109"/>
+			<field name="name">TOTAL C.P.S</field>
+			<field name="category_id" ref="l10n_pf_hr_payroll.category_total"/>
+			<field name="code">TOTAL_CPS</field>
+			<field name="active" eval="True"/>
+			<field name="appears_on_payslip" eval="True"/>
+			
+			<!-- Conditions -->
+			<field name="condition_select">none</field>
+
+			<!-- Calcul -->
+			<field name="amount_select">percentage</field>
+			<field name="amount_percentage_base">categories.CPS</field>
+			<field name="quantity">1</field>
+			<field name="amount_percentage" eval="100"/>
+
+			<!-- Contribution de la société -->
+			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_cps"/>
+		</record>
+
+		<!-- CST -->
+		<record id="cst_1" model="hr.salary.rule">
+			<field name="sequence" eval="110"/>
+			<field name="name">C.S.T 1ère tranche</field>
+			<field name="category_id" ref="l10n_pf_hr_payroll.category_cst"/>
+			<field name="code">CST_1</field>
+			<field name="active" eval="True"/>
+			<field name="appears_on_payslip" eval="True"/>
+			
+			<!-- Conditions -->
+			<field name="condition_select">range</field>
+			<field name="condition_range">categories.GROSS</field>
+			<field name="condition_range_min" eval="0"/>
+			<field name="condition_range_max" eval="150000"/>
+
+			<!-- Calcul -->
+			<field name="amount_select">percentage</field>
+			<field name="amount_percentage_base">categories.GROSS</field>
+			<field name="quantity">1</field>
+			<field name="amount_percentage" eval="0.50"/>
+
+			<!-- Contribution de la société -->
+			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_dicp"/>
+		</record>
+		<record id="cst_1_plus" model="hr.salary.rule">
+			<field name="sequence" eval="111"/>
+			<field name="name">C.S.T 1ère tranche +</field>
+			<field name="category_id" ref="l10n_pf_hr_payroll.category_cst"/>
+			<field name="code">CST_1+</field>
+			<field name="active" eval="True"/>
+			<field name="appears_on_payslip" eval="True"/>
+			
+			<!-- Conditions -->
+			<field name="condition_select">range</field>
+			<field name="condition_range">categories.GROSS</field>
+			<field name="condition_range_min" eval="150000"/>
+			<field name="condition_range_max" eval="999999999"/>
+
+			<!-- Calcul -->
+			<field name="amount_select">percentage</field>
+			<field name="amount_percentage_base">150000</field>
+			<field name="quantity">1</field>
+			<field name="amount_percentage" eval="0.50"/>
+
+			<!-- Contribution de la société -->
+			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_dicp"/>
+		</record>
+		<record id="cst_2" model="hr.salary.rule">
+			<field name="sequence" eval="112"/>
+			<field name="name">C.S.T 2ère tranche</field>
+			<field name="category_id" ref="l10n_pf_hr_payroll.category_cst"/>
+			<field name="code">CST_2</field>
+			<field name="active" eval="True"/>
+			<field name="appears_on_payslip" eval="True"/>
+			
+			<!-- Conditions -->
+			<field name="condition_select">range</field>
+			<field name="condition_range">categories.GROSS</field>
+			<field name="condition_range_min" eval="150000"/>
+			<field name="condition_range_max" eval="250000"/>
+
+			<!-- Calcul -->
+			<field name="amount_select">percentage</field>
+			<field name="amount_percentage_base">categories.GROSS-150000</field>
+			<field name="quantity">1</field>
+			<field name="amount_percentage" eval="3"/>
+
+			<!-- Contribution de la société -->
+			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_dicp"/>
+		</record>
+		<record id="cst_2_plus" model="hr.salary.rule">
+			<field name="sequence" eval="113"/>
+			<field name="name">C.S.T 2ère tranche+</field>
+			<field name="category_id" ref="l10n_pf_hr_payroll.category_cst"/>
+			<field name="code">CST_2+</field>
+			<field name="active" eval="True"/>
+			<field name="appears_on_payslip" eval="True"/>
+			
+			<!-- Conditions -->
+			<field name="condition_select">range</field>
+			<field name="condition_range">categories.GROSS</field>
+			<field name="condition_range_min" eval="250000"/>
+			<field name="condition_range_max" eval="999999999"/>
+
+			<!-- Calcul -->
+			<field name="amount_select">percentage</field>
+			<field name="amount_percentage_base">250000-150000</field>
+			<field name="quantity">1</field>
+			<field name="amount_percentage" eval="3"/>
+
+			<!-- Contribution de la société -->
+			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_dicp"/>
+		</record>
+		<record id="cst_3" model="hr.salary.rule">
+			<field name="sequence" eval="114"/>
+			<field name="name">C.S.T 3ère tranche</field>
+			<field name="category_id" ref="l10n_pf_hr_payroll.category_cst"/>
+			<field name="code">CST_3</field>
+			<field name="active" eval="True"/>
+			<field name="appears_on_payslip" eval="True"/>
+			
+			<!-- Conditions -->
+			<field name="condition_select">range</field>
+			<field name="condition_range">categories.GROSS</field>
+			<field name="condition_range_min" eval="250000"/>
+			<field name="condition_range_max" eval="400000"/>
+
+			<!-- Calcul -->
+			<field name="amount_select">percentage</field>
+			<field name="amount_percentage_base">categories.GROSS-250000</field>
+			<field name="quantity">1</field>
+			<field name="amount_percentage" eval="5"/>
+
+			<!-- Contribution de la société -->
+			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_dicp"/>
+		</record>
+		<record id="cst_3_plus" model="hr.salary.rule">
+			<field name="sequence" eval="115"/>
+			<field name="name">C.S.T 3ère tranche+</field>
+			<field name="category_id" ref="l10n_pf_hr_payroll.category_cst"/>
+			<field name="code">CST_3+</field>
+			<field name="active" eval="True"/>
+			<field name="appears_on_payslip" eval="True"/>
+			
+			<!-- Conditions -->
+			<field name="condition_select">range</field>
+			<field name="condition_range">categories.GROSS</field>
+			<field name="condition_range_min" eval="400000"/>
+			<field name="condition_range_max" eval="999999999"/>
+
+			<!-- Calcul -->
+			<field name="amount_select">percentage</field>
+			<field name="amount_percentage_base">400000-250000</field>
+			<field name="quantity">1</field>
+			<field name="amount_percentage" eval="5"/>
+
+			<!-- Contribution de la société -->
+			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_dicp"/>
+		</record>
+		<record id="cst_4" model="hr.salary.rule">
+			<field name="sequence" eval="116"/>
+			<field name="name">C.S.T 4ère tranche</field>
+			<field name="category_id" ref="l10n_pf_hr_payroll.category_cst"/>
+			<field name="code">CST_3</field>
+			<field name="active" eval="True"/>
+			<field name="appears_on_payslip" eval="True"/>
+			
+			<!-- Conditions -->
+			<field name="condition_select">range</field>
+			<field name="condition_range">categories.GROSS</field>
+			<field name="condition_range_min" eval="400000"/>
+			<field name="condition_range_max" eval="700000"/>
+
+			<!-- Calcul -->
+			<field name="amount_select">percentage</field>
+			<field name="amount_percentage_base">categories.GROSS-400000</field>
+			<field name="quantity">1</field>
+			<field name="amount_percentage" eval="7"/>
+
+			<!-- Contribution de la société -->
+			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_cps"/>
+		</record>
+		<record id="cst_4_plus" model="hr.salary.rule">
+			<field name="sequence" eval="117"/>
+			<field name="name">C.S.T 4ère tranche+</field>
+			<field name="category_id" ref="l10n_pf_hr_payroll.category_cst"/>
+			<field name="code">CST_3+</field>
+			<field name="active" eval="True"/>
+			<field name="appears_on_payslip" eval="True"/>
+			
+			<!-- Conditions -->
+			<field name="condition_select">range</field>
+			<field name="condition_range">categories.GROSS</field>
+			<field name="condition_range_min" eval="700000"/>
+			<field name="condition_range_max" eval="999999999"/>
+
+			<!-- Calcul -->
+			<field name="amount_select">percentage</field>
+			<field name="amount_percentage_base">700000</field>
+			<field name="quantity">1</field>
+			<field name="amount_percentage" eval="7"/>
+
+			<!-- Contribution de la société -->
+			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_dicp"/>
+		</record>
+		<record id="total_cst" model="hr.salary.rule">
+			<field name="sequence" eval="118"/>
+			<field name="name">TOTAL C.S.T</field>
+			<field name="category_id" ref="l10n_pf_hr_payroll.category_total"/>
+			<field name="code">TOTAL_CST</field>
+			<field name="active" eval="True"/>
+			<field name="appears_on_payslip" eval="True"/>
+			
+			<!-- Conditions -->
+			<field name="condition_select">none</field>
+
+			<!-- Calcul -->
+			<field name="amount_select">percentage</field>
+			<field name="amount_percentage_base">categories.CST</field>
+			<field name="quantity">1</field>
+			<field name="amount_percentage" eval="100"/>
+
+			<!-- Contribution de la société -->
+			<field name="register_id" ref="l10n_pf_hr_payroll.contribution_dicp"/>
+		</record>
+	</data>
+</odoo>
