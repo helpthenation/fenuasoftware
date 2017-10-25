@@ -40,11 +40,11 @@ sudo echo "deb http://nightly.odoo.com/10.0/nightly/deb/ ./" >> /etc/apt/sources
 sudo apt-get update && apt-get install odoo
 
 echo "Installing pip"
-sudo apt-get install python-pip python-dev build-essential
-sudo pip install --upgrade pip
+sudo apt-get install python3-pip python3.5-dev build-essential
+sudo pip3 install --upgrade pip
 
 echo "Installing pysftp"
-sudo pip install pysftp==0.2.8
+sudo pip3 install pysftp==0.2.8
 
 echo "Installing pysftp"
-sudo pip install ofxparse==0.14
+sudo pip3 install ofxparse==0.14
