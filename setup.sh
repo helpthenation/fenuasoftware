@@ -1,30 +1,9 @@
 #!/bin/sh
 # Initialise l'environnement de production pour Odoo
 
-echo "Installing Odoo - Enterprise"
-git clone https://Heifara@github.com/odoo/enterprise.git
-
-echo "Installing fenuasoftware"
-git clone https://Heifara@github.com/Heifara/fenuasoftware.git
-
-echo "Installing notfenuasoftware"
-git clone https://Heifara@github.com/Heifara/notfenuasoftware.git
-
-echo "Installing odoolog"
-chmod 777 /home/admin/fenuasoftware/odoolog.sh
-sudo ln -s /home/admin/fenuasoftware/odoolog.sh /usr/local/bin/odoolog
-
-echo "Installing odooalldb"
-chmod 777 /home/admin/fenuasoftware/odooalldb.sh
-sudo ln -s /home/admin/fenuasoftware/odooall.sh /usr/local/bin/odooall
-
-echo "Installing odooupgrade"
-chmod 777 /home/admin/fenuasoftware/odooupgrade.sh
-sudo ln -s /home/admin/fenuasoftware/odooupgrade.sh /usr/local/bin/odooupgrade
-
 echo "Installing Gdebi"
 sudo apt-get install gdebi
-	
+
 echo "Installing wkhtmltopdf"
 wget -O wkhtmltox.deb "https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.1/wkhtmltox-0.12.1_linux-trusty-amd64.deb"
 sudo gdebi wkhtmltox.deb
@@ -48,3 +27,25 @@ sudo pip install pysftp==0.2.8
 
 echo "Installing pysftp"
 sudo pip install ofxparse==0.14
+
+echo "Installing Odoo - Enterprise"
+git clone -b 10.0 https://Heifara@github.com/odoo/enterprise.git
+
+echo "Installing fenuasoftware"
+git clone -b 10.0 https://heifara@bitbucket.org/fenuasoftware/fenuasoftware.git
+
+echo "Installing notfenuasoftware"
+git clone -b 10.0 https://heifara@bitbucket.org/fenuasoftware/notfenuasoftware.git
+
+echo "Installing odoolog"
+chmod 777 ./fenuasoftware/odoolog.sh
+sudo ln -s /opt/odoo/fenuasoftware/odoolog.sh /usr/local/bin/odoolog
+
+echo "Installing odooalldb"
+chmod 777 ./fenuasoftware/odooalldb.sh
+sudo ln -s /opt/odoo/fenuasoftware/odooall.sh /usr/local/bin/odooall
+
+echo "Installing odooupgrade"
+chmod 777 ./fenuasoftware/odooupgrade.sh
+sudo ln -s /opt/odoo/fenuasoftware/odooupgrade.sh /usr/local/bin/odooupgrade
+
