@@ -52,6 +52,28 @@
                                 </div>
                             </div>
                         </div>
+                        <div id="fsw_l10n_pf">
+                            <h2>Comptabilité</h2>
+                            <div class="row mt16 o_settings_container">
+                                <div class="col-xs-12 col-md-6 o_setting_box">
+                                    <div class="o_setting_right_pane">
+                                        <label string="Module de comptabilité Polynésie Française"/>
+                                        <div class="text-muted">
+                                            Installer le module de comptabilité de la Polynésie Française avec les 3 TVA et la devise en XPF
+                                        </div>
+                                        <div class="content-group">
+                                            <div class="mt16 row" attrs="{'invisible': [('module_l10n_pf','=', True)]}">
+                                                <label for="module_l10n_pf" class="col-xs-3 col-md-3 o_light_label"/>
+                                                <field name="module_l10n_pf" class="oe_inline" required="1"/>
+                                            </div>
+                                            <div class="alert" attrs="{'invisible': [('module_l10n_pf','=', False)]}">
+                                                Module l10n_pf à été installé ainsi que ces dépendances. Il ne peut plus être désinstallé sans entrainter des dégâts sur le système.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </xpath>

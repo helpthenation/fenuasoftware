@@ -8,6 +8,7 @@ class ResConfigSettings(models.TransientModel):
 
     example = fields.Boolean(text='Un exemple')
     module_sample = fields.Boolean("Installe le module sample")
+    module_l10n_pf = fields.Boolean("Installer")
 
     @api.model
     def get_values(self):
