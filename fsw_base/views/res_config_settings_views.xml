@@ -121,7 +121,7 @@
             </xpath>
         </field>
     </record>
-    <menuitem id="fsw_menu_root" name="Fenua Softw@re" web_icon="fsw_base,static/description/icon.png" sequence="6"/>
+    <menuitem id="fsw_menu_root" name="Fenua Softw@re" web_icon="fsw_base,static/description/icon.png" sequence="6" groups="base.group_no_one"/>
     <menuitem id="fsw_menu_config" name="Configuration" parent="fsw_menu_root" sequence="25"/>
     <menuitem id="fsw_config_settings_menu" name="Settings" parent="fsw_menu_config" action="fsw_config_settings_action" sequence="0"/>
 </odoo>
