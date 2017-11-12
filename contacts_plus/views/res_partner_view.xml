@@ -6,7 +6,8 @@
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
                 <field name="website" position="after">
-                    <field name="facebook_url" widget="url"/>
+                    <field name="facebook_url_enable" invisible="True"/>
+                    <field name="facebook_url" widget="url" attrs="{'invisible': [('facebook_url_enable', '=', False)]}"/>
                 </field>
             </field>
         </record>

@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.contacts_plus</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="fsw_base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <div id="contacts_plus_infos" position="replace">
+                    <div class="mt16 row">
+                        <label for="facebook_url_enable" class="o_form_label"/>
+                        <field name="facebook_url_enable" class="oe_inline" required="1"/>
+                    </div>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>
