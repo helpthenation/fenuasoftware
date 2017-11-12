@@ -1,0 +1,128 @@
+// Tender Color Set
+
+// =============================
+
+@color-alpha     : @color-alpha-blackmath;
+@color-beta      : @color-beta-blackmath;
+@color-gamma     : @color-gamma-blackmath;
+@color-delta     : @color-delta-blackmath;
+@color-epsilon   : @color-epsilon-blackmath;
+@color-text      : #119bbd;
+@color-footer    : #ffffff;
+
+// =============================
+// Bootstrap Colours ===========
+// =============================
+
+@brand-primary : @color-alpha;
+@brand-info    : #5877BA;
+@brand-success : #31B05E;
+@brand-info    : #4D68A3;
+@brand-warning : #EACF41;
+@brand-danger  : #CB3E3E;
+
+// =============================
+// Backgrounds Colours =========
+// =============================
+
+.graphene-layout-boxed() when (@graphene-layout-boxed = true)  {
+    #wrapwrap { background: @color-epsilon  }
+}
+.graphene-layout-boxed();
+
+.graphene-layout-postcard() when (@graphene-layout-postcard = true)  {
+    #wrapwrap { background: @color-epsilon  }
+
+    header#graph_header {
+        .navbar-brand, .navbar-default .navbar-brand {
+            color: white;
+        }
+
+        .navbar .navbar-nav > li.active > a,
+        .navbar .navbar-nav > li.active > a:hover,
+        .navbar .navbar-nav > li.active > a:focus {
+            color: white;
+        }
+
+        .navbar .navbar-nav > li > a {
+            color: lighten(@color-epsilon-light, 10%);
+            &:hover{
+                color: white;
+            }
+        }
+    }
+}
+.graphene-layout-postcard();
+
+
+//
+//
+// 
+@link-color			: #3bc5d6;
+
+body {
+    color: #62618c;
+	background-color: #1b1919;
+    background-image: url(https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-9/18275134_1882268378727203_7137838214574780718_n.jpg?oh=22f062db19f03585e678764770bb4d0f&oe=59F400B9);
+    background-size: 30% 100%;
+    background-repeat: no-repeat;
+    background-position: left;
+    background-attachment: fixed;
+}
+
+header {
+    background-image: url("/theme_graphene/static/src/img/patterns/bg_pattern_01.jpg");
+}
+
+footer {
+	background-color: #000000;
+	color: @color-footer;
+}
+
+a {
+	color: @link-color !important;
+}
+
+#wrap {
+    margin-top: 0px;
+}
+
+main {
+    background: rgba(27, 25, 25, 0.7);
+}
+
+text-muted {
+	color: #b5abab;
+}
+
+.oe_product {
+    background: whitesmoke;
+    border-stlye: outset;
+    border-color: silver;
+}
+
+.oe_product section {
+    background: whitesmoke;
+    border-stlye: ridge;
+    border-color: whitesmoke;
+}
+
+//menu de navigation
+#graph_header .navbar, #graph_header_affix .navbar {
+	background-color: #000000;
+}
+
+//menu de navigation afflix
+#wrapwrap #graph_header_affix .navbar {
+	background-color: #000000;
+}
+
+//lien dans menu de navigation
+#graph_header .navbar .navbar-nav > li > a, #graph_header_affix .navbar .navbar-nav > li > a {
+	color: white;
+}
+
+//lien actif dans menu de navigation
+#graph_header .navbar .navbar-nav > li.active > a, #graph_header_affix .navbar .navbar-nav > li.active > a, #graph_header .navbar .navbar-nav > li.active > a:hover, #graph_header_affix .navbar .navbar-nav > li.active > a:hover, #graph_header .navbar .navbar-nav > li.active > a:focus, #graph_header_affix .navbar .navbar-nav > li.active > a:focus {
+	color: white;
+}

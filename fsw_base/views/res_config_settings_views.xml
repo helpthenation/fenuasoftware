@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.fenuasoftware</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="100"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="Fenua Softw@re" data-key="fsw_base">
+                    <div id="fenuasoftware">
+                        <div id="fsw_sample" groups="base.group_no_one">
+                            <h2>Exemple</h2>
+                            <div class="row mt16 o_settings_container">
+                                <div class="col-xs-12 col-md-6 o_setting_box">
+                                    <div class="o_setting_right_pane">
+                                        <label string="Exemple"/>
+                                        <span class="fa fa-lg fa-building-o" title="Values set here are company-specific."/>
+                                        <div class="text-muted">
+                                            Un texte explicatif
+                                        </div>
+                                        <div class="content-group">
+                                            <div class="mt16 row">
+                                                <label for="example" string="Exemple" class="col-xs-3 col-md-3 o_light_label"/>
+                                                <field name="example" class="oe_inline" required="1"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6 o_setting_box">
+                                    <div class="o_setting_right_pane">
+                                        <label string="Sample"/>
+                                        <span class="fa fa-lg fa-building-o" title="Values set here are company-specific."/>
+                                        <div class="text-muted">
+                                            Installe le module sample
+                                        </div>
+                                        <div class="content-group">
+                                            <div class="mt16 row">
+                                                <label for="module_sample" string="Sample" class="col-xs-3 col-md-3 o_light_label"/>
+                                                <field name="module_sample" class="oe_inline" required="1"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="fsw_l10n_pf">
+                            <h2>Comptabilité</h2>
+                            <div class="row mt16 o_settings_container">
+                                <div class="col-xs-12 col-md-6 o_setting_box">
+                                    <div class="o_setting_right_pane">
+                                        <label string="Module de comptabilité Polynésie Française"/>
+                                        <div class="text-muted">
+                                            Installer le module de comptabilité de la Polynésie Française avec les 3 TVA et la devise en XPF
+                                        </div>
+                                        <div class="content-group">
+                                            <div class="mt16 row" attrs="{'invisible': [('module_l10n_pf','=', True)]}">
+                                                <label for="module_l10n_pf" class="col-xs-3 col-md-3 o_light_label"/>
+                                                <field name="module_l10n_pf" class="oe_inline" required="1"/>
+                                            </div>
+                                            <div class="alert" attrs="{'invisible': [('module_l10n_pf','=', False)]}">
+                                                Module l10n_pf à été installé ainsi que ces dépendances. Il ne peut plus être désinstallé sans entrainter des dégâts sur le système.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6 o_setting_box">
+                                    <div class="o_setting_right_pane">
+                                        <label string="La paie en Polynésie Française"/>
+                                        <span class="fa fa-lg fa-building-o" title="Values set here are company-specific."/>
+                                        <div class="text-muted">
+                                            Installer le module de gestion de paie en Polynésie Française
+                                        </div>
+                                        <div class="content-group">
+                                            <div class="mt16 row" attrs="{'invisible': [('module_l10n_pf_hr_payroll','=', True)]}">
+                                                <label for="module_l10n_pf_hr_payroll" class="col-xs-3 col-md-3 o_light_label"/>
+                                                <field name="module_l10n_pf_hr_payroll" class="oe_inline" required="1"/>
+                                            </div>
+                                            <div class="alert" attrs="{'invisible': [('module_l10n_pf_hr_payroll','=', False)]}">
+                                                Module module_l10n_pf_hr_payroll à été installé ainsi que ces dépendances. Il ne peut plus être désinstallé sans entrainter des dégâts sur le système.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="contacts_plus">
+                            <h2>Contact +</h2>
+                            <div class="row mt16 o_settings_container">
+                                <div class="col-xs-12 col-md-6 o_setting_box">
+                                    <div class="o_setting_right_pane">
+                                        <label string="Contact +"/>
+                                        <span class="fa fa-lg fa-building-o" title="Values set here are company-specific."/>
+                                        <div class="text-muted">
+                                            Installer le module Contacts +
+                                        </div>
+                                        <div class="content-group">
+                                            <div class="mt16 row" attrs="{'invisible': [('module_contacts_plus','=', True)]}">
+                                                <label for="module_contacts_plus" class="col-xs-3 col-md-3 o_light_label"/>
+                                                <field name="module_contacts_plus" class="oe_inline" required="1"/>
+                                            </div>
+                                            <div class="alert" attrs="{'invisible': [('module_contacts_plus','=', False)]}">
+                                                <div id="contacts_plus_infos"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+    <record id="fsw_config_settings_action" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_id" ref="res_config_settings_view_form"/>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'fsw_base'}</field>
+    </record>
+    <menuitem id="fsw_menu_root" name="Fenua Softw@re" web_icon="fsw_base,static/description/icon.png" sequence="6" groups="base.group_no_one"/>
+    <menuitem id="fsw_menu_config" name="Configuration" parent="fsw_menu_root" sequence="25"/>
+    <menuitem id="fsw_config_settings_menu" name="Settings" parent="fsw_menu_config" action="fsw_config_settings_action" sequence="0"/>
+</odoo>
