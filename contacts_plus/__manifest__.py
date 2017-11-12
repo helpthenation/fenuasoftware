@@ -9,7 +9,7 @@
     'website': "https://fenuasoftware.com/",
     'category': 'Tools',
     'version': '0.1',
-    'depends': ['contacts'],
+    'depends': ['fsw_base','contacts'],
     'data': [
         'views/res_partner_view.xml',
     ],
