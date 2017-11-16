@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="auth_signup.mail_template_user_signup_account_created" model="mail.template">
+            <field name="body_html"><![CDATA[<html>
+<div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+    <table cellspacing="0" cellpadding="0" style="width:600px;border-collapse:collapse;background:inherit;color:inherit">
+        <tbody><tr>
+            <td valign="center" width="200" style="padding:10px 10px 10px 5px;font-size: 12px">
+                <img src="/logo.png" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${user.company_id.name}" />
+            </td>
+        </tr></tbody>
+    </table>
+</div>
+<div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+    <p>Dear ${object.name},</p>
+    <p>
+        Your account has been successfully created!
+    </p>
+    <p>
+        Your login: ${object.email}
+        <br/>
+        Your password: ${ctx['password']}
+    </p>
+    <p>
+        To gain access to your account, you can use the following link:
+    </p>
+    <div style="text-align: center; margin-top: 16px;">
+        <a href="/web/login?${ctx['auth_login']}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">Go to My Account</a>
+    </div>
+    <p>Best regards,</p>
+</div>
+<div style="padding:0px;width:600px;margin:auto; margin-top: 10px; background: #fff repeat top /100%;color:#777777">
+    ${user.signature | safe}
+    <p style="font-size: 11px; margin-top: 10px;">
+        <strong>Sent by ${user.company_id.name} using <a href="www.fenuasoftware.com" style="text-decoration:none; color: #875A7B;">Fenua Softw@re</a></strong>
+    </p>
+</div>
+            ]]></field>
+        </record>
+        <record id="auth_signup.set_password_email" model="mail.template">
+            <field name="body_html"><![CDATA[<html>
+<div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+    <table cellspacing="0" cellpadding="0" style="width:600px;border-collapse:collapse;background:inherit;color:inherit">
+        <tbody><tr>
+            <td valign="center" width="200" style="padding:10px 10px 10px 5px;font-size: 12px">
+                <img src="/logo.png" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${user.company_id.name}">
+            </td>
+        </tr></tbody>
+    </table>
+</div>
+<div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+<p>Dear ${object.name},</p>
+    <p>
+        You have been invited to connect to "${object.company_id.name}" in order to get access to your documents in Odoo.
+    </p>
+    <p>
+        To accept the invitation, click on the following link:
+    </p>
+    <div style="text-align: center; margin-top: 16px;">
+         <a href="${object.signup_url}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">Accept invitation to "${object.company_id.name}"</a>
+    </div>
+    <p>Best regards,</p>
+</div>
+<div style="padding:0px;width:600px;margin:auto; margin-top: 10px; background: #fff repeat top /100%;color:#777777">
+    ${user.signature | safe}
+    <p style="font-size: 11px; margin-top: 10px;">
+        <strong>Sent by ${user.company_id.name} using <a href="www.fenuasoftware.com" style="text-decoration:none; color: #875A7B;">Fenua Softw@re</a></strong>
+    </p>
+</div>
+            ]]></field>
+        </record>
+        <record id="auth_signup.reset_password_email" model="mail.template">
+            <field name="body_html"><![CDATA[<html>
+<div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+    <table cellspacing="0" cellpadding="0" style="width:600px;border-collapse:collapse;background:inherit;color:inherit">
+        <tbody><tr>
+            <td valign="center" width="200" style="padding:10px 10px 10px 5px;font-size: 12px">
+                <img src="/logo.png" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${user.company_id.name}">
+            </td>
+        </tr></tbody>
+    </table>
+</div>
+<div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+    <p>Dear ${object.name},</p>
+    <p>A password reset was requested for the Odoo account linked to this email.</p>
+    <p>You may change your password by following this link which will remain valid during 24 hours:</p>
+    <div style="text-align: center; margin-top: 16px;">
+        <a href="${object.signup_url}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">Change password</a>
+    </div>
+    <p>If you do not expect this, you can safely ignore this email.</p>
+    <p>Best regards,</p>
+</div>
+<div style="padding:0px;width:600px;margin:auto; margin-top: 10px; background: #fff repeat top /100%;color:#777777">
+    ${user.signature | safe}
+    <p style="font-size: 11px; margin-top: 10px;">
+        <strong>Sent by ${user.company_id.name} using <a href="www.fenuasoftware.com" style="text-decoration:none; color: #875A7B;">Fenua Softw@re</a></strong>
+    </p>
+</div>
+            ]]></field>
+        </record>
+        <record id="mail.mail_template_data_notification_email_default" model="mail.template">
+            <field name="body_html"><![CDATA[
+% set company = ctx.get('company', user.company_id)
+<div>
+% if ctx.get('has_button_access'):
+<div itemscope itemtype="http://schema.org/EmailMessage">
+    <div itemprop="potentialAction" itemscope itemtype="http://schema.org/ViewAction">
+        <link itemprop="target" href="${ctx['button_access']['url']}"/>
+        <link itemprop="url" href="${ctx['button_access']['url']}"/>
+        <meta itemprop="name" content="View ${ctx['model_name']}"/>
+    </div>
+</div>
+% endif
+% if not ctx['is_discussion'] or not len(ctx['actions']) == 0 or ctx.get('has_button_access'):
+<div summary="o_mail_notification" style="padding: 0px; width:600px;">
+<table cellspacing="0" cellpadding="0" border="0" style="width: 600px; margin-top: 5px;">
+<tbody><tr>
+    <td valign="center">
+        % if ctx.get('has_button_access'):
+        <a href="${ctx['button_access']['url']}" style="padding: 8px 12px; font-size: 12px; color: #FFFFFF; text-decoration: none !important; font-weight: 400; background-color: #875A7B; border: 0px solid #875A7B; border-radius:3px">${ctx['button_access']['title']}</a>
+        % endif
+
+        % if ctx.get('has_button_follow'):
+        % if ctx.get('has_button_access'):
+           |
+        % endif
+        <a href="${ctx['button_follow']['url']}" style="color: #875A7B; text-decoration: none !important;">${ctx['button_follow']['title']}</a>
+        % elif ctx.get('has_button_unfollow'):
+        % if ctx.get('has_button_access'):
+           |
+        % endif
+        <a href="${ctx['button_unfollow']['url']}" style="color: #875A7B; text-decoration: none !important;">${ctx['button_unfollow']['title']}</a>
+        % endif
+
+        % if ctx.get('actions'):
+        % for action in ctx['actions']:
+        |
+        <a href="${action['url']}" style="color: #875A7B; text-decoration:none !important;">${action['title']}</a>
+        % endfor
+        % endif
+    </td>
+    <td valign="center" align="right">
+        <img src="/logo.png?company=${company.id}" style="padding: 0px; margin: 0px; height: auto; max-width: 80px; max-height: 40px;" alt="${company.name}">
+    </td>
+</tr>
+<tr>
+    <td colspan="2" style="text-align:center;">
+        <hr width="100%"
+            style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:10px 0;">
+        % if ctx.get('subtype') and ctx.get('subtype').internal:
+        <p style="background-color: #f2dede; padding: 5px; margin-bottom: 16px;">
+            <strong>Internal communication</strong>: Replying will post an internal note. Followers won't receive any email notification.
+        </p>
+        % endif
+    </td>
+</tr>
+</tbody></table>
+</div>
+% endif
+<div>
+    ${object.body | safe}
+</div>
+% if ctx.get('tracking'):
+    <ul>
+    % for tracking in ctx['tracking']
+        <li>${tracking[0]} : ${tracking[1]} -&gt; ${tracking[2]}</li>
+    % endfor
+    </ul>
+% endif
+
+% if ctx.get('signature'):
+    ${ctx['signature'] | safe}
+% endif
+<br/>
+<p style="color: #555555;">
+    Sent by
+    % if ctx.get('website_url'):
+    <a href="${ctx['website_url']}" style="text-decoration:none; color: #875A7B;">
+    % endif
+    ${ctx.get('company_name')}
+    % if ctx.get('website_url'):
+    </a>
+    % endif
+    using
+    <a target="_blank" href="https://www.fenuasoftware.com" style="text-decoration:none; color: #875A7B;">Fenua Softw@re</a>.
+</p>
+</div>
+            ]]></field>
+        </record>
+    </data>
+</odoo>

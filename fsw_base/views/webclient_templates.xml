@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="login_layout" name="Login Layout" inherit_id="web.login_layout">
+        <xpath expr="//a[@href='https://www.odoo.com']" position="replace">
+            <a href="https://www.fenuasoftware.com" target="_blank">Powered by
+                <span>Fenua Softw@re</span>
+            </a>
+        </xpath>
+    </template>
+</odoo>
