@@ -12,6 +12,7 @@
     'depends': ['base', 'mail', 'calendar', 'auth_signup'],
     'data': [
         'views/mail_template_views.xml',
+        'views/mail_templates.xml',
         'views/res_config_settings_views.xml',
         'views/webclient_templates.xml',
     ],
