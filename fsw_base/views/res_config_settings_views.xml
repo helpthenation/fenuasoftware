@@ -9,41 +9,6 @@
             <xpath expr="//div[hasclass('settings')]" position="inside">
                 <div class="app_settings_block" data-string="Fenua Softw@re" data-key="fsw_base">
                     <div id="fenuasoftware">
-                        <div id="fsw_sample" groups="base.group_no_one">
-                            <h2>Exemple</h2>
-                            <div class="row mt16 o_settings_container">
-                                <div class="col-xs-12 col-md-6 o_setting_box">
-                                    <div class="o_setting_right_pane">
-                                        <label string="Exemple"/>
-                                        <span class="fa fa-lg fa-building-o" title="Values set here are company-specific."/>
-                                        <div class="text-muted">
-                                            Un texte explicatif
-                                        </div>
-                                        <div class="content-group">
-                                            <div class="mt16 row">
-                                                <label for="example" string="Exemple" class="col-xs-3 col-md-3 o_light_label"/>
-                                                <field name="example" class="oe_inline" required="1"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-md-6 o_setting_box">
-                                    <div class="o_setting_right_pane">
-                                        <label string="Sample"/>
-                                        <span class="fa fa-lg fa-building-o" title="Values set here are company-specific."/>
-                                        <div class="text-muted">
-                                            Installe le module sample
-                                        </div>
-                                        <div class="content-group">
-                                            <div class="mt16 row">
-                                                <label for="module_sample" string="Sample" class="col-xs-3 col-md-3 o_light_label"/>
-                                                <field name="module_sample" class="oe_inline" required="1"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div id="fsw_l10n_pf">
                             <h2>Comptabilité</h2>
                             <div class="row mt16 o_settings_container">
