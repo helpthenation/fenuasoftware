@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="message_user_assigned" inherit_id="mail.message_user_assigned" name="message_user_assigned">
+            <xpath expr="//a[@href='https://www.odoo.com']" position="replace">
+                <a target="_blank" href="https://www.fenuasoftware.com">Fenua Softw@re</a>.
+            </xpath>
+        </template>
+    </data>
+</odoo>
