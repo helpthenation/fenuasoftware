@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
+        <record id="view_email_template_search_inherited" model="ir.ui.view">
+            <field name="name">email.template.search.inherited</field>
+            <field name="model">mail.template</field>
+            <field name="inherit_id" ref="mail.view_email_template_search"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="body_html" filter_domain="[('body_html','ilike',self)]"/>
+                </field>
+            </field>
+        </record>
         <record id="auth_signup.mail_template_user_signup_account_created" model="mail.template">
             <field name="body_html"><![CDATA[<html>
 <div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
