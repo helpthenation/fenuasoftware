@@ -22,7 +22,7 @@ This module applies to companies based in French Polynesia.
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['l10n_fr', 'account_invoicing'],
+    'depends': ['l10n_fr', 'account'],
 
     # always loaded
     'data': [
@@ -32,5 +32,8 @@ This module applies to companies based in French Polynesia.
 
         #security
         'security/ir.model.access.csv',
+
+        #views
+        'views/mail_template_views.xml',
     ],
 }
