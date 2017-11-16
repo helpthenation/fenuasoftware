@@ -23,6 +23,7 @@
     # always loaded
     'data': [
         'views/mail_template_views.xml',
+        'views/sale_views.xml',
     ],
     'auto_install': True,
 }
