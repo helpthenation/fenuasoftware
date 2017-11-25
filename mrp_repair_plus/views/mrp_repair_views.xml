@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_repair_order_form_inherited" model="ir.ui.view">
+            <field name="name">mrp.repair.form</field>
+            <field name="model">mrp.repair</field>
+            <field name="inherit_id" ref="mrp_repair.view_repair_order_form"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="repairer"/>
+                    <field name="purchase_order" invisible="True"/>
+                </field>
+                <header position="inside">
+                    <button name="action_repair_purchase_order_create" type="object" string="créer bon de commande fournisseur" class="oe_highlight"/>
+                </header>
+                <div name="button_box" position="inside">
+                    <button name="action_created_purchase_order" type="object" class="oe_stat_button" icon="fa-pencil-square-o" string="Bon de commande" attrs="{'invisible': [('purchase_order','=',False)]}"/>
+                </div>
+            </field>
+        </record>
+
+        <!-- Search -->
+        <record id="view_repair_order_form_filter_inherited" model="ir.ui.view">
+            <field name="name">mrp.repair.select</field>
+            <field name="model">mrp.repair</field>
+            <field name="inherit_id" ref="mrp_repair.view_repair_order_form_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//separator" position="before">
+                    <filter string="Mes ordres de réparation" domain="[('repairer','=',uid)]"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

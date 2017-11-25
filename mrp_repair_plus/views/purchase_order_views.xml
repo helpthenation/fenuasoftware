@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="purchase_order_form_inherit">
+            <field name="name">purchase.order.form.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <field name="invoice_status" position="before">
+                    <field name="mrp_repair" invisible="False"/>
+                </field>
+                <div name="button_box" position="inside">
+                    <button name="action_mrp_repair" type="object" class="oe_stat_button" icon="fa-pencil-square-o" string="Ordre de réparation" attrs="{'invisible': [('mrp_repair','=',False)]}"/>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>
