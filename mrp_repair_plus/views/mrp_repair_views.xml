@@ -28,6 +28,9 @@
                 <xpath expr="//separator" position="before">
                     <filter string="Mes ordres de réparation" domain="[('repairer','=',uid)]"/>
                 </xpath>
+                <field name="name" position="before">
+                    <field name="vehicle" />
+                </field>
             </field>
         </record>
     </data>
