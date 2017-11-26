@@ -36,7 +36,7 @@ sudo apt-get install postgresql -y
 
 echo "Installing Odoo - Community"
 sudo wget -O - https://nightly.odoo.com/odoo.key | apt-key add -
-sudo echo "deb http://nightly.odoo.com/10.0/nightly/deb/ ./" >> /etc/apt/sources.list.d/odoo.list
+sudo echo "deb http://nightly.odoo.com/11.0/nightly/deb/ ./" >> /etc/apt/sources.list.d/odoo.list
 sudo apt-get update && apt-get install odoo
 
 echo "Installing pip"
