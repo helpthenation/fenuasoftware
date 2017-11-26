@@ -46,7 +46,7 @@ class Repair(models.Model):
                 'currency_id': repair.pricelist_id.currency_id.id,
                 'date_planned': fields.Datetime.now(),
             })
-            purchase_order.write({'date_planned': purchase_order.order_date})
+            purchase_order.write({'date_planned': purchase_order.date_order})
             repair.write({'purchase_order': purchase_order.id})
             for operation in repair.operations:
                 if operation.type == 'add':
@@ -61,6 +61,7 @@ class Repair(models.Model):
 
                     purchase_order_line = PurchaseOrderLine.create({
                         'order_id': purchase_order.id,
+                        'date_planned': purchase_order.date_planned,
                         'name': name,
                         'origin': repair.name,
                         'account_id': account_id,
