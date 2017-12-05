@@ -3,6 +3,24 @@
     <data>
         <menuitem id="mrp_repair.menu_repair_order" name="Repairs⁺"/>
 
+        <!-- Kanban -->
+        <record id="view_mrp_repair_kanban_inherited" model="ir.ui.view">
+            <field name="name">mrp.repair.kanban</field>
+            <field name="model">mrp.repair</field>
+            <field name="inherit_id" ref="mrp_repair.view_mrp_repair_kanban"/>
+            <field name="arch" type="xml">
+                <field name="state" position="after">
+                    <field name="vehicle"/>
+                </field>
+                <div class="row" position="inside">
+                    <div class="col-xs-6">
+                        <field name="vehicle"/>
+                    </div>
+                </div>
+            </field>
+        </record>
+
+        <!-- Form -->
         <record id="view_repair_order_form_inherited" model="ir.ui.view">
             <field name="name">mrp.repair.form</field>
             <field name="model">mrp.repair</field>
