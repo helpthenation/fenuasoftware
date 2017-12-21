@@ -2,6 +2,8 @@
 <odoo>
     <data>
         <menuitem id="calendar.mail_menu_calendar" name="Calendar⁺"/>
+
+        <!-- Search -->
         <record id="view_calendar_event_search_inherited" model="ir.ui.view">
             <field name="name">view.calendar.event.search.inherited</field>
             <field name="model">calendar.event</field>
@@ -19,6 +21,22 @@
                                 ('start_datetime', '&lt;=', (context_today() + relativedelta(weekday=6)).strftime('%Y-%m-%d 12:59:59')),
                             ]"/>
                 </xpath>
+            </field>
+        </record>
+
+        <!-- Tree -->
+        <record id="view_calendar_event_tree" model="ir.ui.view">
+            <field name="name">calendar.event.tree</field>
+            <field name="model">calendar.event</field>
+            <field name="inherit_id" ref="calendar.view_calendar_event_tree"/>
+            <field name="arch" type="xml">
+                <field name="partner_ids" position="replace">
+                    <field name="partner_ids" string="Participants" widget="many2many_tags">
+                        <tree>
+                            <field name="name"/>
+                        </tree>
+                    </field>
+                </field>
             </field>
         </record>
     </data>
