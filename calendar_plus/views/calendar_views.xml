@@ -8,15 +8,15 @@
             <field name="inherit_id" ref="calendar.view_calendar_event_search"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='user_id']" position="after">
-                    <filter string="Aujourd'hui" help="Affiche les événements de la journée. Pratique en mode liste."
+                    <filter name="today" string="Aujourd'hui" help="Affiche les événements de la journée. Pratique en mode liste."
                             domain="[
-                                ('start_datetime', '&gt;', context_today().strftime('%Y-%m-%d 00:00:00')),
-                                ('start_datetime', '&lt;', context_today().strftime('%Y-%m-%d 23:59:59')),
+                                ('start_datetime', '&gt;=', (context_today() + relativedelta(days=0)).strftime('%Y-%m-%d 12:59:59')),
+                                ('start_datetime', '&lt;=', (context_today() + relativedelta(days=1)).strftime('%Y-%m-%d 12:59:59')),
                             ]"/>
                     <filter string="Cette semaine" help="Affiche les événements de la semaine. Pratique en mode liste."
                             domain="[
-                                ('start_datetime', '&gt;', (context_today() + relativedelta(weeks=-1,days=1,weekday=0)).strftime('%Y-%m-%d 00:00:00')),
-                                ('start_datetime', '&lt;=', (context_today() + relativedelta(weekday=6)).strftime('%Y-%m-%d 23:59:59')),
+                                ('start_datetime', '&gt;', (context_today() + relativedelta(weeks=-1,days=1,weekday=0)).strftime('%Y-%m-%d 12:59:59')),
+                                ('start_datetime', '&lt;=', (context_today() + relativedelta(weekday=6)).strftime('%Y-%m-%d 12:59:59')),
                             ]"/>
                 </xpath>
             </field>
