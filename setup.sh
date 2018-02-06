@@ -48,3 +48,8 @@ sudo pip3 install pysftp==0.2.8
 
 echo "Installing pysftp"
 sudo pip3 install ofxparse==0.14
+
+echo "Installing pyOpenSSL"
+sudo pip3 install pyOpenSSL==16.2.0
+
+sudo pip3 install num2words xlwt
