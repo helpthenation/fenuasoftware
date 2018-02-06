@@ -16,6 +16,20 @@
             <field name="res_model">account.account</field>
             <field name="view_mode">tree,form</field>
         </record>
+        <record id="view_account_payment_pivot" model="ir.ui.view">
+            <field name="name">view.account.payment.pivot</field>
+            <field name="model">account.payment</field>
+            <field name="arch" type="xml">
+                <pivot string="Paiements">
+                    <field name="partner_id" type="row"/>
+                    <field name="journal_id" type="col"/>
+                    <field name="amount" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+        <record id="account.action_account_payments" model="ir.actions.act_window">
+            <field name="view_mode">tree,kanban,form,graph,pivot</field>
+        </record>
 
         <menuitem id="account.menu_finance" name="Invoicing⁺"/>
         <menuitem id="accounting_menuitem" name="Comptabilité" parent="account.menu_finance"/>
