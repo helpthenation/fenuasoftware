@@ -43,14 +43,7 @@
                     <field name="repairer"/>
                     <field name="intervention_date"/>
                     <field name="intervention_duration" widget="float_time"/>
-                    <field name="purchase_order" invisible="True"/>
                 </field>
-                <header position="inside">
-                    <button name="action_repair_purchase_order_create" type="object" string="créer bon de commande fournisseur" class="oe_highlight"/>
-                </header>
-                <div name="button_box" position="inside">
-                    <button name="action_created_purchase_order" type="object" class="oe_stat_button" icon="fa-pencil-square-o" string="Bon de commande" attrs="{'invisible': [('purchase_order','=',False)]}"/>
-                </div>
             </field>
         </record>
 
