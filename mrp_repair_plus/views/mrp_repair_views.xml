@@ -3,6 +3,19 @@
     <data>
         <menuitem id="mrp_repair.menu_repair_order" name="Repairs⁺"/>
 
+        <!-- Calendar -->
+        <record id="view_mrp_repair_calendar_inherited" model="ir.ui.view">
+            <field name="name">mrp.repair.calendar</field>
+            <field name="model">mrp.repair</field>
+            <field name="arch" type="xml">
+                <calendar quick_add="False" string="Planning" date_start="intervention_date" date_delay="intervention_duration">
+                    <field name="name"/>
+                    <field name="vehicle"/>
+                    <field name="partner_id"/>
+                </calendar>
+            </field>
+        </record>
+
         <!-- Kanban -->
         <record id="view_mrp_repair_kanban_inherited" model="ir.ui.view">
             <field name="name">mrp.repair.kanban</field>
@@ -28,6 +41,8 @@
             <field name="arch" type="xml">
                 <field name="partner_id" position="after">
                     <field name="repairer"/>
+                    <field name="intervention_date"/>
+                    <field name="intervention_duration" widget="float_time"/>
                     <field name="purchase_order" invisible="True"/>
                 </field>
                 <header position="inside">
@@ -53,5 +68,11 @@
                 </field>
             </field>
         </record>
+
+        <!-- Action -->
+        <record id="mrp_repair.action_repair_order_tree" model="ir.actions.act_window">
+            <field name="view_mode">tree,kanban,calendar,form</field>
+        </record>
+
     </data>
 </odoo>

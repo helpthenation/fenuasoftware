@@ -11,6 +11,8 @@ class Repair(models.Model):
 
     repairer = fields.Many2one('res.users', string='Réparateur', index=True)
     purchase_order = fields.Many2one('purchase.order', 'Bon de commande', copy=False, readonly=True, track_visibility="onchange")
+    intervention_date = fields.Datetime(string="Date d'intervention")
+    intervention_duration = fields.Float(string="Durée")
 
     @api.multi
     def action_created_purchase_order(self):
