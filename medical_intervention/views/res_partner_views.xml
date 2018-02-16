@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <record id="res_partner_medical_intervention_form" model="ir.ui.view">
+            <field name="name">res.partner.medical.intervention.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="medical_intervention.res_partner_medical_intervention_tree_action" type="action" class="oe_stat_button" icon="fa-ambulance">
+                        <field string="Interventions" name="medical_intervention_count" widget="statinfo" modifiers="{'readonly':true}"/>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
