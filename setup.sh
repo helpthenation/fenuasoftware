@@ -53,3 +53,5 @@ echo "Installing pyOpenSSL"
 sudo pip3 install pyOpenSSL==16.2.0
 
 sudo pip3 install num2words xlwt
+sudo pip3 install phonenumbers
+
