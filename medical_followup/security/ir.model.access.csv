@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_medical_followup_medical_intervention,medical_followup.medical_intervention,model_medical_intervention,,1,1,1,1
+access_medical_followup_prescription,medical_followup.prescription,model_prescription,,1,1,1,1
+access_medical_followup_prescription_template,medical_followup.prescription_template,model_prescription_template,,1,1,1,1

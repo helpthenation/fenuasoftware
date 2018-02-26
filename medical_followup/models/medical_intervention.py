@@ -23,4 +23,4 @@ class MedicalIntervention(models.Model):
 
     date = fields.Date(string="Date d'intervention", default=_default_date)
     patient = fields.Many2one('res.partner', string="Patient")
-    description = fields.Char(string="Description")
+    description = fields.Text(string="Description")
