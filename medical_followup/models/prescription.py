@@ -13,6 +13,15 @@ class Partner(models.Model):
         for partner in self:
             partner.prescriptions_count = self.env['prescription'].search_count([('patient', '=', partner.id)])
 
+    def _get_printed_report_name(self):
+        return "INTERVENTIONS_MEDICAL"
+
+
+class ResUsers(models.Model):
+    _inherit = 'res.users'
+
+    prescriptions = fields.One2many('prescription', 'contributor', string="Interventions médicales")
+
 
 class Prescription(models.Model):
     _description = 'Prescription'
@@ -23,8 +32,12 @@ class Prescription(models.Model):
 
     date = fields.Date(string="Date d'intervention", default=_default_date)
     patient = fields.Many2one('res.partner', string="Patient")
+    contributor = fields.Many2one('res.users', string="Contributeur")
     prescription_template = fields.Many2one('prescription.template')
     prescription_lines = fields.One2many('prescription.line', 'prescription', string='Prescription lines')
+
+    def _get_printed_report_name(self):
+        return "PRINTED_REPORT"
 
 
 class PrescriptionLine(models.Model):

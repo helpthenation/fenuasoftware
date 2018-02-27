@@ -9,11 +9,12 @@
                     <sheet>
                         <group>
                             <group>
-                                <field name="patient"/>
                                 <field name="prescription_template"/>
+                                <field name="patient"/>
                             </group>
                             <group>
                                 <field name="date"/>
+                                <field name="contributor"/>
                             </group>
                         </group>
                         <notebook>
