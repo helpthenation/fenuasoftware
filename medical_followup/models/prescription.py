@@ -51,7 +51,7 @@ class PrescriptionLine(models.Model):
 
     @api.onchange('product')
     def onchange_product(self):
-        self.description = self.product.display_name
+        self.description = self.product.description_sale
 
 
 class ProductTemplate(models.Model):
