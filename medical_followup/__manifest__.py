@@ -10,7 +10,7 @@
     'website': "https://www.fenuasoftware.com",
     'category': 'Industries & Healthcare',
     'version': '0.1',
-    'depends': ['base', 'product'],
+    'depends': ['contacts', 'product'],
     'data': [
         'security/ir.model.access.csv',
         'views/prescription_views.xml',
