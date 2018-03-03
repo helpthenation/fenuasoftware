@@ -59,6 +59,8 @@
             <field name="context">{'search_default_patient': active_id}</field>
         </record>
 
-        <menuitem id="medical_intervention_menuitem" parent="" action="medical_intervention_tree_action"/>
+        <!-- MenuItem -->
+        <menuitem id="menu_root" name="Suivis médical" parent=""/>
+        <menuitem id="medical_intervention_menuitem" parent="menu_root" action="medical_intervention_tree_action"/>
     </data>
 </odoo>

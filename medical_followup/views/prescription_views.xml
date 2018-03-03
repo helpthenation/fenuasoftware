@@ -39,7 +39,13 @@
                         </group>
                         <notebook>
                             <page string="Prescription Lines">
-                                <field name="prescription_lines_template"/>
+                                <field name="prescription_lines_template">
+                                    <tree editable="top">
+                                        <field name="quantity"/>
+                                        <field name="product"/>
+                                        <field name="description"/>
+                                    </tree>
+                                </field>
                             </page>
                         </notebook>
                     </sheet>
@@ -90,7 +96,6 @@
             </field>
         </record>
 
-
         <!-- Action -->
         <record id="res_partner_prescription_tree_action" model="ir.actions.act_window">
             <field name="name">Prescription</field>
@@ -98,6 +103,15 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
+        <record id="prescription_template_action" model="ir.actions.act_window">
+            <field name="name">Prescription Template</field>
+            <field name="res_model">prescription.template</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
 
+        <!-- MenuItem -->
+        <menuitem id="prescription_menuitem" parent="menu_root" action="res_partner_prescription_tree_action"/>
+        <menuitem id="prescription_template_menuitem" parent="menu_root" action="prescription_template_action"/>
     </data>
 </odoo>
