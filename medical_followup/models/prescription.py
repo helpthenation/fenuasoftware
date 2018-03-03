@@ -39,6 +39,21 @@ class Prescription(models.Model):
     def _get_printed_report_name(self):
         return "PRINTED_REPORT"
 
+    @api.onchange('prescription_template')
+    def onchange_prescription_template(self):
+        self.prescription_lines = False
+
+        prescription_line_ids = []
+        for prescription_line_template in self.prescription_template.prescription_lines_template:
+            prescription_line = self.env['prescription.line'].create({
+                'product': prescription_line_template.product.id,
+                'quantity': prescription_line_template.quantity,
+                'description': prescription_line_template.description,
+            })
+            prescription_line_ids.append(prescription_line.id)
+
+        self.update({'prescription_lines': [(6, 0, prescription_line_ids)]})
+
 
 class PrescriptionLine(models.Model):
     _description = 'Prescription Line'
