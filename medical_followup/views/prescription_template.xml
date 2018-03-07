@@ -42,7 +42,6 @@
                                     <tr t-foreach="doc.prescription_lines" t-as="l">
                                         <td class="text-right">
                                             <span t-field="l.quantity"/>
-                                            <span t-field="l.uom_id" groups="product.group_uom"/>
                                         </td>
                                         <td class="text-left">
                                             <span t-field="l.product"/>
