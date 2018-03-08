@@ -9,7 +9,7 @@
     'website': "https://www.fenuasoftware.com",
     'category': 'Extra Tools',
     'version': '0.1',
-    'depends': ['calendar', 'calendar_display_mac5', 'web_calendar_config_mac5'],
+    'depends': ['calendar'],
     'data': [
         'views/res_config_settings_views.xml',
         'views/calendar_template.xml',
