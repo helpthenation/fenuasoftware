@@ -14,6 +14,7 @@ class ResConfigSettings(models.TransientModel):
     module_l10n_pf_hr_payroll = fields.Boolean("Installer")
     module_contacts_plus = fields.Boolean("Installer")
     module_crm_plus = fields.Boolean("Installer")
+    module_point_of_sale_plus = fields.Boolean("Installer")
 
     @api.model
     def get_values(self):
