@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from . import calendar_search_fix
+from . import calendar_search_fix, res_config_settings

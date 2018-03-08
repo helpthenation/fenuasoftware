@@ -1,0 +1,41 @@
+<odoo>
+    <data>
+        <record id="res_config_settings_view_form_calendar_plus" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.calendar_plus</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="fsw_base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <div id="calendar_plus" position="replace">
+                    <div id="calendar_plus">
+                        <h2>Calendar +</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="module_calendar_display_mac5"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_calendar_display_mac5" class="o_form_label"/>
+                                    <div class="text-muted">
+                                        Affiche le nom des participants dans les événements de calendrier
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="module_web_calendar_config_mac5"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_web_calendar_config_mac5" class="o_form_label"/>
+                                    <div class="text-muted">
+                                        Personnaliser le calendrier
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>
