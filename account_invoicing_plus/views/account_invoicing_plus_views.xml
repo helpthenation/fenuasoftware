@@ -1,21 +1,6 @@
 <odoo>
     <data>
 
-        <record id="account_move_action" model="ir.actions.act_window">
-            <field name="name">Pièces Comptables</field>
-            <field name="res_model">account.move</field>
-            <field name="view_mode">tree,form</field>
-        </record>
-        <record id="account_move_line_action" model="ir.actions.act_window">
-            <field name="name">Ecritures Comptables</field>
-            <field name="res_model">account.move.line</field>
-            <field name="view_mode">tree,form</field>
-        </record>
-        <record id="account_account_action" model="ir.actions.act_window">
-            <field name="name">Plan Comptables</field>
-            <field name="res_model">account.account</field>
-            <field name="view_mode">tree,form</field>
-        </record>
         <record id="view_account_payment_pivot" model="ir.ui.view">
             <field name="name">view.account.payment.pivot</field>
             <field name="model">account.payment</field>
@@ -32,9 +17,5 @@
         </record>
 
         <menuitem id="account.menu_finance" name="Invoicing⁺"/>
-        <menuitem id="accounting_menuitem" name="Comptabilité" parent="account.menu_finance"/>
-        <menuitem id="account_move_menuitem" name="Pièce comptable" parent="accounting_menuitem" action="account_move_action"/>
-        <menuitem id="account_move_line_menuitem" name="Ecriture Comptable" parent="accounting_menuitem" action="account_move_line_action"/>
-        <menuitem id="account_account_menuitem" name="Plan Comptable" parent="accounting_menuitem" action="account_account_action"/>
     </data>
 </odoo>
