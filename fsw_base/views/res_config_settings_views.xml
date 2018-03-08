@@ -45,37 +45,24 @@
                             <h2>Comptabilité</h2>
                             <div class="row mt16 o_settings_container">
                                 <div class="col-xs-12 col-md-6 o_setting_box">
+                                    <div class="o_setting_left_pane">
+                                        <field name="module_l10n_pf"/>
+                                    </div>
                                     <div class="o_setting_right_pane">
-                                        <label string="Module de comptabilité Polynésie Française"/>
+                                        <label string="Polynésie Française - Comptabilité" class="o_form_label"/>
                                         <div class="text-muted">
                                             Installer le module de comptabilité de la Polynésie Française avec les 3 TVA et la devise en XPF
-                                        </div>
-                                        <div class="content-group">
-                                            <div class="mt16 row" attrs="{'invisible': [('module_l10n_pf','=', True)]}">
-                                                <label for="module_l10n_pf" class="col-xs-3 col-md-3 o_light_label"/>
-                                                <field name="module_l10n_pf" class="oe_inline" required="1"/>
-                                            </div>
-                                            <div class="alert" attrs="{'invisible': [('module_l10n_pf','=', False)]}">
-                                                Module l10n_pf à été installé ainsi que ces dépendances. Il ne peut plus être désinstallé sans entrainter des dégâts sur le système.
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-md-6 o_setting_box">
+                                    <div class="o_setting_left_pane">
+                                        <field name="module_l10n_pf_hr_payroll"/>
+                                    </div>
                                     <div class="o_setting_right_pane">
-                                        <label string="La paie en Polynésie Française"/>
-                                        <span class="fa fa-lg fa-building-o" title="Values set here are company-specific."/>
+                                        <label string="Polynésie Française - Paie" class="o_form_label"/>
                                         <div class="text-muted">
                                             Installer le module de gestion de paie en Polynésie Française
-                                        </div>
-                                        <div class="content-group">
-                                            <div class="mt16 row" attrs="{'invisible': [('module_l10n_pf_hr_payroll','=', True)]}">
-                                                <label for="module_l10n_pf_hr_payroll" class="col-xs-3 col-md-3 o_light_label"/>
-                                                <field name="module_l10n_pf_hr_payroll" class="oe_inline" required="1"/>
-                                            </div>
-                                            <div class="alert" attrs="{'invisible': [('module_l10n_pf_hr_payroll','=', False)]}">
-                                                Module module_l10n_pf_hr_payroll à été installé ainsi que ces dépendances. Il ne peut plus être désinstallé sans entrainter des dégâts sur le système.
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -85,20 +72,13 @@
                             <h2>Contact +</h2>
                             <div class="row mt16 o_settings_container">
                                 <div class="col-xs-12 col-md-6 o_setting_box">
+                                    <div class="o_setting_left_pane">
+                                        <field name="module_contacts_plus"/>
+                                    </div>
                                     <div class="o_setting_right_pane">
-                                        <label string="Contact +"/>
-                                        <span class="fa fa-lg fa-building-o" title="Values set here are company-specific."/>
+                                        <label for="module_contacts_plus" class="o_form_label"/>
                                         <div class="text-muted">
-                                            Installer le module Contacts +
-                                        </div>
-                                        <div class="content-group">
-                                            <div class="mt16 row" attrs="{'invisible': [('module_contacts_plus','=', True)]}">
-                                                <label for="module_contacts_plus" class="col-xs-3 col-md-3 o_light_label"/>
-                                                <field name="module_contacts_plus" class="oe_inline" required="1"/>
-                                            </div>
-                                            <div class="alert" attrs="{'invisible': [('module_contacts_plus','=', False)]}">
-                                                <div id="contacts_plus_infos"/>
-                                            </div>
+                                            Installe le module Contact + qui apporte de nouvelle fonctionnalitées.
                                         </div>
                                     </div>
                                 </div>
