@@ -14,5 +14,4 @@
         'views/calendar_template.xml',
         'views/calendar_views.xml',
     ],
-    'auto_install': True
 }
