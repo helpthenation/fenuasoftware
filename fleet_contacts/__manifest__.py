@@ -11,9 +11,8 @@
     'website': "http://www.fenuasoftware.com",
     'category': 'Link',
     'version': '0.1',
-    'depends': ['fleet','contacts'],
+    'depends': ['fleet_plus', 'contacts'],
     'data': [
         'views/res_partner_views.xml',
     ],
-    'auto_install': True
 }
