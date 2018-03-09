@@ -20,4 +20,5 @@
         'views/res_partner_views.xml',
         'views/reports.xml',
     ],
+    'application': True,
 }
