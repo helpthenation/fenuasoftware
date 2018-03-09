@@ -16,13 +16,6 @@ class Partner(models.Model):
     def _get_printed_report_name(self):
         return "INTERVENTIONS_MEDICAL"
 
-
-class ResUsers(models.Model):
-    _inherit = 'res.users'
-
-    prescriptions = fields.One2many('prescription', 'contributor', string="Interventions médicales")
-
-
 class Prescription(models.Model):
     _description = 'Prescription'
     _name = "prescription"
@@ -32,9 +25,9 @@ class Prescription(models.Model):
 
     date = fields.Date(string="Date d'intervention", default=_default_date)
     patient = fields.Many2one('res.partner', string="Patient")
-    contributor = fields.Many2one('res.users', string="Contributeur")
     prescription_template = fields.Many2one('prescription.template')
     prescription_lines = fields.One2many('prescription.line', 'prescription', string='Prescription lines')
+    prescription_lines_count = fields.Integer()
 
     def _get_printed_report_name(self):
         return "PRINTED_REPORT"
@@ -54,19 +47,26 @@ class Prescription(models.Model):
 
         self.update({'prescription_lines': [(6, 0, prescription_line_ids)]})
 
+    @api.onchange('prescription_lines')
+    def onchange_lines(self):
+        self.prescription_lines_count = len(self.prescription_lines)
+
 
 class PrescriptionLine(models.Model):
     _description = 'Prescription Line'
     _name = "prescription.line"
+    _order = 'sequence'
 
     prescription = fields.Many2one('prescription')
-    product = fields.Many2one('product.template', string='Produit')
+    product = fields.Many2one('product.template', string='Produit', required=True)
     description = fields.Char()
-    quantity = fields.Float()
+    sequence = fields.Integer()
+    prescription_lines_count = fields.Integer(related='prescription.prescription_lines_count')
 
     @api.onchange('product')
     def onchange_product(self):
         self.description = self.product.description_sale
+        self.sequence = self.prescription_lines_count + 1
 
 
 class ProductTemplate(models.Model):

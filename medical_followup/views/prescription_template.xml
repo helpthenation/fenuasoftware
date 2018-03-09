@@ -25,15 +25,14 @@
                                 Ordonnance médicale
                             </h2>
                             <p style="text-align: left">
-                                <strong>Intervenant</strong>
-                                <br/>
-                                <span t-esc="doc.contributor.display_name"/>
+                                <strong>Patient</strong>
+                                <span t-esc="doc.patient.display_name"/>
                             </p>
 
                             <table class="table table-condensed" name="prescription_lines">
                                 <thead>
                                     <tr>
-                                        <th class="text-right">Quantity</th>
+                                        <th class="text-right"></th>
                                         <th class="text-left">Product</th>
                                         <th>Description</th>
                                     </tr>
@@ -41,7 +40,7 @@
                                 <tbody class="invoice_tbody">
                                     <tr t-foreach="doc.prescription_lines" t-as="l">
                                         <td class="text-right">
-                                            <span t-field="l.quantity"/>
+                                            <span t-field="l.sequence"/>
                                         </td>
                                         <td class="text-left">
                                             <span t-field="l.product"/>
@@ -64,8 +63,6 @@
                                 <tr>
                                     <th class="text-center">
                                         <h3>
-                                            Signature
-                                            <span t-esc="doc.patient.display_name"/>
                                         </h3>
                                     </th>
                                     <th class="text-center">

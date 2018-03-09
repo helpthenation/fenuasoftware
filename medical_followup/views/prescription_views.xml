@@ -14,11 +14,11 @@
                             </group>
                             <group>
                                 <field name="date"/>
-                                <field name="contributor"/>
                             </group>
                         </group>
                         <notebook>
                             <page string="Prescription Lines">
+                                <field name="prescription_lines_count" invisible="True"/>
                                 <field name="prescription_lines"/>
                             </page>
                         </notebook>
@@ -68,8 +68,8 @@
             <field name="name">prescription.line.tree.view</field>
             <field name="model">prescription.line</field>
             <field name="arch" type="xml">
-                <tree editable="top">
-                    <field name="quantity"/>
+                <tree editable="bottom">
+                    <field name="sequence" widget="handle"/>
                     <field name="product"/>
                     <field name="description"/>
                 </tree>
