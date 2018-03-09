@@ -2,7 +2,7 @@
 {
     'name': "Suivis Médical",
     'summary': """
-    Ordonnance médicale, liste des interventions
+    Ordonnance médicale, consultation médicales
     """,
     'description': """
     """,
@@ -10,9 +10,10 @@
     'website': "https://www.fenuasoftware.com",
     'category': 'Industries & Healthcare',
     'version': '0.1',
-    'depends': ['contacts', 'product'],
+    'depends': ['product'],
     'data': [
         'security/ir.model.access.csv',
+        'views/medical_followup_view.xml',
         'views/medical_consultation_views.xml',
         'views/medical_consultation_template.xml',
         'views/prescription_views.xml',

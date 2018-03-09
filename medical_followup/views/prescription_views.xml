@@ -111,7 +111,7 @@
         </record>
 
         <!-- MenuItem -->
-        <menuitem id="prescription_menuitem" parent="menu_root" action="res_partner_prescription_tree_action"/>
-        <menuitem id="prescription_template_menuitem" parent="menu_root" action="prescription_template_action"/>
+        <menuitem id="prescription_menuitem" parent="database_menuitem" action="res_partner_prescription_tree_action" sequence="103"/>
+        <menuitem id="prescription_template_menuitem" parent="settings_menuitem" action="prescription_template_action"/>
     </data>
 </odoo>
