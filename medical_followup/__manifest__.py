@@ -13,8 +13,8 @@
     'depends': ['contacts', 'product'],
     'data': [
         'security/ir.model.access.csv',
-        'views/medical_intervention_views.xml',
-        'views/medical_intervention_template.xml',
+        'views/medical_consultation_views.xml',
+        'views/medical_consultation_template.xml',
         'views/prescription_views.xml',
         'views/prescription_template.xml',
         'views/res_partner_views.xml',

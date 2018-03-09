@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <!-- Main template -->
-    <template id="report_medical_intervention">
+    <template id="report_medical_consultation">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
                 <t t-call="web.external_layout">
                     <div class="page">
-                        <h2>Interventions médicales</h2>
+                        <h2>Consultations médicales</h2>
                         <p>
                             <strong>Patient</strong>
                             <h3>
                                 <span t-field="doc.name"/>
                             </h3>
                         </p>
-                        <t t-foreach="doc.medical_interventions" t-as="l">
+                        <t t-foreach="doc.medical_consultations" t-as="l">
                             <div style="margin-top: 25px">
                                 <strong>
                                     <span t-field="l.date" t-field-options='{"format": "d MMMM y"}'/>

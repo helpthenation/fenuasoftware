@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from . import medical_intervention, prescription
+from . import medical_consultation, prescription
