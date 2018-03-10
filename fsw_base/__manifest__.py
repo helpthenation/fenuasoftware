@@ -11,11 +11,13 @@
     'version': '0.1',
     'depends': ['base', 'mail', 'calendar', 'board'],
     'data': [
+        'security/ir_model_access.xml',
+        'views/base_menu.xml',
         'views/mail_template_views.xml',
         'views/mail_templates.xml',
         'views/res_config_settings_views.xml',
+        'views/res_users_view.xml',
         'views/webclient_templates.xml',
-        'data/functions_after_installation.xml',
     ],
     'qweb': [
         "static/src/xml/*.xml",
