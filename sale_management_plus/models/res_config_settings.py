@@ -20,3 +20,5 @@ class ResConfigSettings(models.TransientModel):
     def set_values(self):
         super(ResConfigSettings, self).set_values()
         self.env['ir.config_parameter'].sudo().set_param('sale_management_plus.read_price_from_template', self.read_price_from_template)
+        view = self.env.ref('sale_management_plus.view_sale_quote_template_form')
+        view.update({'active': self.read_price_from_template})
