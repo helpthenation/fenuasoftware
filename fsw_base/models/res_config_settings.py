@@ -16,6 +16,7 @@ class ResConfigSettings(models.TransientModel):
     module_crm_plus = fields.Boolean("Installer")
     module_point_of_sale_plus = fields.Boolean("Installer")
     module_fleet_plus = fields.Boolean("Installer")
+    module_sale_management_plus = fields.Boolean("Installer")
 
     @api.model
     def get_values(self):
