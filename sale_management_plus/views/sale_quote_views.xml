@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_sale_quote_template_form">
+        <field name="name">sale.quote.template.form</field>
+        <field name="model">sale.quote.template</field>
+        <field name="inherit_id" ref="website_quote.view_sale_quote_template_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='quote_line']/tree/field[@name='price_unit']" position="replace">
+                <field name="price_unit" invisible="0"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

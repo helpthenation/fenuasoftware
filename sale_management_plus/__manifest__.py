@@ -18,11 +18,13 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['sale_management'],
+    'depends': ['website_quote', 'sale_management'],
 
     # always loaded
     'data': [
+        'views/res_config_settings_views.xml',
         'views/mail_template_views.xml',
+        'views/sale_quote_views.xml',
         'views/sale_views.xml',
     ],
     'auto_install': True,

@@ -1,0 +1,29 @@
+<odoo>
+    <data>
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.crm_plus</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="fsw_base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <div id="sale_management_plus" position="replace">
+                    <div id="sale_management_plus">
+                        <h2>Ventes +</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="read_price_from_template"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="read_price_from_template" class="o_form_label"/>
+                                    <div class="text-muted">
+                                        Le prix de vente est lu du modèle de devis et non plus de la liste de prix ou du produit
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>
