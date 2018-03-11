@@ -2,5 +2,11 @@
 <odoo>
     <data>
         <function id="_update_user_groups_view" model="res.groups" name="_update_user_groups_view"/>
+        <record id="limit_access_right_users_visibility" model="ir.rule">
+            <field name="name">Limit Access Right Users Visibility</field>
+            <field name="model_id" ref="base.model_res_users"/>
+            <field name="domain_force">[('id','>',1)]</field>
+            <field name="groups" eval="[(4, ref('base.group_erp_manager'))]"/>
+        </record>
     </data>
 </odoo>
