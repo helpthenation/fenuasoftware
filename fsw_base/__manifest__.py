@@ -17,7 +17,6 @@
         'views/mail_template_views.xml',
         'views/mail_templates.xml',
         'views/res_config_settings_views.xml',
-        'views/res_users_view.xml',
         'views/webclient_templates.xml',
     ],
     'qweb': [
