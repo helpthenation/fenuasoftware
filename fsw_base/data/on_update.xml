@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <function id="_update_user_groups_view" model="res.groups" name="_update_user_groups_view"/>
+    </data>
+</odoo>

@@ -11,6 +11,7 @@
     'version': '0.1',
     'depends': ['base', 'mail', 'calendar', 'board'],
     'data': [
+        'data/on_update.xml',
         'security/ir_model_access.xml',
         'views/base_menu.xml',
         'views/mail_template_views.xml',
