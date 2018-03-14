@@ -407,7 +407,9 @@
                     </strong>
                     <br/>
                     <br/>
-                    <p><strong>Si vous embauchez pour la première fois,</strong> vous devrez concomitamment à la déclaration
+                    <p>
+                        <strong>Si vous embauchez pour la première fois,</strong>
+                        vous devrez concomitamment à la déclaration
                         préalable de l'embauche, remplir une demande d'inscription au répertoire des employeurs
                         (disponible au siège ou dans les antennes de la CPS, également téléchargeable sur le site
                         internet de la CPS: www.cps.pf).
@@ -419,7 +421,8 @@
                     <br/>
                     <br/>
                     <p>
-                        - <strong>Date prévisible d'embauche = date à laquelle vous prévoyez de faire travailler le salarié</strong>
+                        -
+                        <strong>Date prévisible d'embauche = date à laquelle vous prévoyez de faire travailler le salarié</strong>
                         <br/>
                         - <strong>Service de santé au travail choisi</strong> = Votre salarié doit bénéficier d'un examen
                         médical avant l'embauche ou au plus tard trente (30) jours après son engagement. A
@@ -432,8 +435,10 @@
                         travaux comportant des exigences ou des risques spéciaux, les salariés qui viennent de
                         changer de type d'activité, les handicapés, les femmes enceintes, les mères d'un enfant
                         de moins de deux ans ou les travailleurs de moins de dix-huit ans. Pour plus de
-                        précisions, contactez le service de santé au travail choisi.<br/>
-                        <strong>SISTRA</strong> : PAPEETE; 50.19.99. <strong>AMT CGPME </strong>: ARUE; 50.21.21.
+                        précisions, contactez le service de santé au travail choisi.
+                        <br/>
+                        <strong>SISTRA</strong>
+                        : PAPEETE; 50.19.99. <strong>AMT CGPME</strong>: ARUE; 50.21.21.
                     </p>
                     <br/>
                     <strong>
@@ -474,10 +479,12 @@
         </template>
 
         <template id="report_cps_declaration_prealable_a_l_embauche">
-            <t t-call="report.html_container">
+            <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="doc">
-                    <t t-call="l10n_pf_hr_payroll.report_cps_declaration_prealable_a_l_embauche_document"
-                       t-lang="doc.user_id.lang"/>
+                    <t t-call="web.external_layout">
+                        <t t-call="l10n_pf_hr_payroll.report_cps_declaration_prealable_a_l_embauche_document"
+                           t-lang="doc.user_id.lang"/>
+                    </t>
                 </t>
             </t>
         </template>
