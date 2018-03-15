@@ -3,4 +3,7 @@
     <record id="base.menu_custom" model="ir.ui.menu">
         <field name="groups_id" eval="[(6,0,[ref('base.group_system')])]"/>
     </record>
+    <record id="base.menu_action_res_groups" model="ir.ui.menu">
+        <field name="groups_id" eval="[(6,0,[ref('base.group_system')])]"/>
+    </record>
 </odoo>
