@@ -14,3 +14,4 @@ class Company(models.Model):
     fax = fields.Integer(string="Fax")
     tahiti_num = fields.Char()
     rcs_num = fields.Char()
+    mobile = fields.Char()
