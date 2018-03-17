@@ -13,5 +13,5 @@ class CalendarEvent(models.Model):
         for event in self:
             event.partner_details = ""
             for partner_id in event.partner_ids:
-                event.partner_details += (partner_id.name if partner_id.name else "") + " " + (str(partner_id.phone) if partner_id.phone else "")
+                event.partner_details += (partner_id.name if partner_id.name else "") + " " + (str(partner_id.mobile) if partner_id.mobile else "") + " " + (str(partner_id.birthdate) if partner_id.birthdate else "")
                 event.partner_details += ", "
