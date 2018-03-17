@@ -6,6 +6,7 @@ from odoo import models, fields, api
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
+    birthdate = fields.Date(string="Date de naissance")
     facebook_url = fields.Char(string="Facebook")
     facebook_url_enable = fields.Boolean(compute='_compute_facebook_url_enable', default=False, readonly=False)
 
