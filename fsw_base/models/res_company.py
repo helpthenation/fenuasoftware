@@ -11,7 +11,5 @@ from odoo.exceptions import ValidationError
 class Company(models.Model):
     _inherit = "res.company"
 
-    fax = fields.Integer(string="Fax")
-    tahiti_num = fields.Char()
-    rcs_num = fields.Char()
-    mobile = fields.Char()
+    fax = fields.Char(string="Fax")
+    mobile = fields.Char(string="Mobile")
