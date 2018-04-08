@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_membership_card">
+            <t t-call="web.basic_layout">
+                <t t-foreach="docs" t-as="doc">
+                    <div class="page">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <h4 class="text-center">
+                                    <span t-field="doc.company_id.name"/>
+                                </h4>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td rowspan="2" width="50%">
+                                                <span style="" t-field="doc.image" t-field-options='{"widget": "image"}'/>
+                                            </td>
+                                            <td>
+                                                <p style="float: left">
+                                                    <span t-field="doc.name"/>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">
+                                                <img t-if="doc.membership_barcode" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', membership_barcode, 300, 150)" style="width:100%;height:50%;"/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="text-center" t-field="doc.company_id" t-options='{"widget": "contact", "fields": ["phone"], "no_marker": False}'/>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

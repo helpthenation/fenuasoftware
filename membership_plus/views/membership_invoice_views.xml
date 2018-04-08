@@ -1,0 +1,44 @@
+<odoo>
+    <data>
+        <record id="view_membership_invoice_view" model="ir.ui.view">
+            <field name="name">membership.invoice.view.form</field>
+            <field name="model">membership.invoice</field>
+            <field name="inherit_id" ref="membership.view_membership_invoice_view"/>
+            <field name="arch" type="xml">
+                <group position="after">
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                </group>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_partner_form">
+            <field name="name">res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="membership.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="free_member" position="after">
+                    <label for="membership_barcode"/>
+                    <div>
+                        <field name="membership_barcode" password="True" class="oe_inline"/>
+                        <button type="object" name="generate_membership_barcode" string="Générer code" icon="fa-cogs" class="oe_inline oe_link"/>
+                    </div>
+                </field>
+                <field name="member_lines" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </field>
+                <xpath expr="//field[@name='member_lines']/tree/field[@name='state']" position="after">
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                </xpath>
+                <xpath expr="//field[@name='member_lines']/form/group" position="inside">
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
