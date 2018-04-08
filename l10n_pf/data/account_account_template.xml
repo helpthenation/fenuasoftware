@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pcg_1011" model="account.account.template">
+        <field name="name">Capital souscrit - non appelé</field>
+        <field name="code">1011</field>
+        <field name="user_type_id" ref="account.data_account_type_equity"/>
+        <field name="chart_template_id" ref="l10n_pf_pcg_chart_template"/>
+    </record>
+
+    <record id="pf_pcg_recv" model="account.account.template">
+        <field name="name">Clients - Ventes de biens ou de prestations de services</field>
+        <field name="code">4111</field>
+        <field name="user_type_id" ref="account.data_account_type_receivable"/>
+        <field name="reconcile" eval="True"/>
+        <field name="chart_template_id" ref="l10n_pf_pcg_chart_template"/>
+    </record>
+
+    <record id="fr_pcg_pay" model="account.account.template">
+        <field name="name">Fournisseurs - Achats de biens et prestations de services</field>
+        <field name="code">4011</field>
+        <field name="user_type_id" ref="account.data_account_type_payable"/>
+        <field name="reconcile" eval="True"/>
+        <field name="chart_template_id" ref="l10n_pf_pcg_chart_template"/>
+    </record>
+
+    <record id="pcg_44566" model="account.account.template">
+        <field name="name">TVA déductible sur autres biens et services</field>
+        <field name="code">44566</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+        <field name="chart_template_id" ref="l10n_pf_pcg_chart_template"/>
+    </record>
+
+    <record id="pcg_445711" model="account.account.template">
+        <field name="name">TVA collectée 16,0%</field>
+        <field name="code">445711</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+        <field name="chart_template_id" ref="l10n_pf_pcg_chart_template"/>
+    </record>
+
+    <record id="pcg_445712" model="account.account.template">
+        <field name="name">TVA collectée 13,0%</field>
+        <field name="code">445712</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+        <field name="chart_template_id" ref="l10n_pf_pcg_chart_template"/>
+    </record>
+
+    <record id="pcg_445713" model="account.account.template">
+        <field name="name">TVA collectée 5,0</field>
+        <field name="code">445713</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+        <field name="chart_template_id" ref="l10n_pf_pcg_chart_template"/>
+    </record>
+
+    <record id="445714" model="account.account.template">
+        <field name="name">TVA collectée 0,0%</field>
+        <field name="code">445714</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+        <field name="chart_template_id" ref="l10n_pf_pcg_chart_template"/>
+    </record>
+
+    <record id="pcg_445800" model="account.account.template">
+        <field name="name">Taxes sur le chiffre d'affaires à régulariser ou en attente</field>
+        <field name="code">445800</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+        <field name="reconcile" eval="True"/>
+        <field name="chart_template_id" ref="l10n_pf_pcg_chart_template"/>
+    </record>
+
+    <record id="pcg_6071" model="account.account.template">
+        <field name="name">Achats de marchandises (ou groupe) A</field>
+        <field name="code">6071</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="l10n_pf_pcg_chart_template"/>
+        <field name="note">Pour achats France</field>
+    </record>
+
+    <record id="pcg_7071" model="account.account.template">
+        <field name="name">Ventes de marchandises (ou groupe) A</field>
+        <field name="code">7071</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue"/>
+        <field name="chart_template_id" ref="l10n_pf_pcg_chart_template"/>
+    </record>
+
+    <record id="pcg_766" model="account.account.template">
+        <field name="name">Gains de change</field>
+        <field name="code">766</field>
+        <field name="user_type_id" ref="account.data_account_type_other_income"/>
+        <field name="chart_template_id" ref="l10n_pf_pcg_chart_template"/>
+    </record>
+
+    <record id="pcg_666" model="account.account.template">
+        <field name="name">Pertes de change</field>
+        <field name="code">666</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="l10n_pf_pcg_chart_template"/>
+    </record>
+
+    <record id="l10n_pf_pcg_chart_template" model="account.chart.template">
+        <field name="property_account_receivable_id" ref="pf_pcg_recv"/>
+        <field name="property_account_payable_id" ref="fr_pcg_pay"/>
+        <field name="property_account_expense_categ_id" ref="pcg_6071"/>
+        <field name="property_account_income_categ_id" ref="pcg_7071"/>
+        <field name="income_currency_exchange_account_id" ref="pcg_766"/>
+        <field name="expense_currency_exchange_account_id" ref="pcg_666"/>
+        <field name="transfer_account_id" ref="pcg_58"/>
+        <field name="currency_id" ref="base.XPF"/>
+    </record>
+</odoo>

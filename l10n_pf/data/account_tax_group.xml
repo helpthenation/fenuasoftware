@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Account Tax Group -->
+        <record id="tax_group_tva_0" model="account.tax.group">
+            <field name="name">TVA 0%</field>
+        </record>
+
+        <record id="tax_group_tva_5" model="account.tax.group">
+            <field name="name">TVA 5%</field>
+        </record>
+
+        <record id="tax_group_tva_13" model="account.tax.group">
+            <field name="name">TVA 13.0%</field>
+        </record>
+
+        <record id="tax_group_tva_16" model="account.tax.group">
+            <field name="name">TVA 16.0%</field>
+        </record>
+
+        <!-- Account Account Tag -->
+        <record id="tag_pf_ht_0" model="account.account.tag">
+            <field name="name">Base H.T. 0.0%</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_pf_tva_0" model="account.account.tag">
+            <field name="name">TVA 0.0%</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tag_pf_ht_5" model="account.account.tag">
+            <field name="name">Base H.T. 5.0%</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_pf_tva_5" model="account.account.tag">
+            <field name="name">TVA 5.0%</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tag_pf_ht_13" model="account.account.tag">
+            <field name="name">Base H.T. 13.0%</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_pf_tva_13" model="account.account.tag">
+            <field name="name">TVA 13.0%</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tag_pf_ht_16" model="account.account.tag">
+            <field name="name">Base H.T. 16.0%</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tag_pf_tva_16" model="account.account.tag">
+            <field name="name">TVA 16.0%</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <!-- Account Tax Template -->
+
+        <!-- VENTES -->
+        <record model="account.tax.template" id="tva_13_normale">
+            <field name="chart_template_id" ref="l10n_pf_pcg_chart_template"/>
+            <field name="name">TVA collectée 13,0%</field>
+            <field name="description">TVA 13%</field>
+            <field name="amount" eval="13.0"/>
+            <field name="amount_type">percent</field>
+            <field name="refund_account_id" ref="pcg_445712"/>
+            <field name="account_id" ref="pcg_445712"/>
+            <!-- use sequence="9" instead of sequence="10" to make it
+            the default tax in the wizard
+            "Set Your Accounting Options" (wizard.multi.charts.accounts) -->
+            <field name="sequence" eval="9"/>
+            <field name="type_tax_use">sale</field>
+            <field name="tag_ids" eval="[(6,0,[ref('l10n_pf.tag_pf_ht_13'),ref('l10n_pf.tag_pf_tva_13')])]"/>
+            <field name="tax_group_id" ref="tax_group_tva_13"/>
+        </record>
+        <record model="account.tax.template" id="tva_13_normale_encaissement">
+            <field name="chart_template_id" ref="l10n_pf_pcg_chart_template"/>
+            <field name="name">TVA collectée à l'encaissement 13,0%</field>
+            <field name="description">TVA l'encaissement 13,0%</field>
+            <field name="amount" eval="13.0"/>
+            <field name="amount_type">percent</field>
+            <field name="refund_account_id" ref="pcg_445712"/>
+            <field name="account_id" ref="pcg_445800"/>
+            <field name="tax_exigibility">on_payment</field>
+            <field name="cash_basis_account" ref="pcg_445711" />
+            <field name="sequence" eval="10"/>
+            <field name="type_tax_use">sale</field>
+            <field name="tag_ids" eval="[(6,0,[ref('l10n_pf.tag_pf_ht_13'),ref('l10n_pf.tag_pf_tva_13')])]"/>
+            <field name="tax_group_id" ref="tax_group_tva_13"/>
+        </record>
+
+        <record model="account.tax.template" id="tva_16_normale">
+            <field name="chart_template_id" ref="l10n_pf_pcg_chart_template"/>
+            <field name="name">TVA collectée 16,0%</field>
+            <field name="description">TVA 16%</field>
+            <field name="amount" eval="16.0"/>
+            <field name="amount_type">percent</field>
+            <field name="refund_account_id" ref="pcg_445711"/>
+            <field name="account_id" ref="pcg_445711"/>
+            <!-- use sequence="9" instead of sequence="10" to make it
+            the default tax in the wizard
+            "Set Your Accounting Options" (wizard.multi.charts.accounts) -->
+            <field name="sequence" eval="9"/>
+            <field name="type_tax_use">sale</field>
+            <field name="tag_ids" eval="[(6,0,[ref('l10n_pf.tag_pf_ht_16'),ref('l10n_pf.tag_pf_tva_16')])]"/>
+            <field name="tax_group_id" ref="tax_group_tva_16"/>
+        </record>
+        <record model="account.tax.template" id="tva_16_normale_encaissement">
+            <field name="chart_template_id" ref="l10n_pf_pcg_chart_template"/>
+            <field name="name">TVA collectée à l'encaissement 16,0%</field>
+            <field name="description">TVA l'encaissement 16,0%</field>
+            <field name="amount" eval="16.0"/>
+            <field name="amount_type">percent</field>
+            <field name="refund_account_id" ref="pcg_445711"/>
+            <field name="account_id" ref="pcg_445800"/>
+            <field name="tax_exigibility">on_payment</field>
+            <field name="cash_basis_account" ref="pcg_445711" />
+            <field name="sequence" eval="10"/>
+            <field name="type_tax_use">sale</field>
+            <field name="tag_ids" eval="[(6,0,[ref('l10n_pf.tag_pf_ht_16'),ref('l10n_pf.tag_pf_tva_16')])]"/>
+            <field name="tax_group_id" ref="tax_group_tva_16"/>
+        </record>
+
+        <record model="account.tax.template" id="tva_5_normale">
+            <field name="chart_template_id" ref="l10n_pf_pcg_chart_template"/>
+            <field name="name">TVA collectée 5,0%</field>
+            <field name="description">TVA 5%</field>
+            <field name="amount" eval="5.0"/>
+            <field name="amount_type">percent</field>
+            <field name="refund_account_id" ref="pcg_445713"/>
+            <field name="account_id" ref="pcg_445713"/>
+            <!-- use sequence="9" instead of sequence="10" to make it
+            the default tax in the wizard
+            "Set Your Accounting Options" (wizard.multi.charts.accounts) -->
+            <field name="sequence" eval="9"/>
+            <field name="type_tax_use">sale</field>
+            <field name="tag_ids" eval="[(6,0,[ref('l10n_pf.tag_pf_ht_5'),ref('l10n_pf.tag_pf_tva_5')])]"/>
+            <field name="tax_group_id" ref="tax_group_tva_5"/>
+        </record>
+        <record model="account.tax.template" id="tva_5_normale_encaissement">
+            <field name="chart_template_id" ref="l10n_pf_pcg_chart_template"/>
+            <field name="name">TVA collectée à l'encaissement 5,0%</field>
+            <field name="description">TVA l'encaissement 5,0%</field>
+            <field name="amount" eval="5.0"/>
+            <field name="amount_type">percent</field>
+            <field name="refund_account_id" ref="pcg_445713"/>
+            <field name="account_id" ref="pcg_445800"/>
+            <field name="tax_exigibility">on_payment</field>
+            <field name="cash_basis_account" ref="pcg_445713" />
+            <field name="sequence" eval="10"/>
+            <field name="type_tax_use">sale</field>
+            <field name="tag_ids" eval="[(6,0,[ref('l10n_pf.tag_pf_ht_5'),ref('l10n_pf.tag_pf_tva_5')])]"/>
+            <field name="tax_group_id" ref="tax_group_tva_5"/>
+        </record>
+
+
+        <!-- ACHATS -->
+        <record model="account.tax.template" id="tva_13_acq_normale">
+            <field name="chart_template_id" ref="l10n_pf_pcg_chart_template"/>
+            <field name="name">TVA déductible 13,0%</field>
+            <field name="description">TVA 13%</field>
+            <field name="amount" eval="13.0"/>
+            <field name="amount_type">percent</field>
+            <field name="refund_account_id" ref="pcg_44566"/>
+            <field name="account_id" ref="pcg_44566"/>
+            <!-- use sequence="9" instead of sequence="10" to make it
+            the default tax in the wizard
+            "Set Your Accounting Options" (wizard.multi.charts.accounts) -->
+            <field name="sequence" eval="9"/>
+            <field name="type_tax_use">purchase</field>
+            <field name="tag_ids" eval="[(6,0,[ref('l10n_pf.tag_pf_ht_13'),ref('l10n_pf.tag_pf_tva_13')])]"/>
+            <field name="tax_group_id" ref="tax_group_tva_13"/>
+        </record>
+
+        <record model="account.tax.template" id="tva_16_acq_normale">
+            <field name="chart_template_id" ref="l10n_pf_pcg_chart_template"/>
+            <field name="name">TVA déductible 16,0%</field>
+            <field name="description">TVA 16%</field>
+            <field name="amount" eval="16.0"/>
+            <field name="amount_type">percent</field>
+            <field name="refund_account_id" ref="pcg_44566"/>
+            <field name="account_id" ref="pcg_44566"/>
+            <!-- use sequence="9" instead of sequence="10" to make it
+            the default tax in the wizard
+            "Set Your Accounting Options" (wizard.multi.charts.accounts) -->
+            <field name="sequence" eval="9"/>
+            <field name="type_tax_use">purchase</field>
+            <field name="tag_ids" eval="[(6,0,[ref('l10n_pf.tag_pf_ht_16'),ref('l10n_pf.tag_pf_tva_16')])]"/>
+            <field name="tax_group_id" ref="tax_group_tva_16"/>
+        </record>
+
+        <record model="account.tax.template" id="tva_5_acq_normale">
+            <field name="chart_template_id" ref="l10n_pf_pcg_chart_template"/>
+            <field name="name">TVA déductible 5,0%</field>
+            <field name="description">TVA 5%</field>
+            <field name="amount" eval="5.0"/>
+            <field name="amount_type">percent</field>
+            <field name="refund_account_id" ref="pcg_44566"/>
+            <field name="account_id" ref="pcg_44566"/>
+            <!-- use sequence="9" instead of sequence="10" to make it
+            the default tax in the wizard
+            "Set Your Accounting Options" (wizard.multi.charts.accounts) -->
+            <field name="sequence" eval="9"/>
+            <field name="type_tax_use">purchase</field>
+            <field name="tag_ids" eval="[(6,0,[ref('l10n_pf.tag_pf_ht_5'),ref('l10n_pf.tag_pf_tva_5')])]"/>
+            <field name="tax_group_id" ref="tax_group_tva_5"/>
+        </record>
+
+        <!--
+            Comptes sur lesquels les taxes s'appliquent par défaut
+        -->
+
+        <!-- Charges -->
+        <record id="pcg_6071" model="account.account.template">
+            <field name="tax_ids" eval="[(6,0,[ref('tva_16_acq_normale')])]"/>
+        </record>
+    </data>
+</odoo>

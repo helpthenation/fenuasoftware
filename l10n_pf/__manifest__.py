@@ -22,16 +22,14 @@ This module applies to companies based in French Polynesia.
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['l10n_fr', 'account'],
+    'depends': ['account', 'base_iban', 'base_vat',],
 
     # always loaded
     'data': [
         #data
-        'data/res_currency.xml',
-        'data/res_company.xml',
-
-        #security
-        'security/ir.model.access.csv',
+        'data/account_chart_template.xml',
+        'data/account_account_template.xml',
+        'data/account_tax_group.xml',
 
         #views
         'views/mail_template_views.xml',
