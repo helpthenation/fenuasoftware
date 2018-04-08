@@ -33,5 +33,6 @@ This module applies to companies based in French Polynesia.
 
         #views
         'views/mail_template_views.xml',
+        'views/res_company_views.xml',
     ],
 }
