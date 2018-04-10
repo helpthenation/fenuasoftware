@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Module Search View -->
+    <record id="module_view_search" model="ir.ui.view">
+        <field name="name">updates.module.search</field>
+        <field name="model">ir.module.module</field>
+        <field name="inherit_id" ref="base.view_module_filter"/>
+        <field name="arch" type="xml">
+            <separator position="before">
+                <separator/>
+                <filter name="Fenua Soft@re" domain="[('author', 'ilike', 'fenua soft')]"/>
+                <filter name="Odoo Community Association" domain="[('author', 'ilike', 'OCA')]"/>
+                <separator/>
+                <filter name="Odoo Enterprise" domain="[('license', '=', 'OEEL-1')]"/>
+            </separator>
+        </field>
+    </record>
+</odoo>

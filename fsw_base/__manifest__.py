@@ -16,6 +16,7 @@
         'views/base_menu.xml',
         'views/mail_template_views.xml',
         'views/mail_templates.xml',
+        'views/module_views.xml',
         'views/res_config_settings_views.xml',
         'views/webclient_templates.xml',
     ],
