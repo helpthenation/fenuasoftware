@@ -16,6 +16,7 @@ class Partner(models.Model):
     def _get_printed_report_name(self):
         return "INTERVENTIONS_MEDICAL"
 
+
 class Prescription(models.Model):
     _description = 'Prescription'
     _name = "prescription"
@@ -91,3 +92,7 @@ class PrescriptionLineTemplate(models.Model):
     product = fields.Many2one('product.template', string='Produit')
     description = fields.Char()
     quantity = fields.Float()
+
+    @api.onchange('product')
+    def onchange_product(self):
+        self.description = self.product.description_sale
