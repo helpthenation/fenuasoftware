@@ -45,7 +45,6 @@ class Prescription(models.Model):
                 'description': prescription_line_template.description,
             })
             prescription_line_ids.append(prescription_line.id)
-            print("LINE: " + prescription_line)
 
         self.update({'prescription_lines': [(6, 0, prescription_line_ids)]})
 
