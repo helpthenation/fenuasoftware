@@ -45,6 +45,7 @@ class Prescription(models.Model):
                 'description': prescription_line_template.description,
             })
             prescription_line_ids.append(prescription_line.id)
+            print("LINE: " + prescription_line)
 
         self.update({'prescription_lines': [(6, 0, prescription_line_ids)]})
 
@@ -60,6 +61,7 @@ class PrescriptionLine(models.Model):
 
     prescription = fields.Many2one('prescription')
     product = fields.Many2one('product.template', string='Produit', required=True)
+    quantity = fields.Float()
     description = fields.Char()
     sequence = fields.Integer()
     prescription_lines_count = fields.Integer(related='prescription.prescription_lines_count')
@@ -89,7 +91,7 @@ class PrescriptionLineTemplate(models.Model):
     _name = 'prescription.line.template'
 
     prescription_template = fields.Many2one('prescription.template')
-    product = fields.Many2one('product.template', string='Produit')
+    product = fields.Many2one('product.template', string='Produit', required=True)
     description = fields.Char()
     quantity = fields.Float()
 
