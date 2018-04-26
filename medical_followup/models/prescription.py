@@ -43,6 +43,7 @@ class Prescription(models.Model):
                 'product': prescription_line_template.product.id,
                 'quantity': prescription_line_template.quantity,
                 'description': prescription_line_template.description,
+                'product_uom': prescription_line_template.product_uom.id,
             })
             prescription_line_ids.append(prescription_line.id)
 
@@ -60,15 +61,17 @@ class PrescriptionLine(models.Model):
 
     prescription = fields.Many2one('prescription')
     product = fields.Many2one('product.template', string='Produit', required=True)
+    product_uom = fields.Many2one('product.uom', string='Unit of Measure', required=True)
     quantity = fields.Float()
-    description = fields.Char()
+    description = fields.Text()
     sequence = fields.Integer()
     prescription_lines_count = fields.Integer(related='prescription.prescription_lines_count')
 
     @api.onchange('product')
     def onchange_product(self):
-        self.description = self.product.description_sale
+        self.description = ''.join([str(self.product.name), '\n', str(self.product.description_sale if self.product.description_sale is not False else '')])
         self.sequence = self.prescription_lines_count + 1
+        self.product_uom = self.product.uom_id
 
 
 class ProductTemplate(models.Model):
@@ -90,10 +93,14 @@ class PrescriptionLineTemplate(models.Model):
     _name = 'prescription.line.template'
 
     prescription_template = fields.Many2one('prescription.template')
+    sequence = fields.Integer()
     product = fields.Many2one('product.template', string='Produit', required=True)
-    description = fields.Char()
+    product_uom = fields.Many2one('product.uom', string='Unit of Measure', required=True)
+    description = fields.Text()
     quantity = fields.Float()
 
     @api.onchange('product')
     def onchange_product(self):
-        self.description = self.product.description_sale
+        if self.product:
+            self.description = ''.join([str(self.product.name), '\n', str(self.product.description_sale if self.product.description_sale is not False else '')])
+            self.product_uom = self.product.uom_id

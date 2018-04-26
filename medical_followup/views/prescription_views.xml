@@ -21,9 +21,11 @@
                                 <field name="prescription_lines_count" invisible="True"/>
                                 <field name="prescription_lines">
                                     <tree editable="bottom">
-                                        <field name="quantity"/>
+                                        <field name="sequence" widget="handle"/>
                                         <field name="product"/>
                                         <field name="description"/>
+                                        <field name="quantity"/>
+                                        <field name="product_uom"/>
                                     </tree>
                                 </field>
                             </page>
@@ -46,10 +48,12 @@
                         <notebook>
                             <page string="Prescription Lines">
                                 <field name="prescription_lines_template">
-                                    <tree editable="top">
-                                        <field name="quantity"/>
+                                    <tree editable="bottom">
+                                        <field name="sequence" widget="handle"/>
                                         <field name="product"/>
                                         <field name="description"/>
+                                        <field name="quantity"/>
+                                        <field name="product_uom"/>
                                     </tree>
                                 </field>
                             </page>
