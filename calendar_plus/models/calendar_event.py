@@ -22,6 +22,16 @@ class CalendarEvent(models.Model):
         event = super(CalendarEvent, self).create(values)
         return event
 
+    @api.onchange('user_id')
+    def onchange_user_id(self):
+        ids = []
+        for i in range(0, len(self.partner_ids)):
+            ids.append(self.partner_ids[i].id)
+
+        if self.user_id.partner_id not in self.partner_ids:
+            ids.append(self.user_id.partner_id.id)
+            self.update({'partner_ids': [(6, 0, ids)]})
+
     @api.multi
     def _get_partner_details(self):
         for event in self:
