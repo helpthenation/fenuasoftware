@@ -8,6 +8,30 @@ class CalendarEvent(models.Model):
 
     partner_details = fields.Char(compute='_get_partner_details', string='Attendees')
 
+    @api.model
+    def create(self, values):
+        if 'appointment_type_id' in values:
+            for item in values.get('partner_ids'):
+                # item = ([0,id,False])
+                # item[1] return partner's id
+                user = self.env['res.users'].search([('partner_id', '=', item[1])])
+                if user:
+                    values['user_id'] = user.id
+                    break;
+
+        event = super(CalendarEvent, self).create(values)
+        return event
+
+    @api.onchange('user_id')
+    def onchange_user_id(self):
+        ids = []
+        for i in range(0, len(self.partner_ids)):
+            ids.append(self.partner_ids[i].id)
+
+        if self.user_id.partner_id not in self.partner_ids:
+            ids.append(self.user_id.partner_id.id)
+            self.update({'partner_ids': [(6, 0, ids)]})
+
     @api.multi
     def _get_partner_details(self):
         for event in self:

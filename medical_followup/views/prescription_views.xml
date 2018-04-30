@@ -19,7 +19,15 @@
                         <notebook>
                             <page string="Prescription Lines">
                                 <field name="prescription_lines_count" invisible="True"/>
-                                <field name="prescription_lines"/>
+                                <field name="prescription_lines">
+                                    <tree editable="bottom">
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="product"/>
+                                        <field name="description"/>
+                                        <field name="quantity"/>
+                                        <field name="product_uom"/>
+                                    </tree>
+                                </field>
                             </page>
                         </notebook>
                     </sheet>
@@ -40,10 +48,12 @@
                         <notebook>
                             <page string="Prescription Lines">
                                 <field name="prescription_lines_template">
-                                    <tree editable="top">
-                                        <field name="quantity"/>
+                                    <tree editable="bottom">
+                                        <field name="sequence" widget="handle"/>
                                         <field name="product"/>
                                         <field name="description"/>
+                                        <field name="quantity"/>
+                                        <field name="product_uom"/>
                                     </tree>
                                 </field>
                             </page>
@@ -98,13 +108,13 @@
 
         <!-- Action -->
         <record id="res_partner_prescription_tree_action" model="ir.actions.act_window">
-            <field name="name">Prescription</field>
+            <field name="name">Ordonnance</field>
             <field name="res_model">prescription</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
         <record id="prescription_template_action" model="ir.actions.act_window">
-            <field name="name">Prescription Template</field>
+            <field name="name">Modèle d'ordonnace</field>
             <field name="res_model">prescription.template</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
