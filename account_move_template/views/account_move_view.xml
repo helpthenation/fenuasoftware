@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_move_filter" model="ir.ui.view">
+        <field name="name">account.move.select</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_move_filter"/>
+        <field name="arch" type="xml">
+            <field name="date" position="after">
+                <filter name="draft" string="Unposted" domain="[('state','=','draft')]" invisible="True"/>
+            </field>
+        </field>
+    </record>
+    <record id="view_move_form" model="ir.ui.view">
+        <field name="name">account.move.template.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group" position="inside">
+                <group>
+                    <field name="account_move_template"/>
+                    <field name="account_move_template_type" invisible="True"/>
+                    <field name="amount_with_taxes" attrs="{'invisible': [('account_move_template_type', 'in', ('simple'))]}"/>
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree/field[@name='debit']" position="before">
+                <field name="tax_line_id" invisible="True"/>
+                <field name="tax_ids" invisible="True"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="purchase_account_move_tree" model="ir.ui.view">
+        <field name="name">purchase_account_move_tree</field>
+        <field name="model">account.move</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom" decoration-info="state == 'draft'" string="Journal Entries">
+                <field name="date"/>
+                <field name="account_move_template"/>
+                <field name="account_move_template_type" invisible="True"/>
+                <field name="ref"/>
+                <field name="partner_id" readonly="True"/>
+                <field name="amount_with_taxes" attrs="{'readonly': [('account_move_template_type', 'in', ('simple'))]}"/>
+                <field name="amount" invisible="True"/>
+                <field name="state"/>
+                <field name='company_id' options="{'no_create': True}" groups="base.group_multi_company" />
+                <field name="currency_id" invisible="1"/>
+                <field name="line_ids" invisible="1">
+                    <tree>
+                        <field name="account_id" domain="[('company_id', '=', parent.company_id), ('deprecated', '=', False)]"/>
+                        <field name="partner_id" domain="['|', ('parent_id', '=', False), ('is_company', '=', True)]"/>
+                        <field name="name"/>
+                        <field name="tax_line_id"/>
+                        <field name="tax_ids"/>
+                        <field name="debit" sum="Total Debit"/>
+                        <field name="credit" sum="Total Credit"/>
+                    </tree>
+                </field>
+            </tree>
+        </field>
+    </record>
+    <record id="purchase_account_move_action" model="ir.actions.act_window">
+        <field name="name">Saisie Rapide de Pièces-Comptables</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="purchase_account_move_tree"/>
+        <field name="context">{'search_default_draft': 1}</field>
+    </record>
+    <menuitem id="purchase_account_move_menuitem" name="Saisie Rapide de Pièces-Comptables" parent="account.menu_finance_entries_actions" action="purchase_account_move_action"/>
+
+</odoo>

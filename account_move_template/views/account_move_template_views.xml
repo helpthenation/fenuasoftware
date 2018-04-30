@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_move_template_formview" model="ir.ui.view">
+        <field name="name">account.move.template.formview</field>
+        <field name="model">account.move.template</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="type"/>
+                        <field name="journal_id" options="{'no_open': True, 'no_create': True}"/>
+                        <field name="partner_id"/>
+                        <field name="company_id" required="1" groups="base.group_multi_company"/>
+                        <field name="product" attrs="{'invisible': [('type', 'not in', ('product'))]}"/>
+                        <field name="amount_with_taxes" attrs="{'invisible': [('type', 'not in', ('product'))]}"/>
+                    </group>
+                    <notebook>
+                        <page string="Journal Items">
+                        <field name="line_ids" widget="one2many_list">
+                            <tree editable="bottom" string="Journal Items">
+                                <field name="account_id" domain="[('company_id', '=', parent.company_id), ('deprecated', '=', False)]"/>
+                                <field name="partner_id"/>
+                                <field name="name"/>
+                                <field name="company_currency_id" invisible="1"/>
+                                <field name="company_id" invisible="1"/>
+                                <field name="currency_id" options="{'no_create': True}" groups="base.group_multi_currency"/>
+                                <field name="tax_line_id"/>
+                                <field name="debit" sum="Total Debit"/>
+                                <field name="credit" sum="Total Credit"/>
+                            </tree>
+                        </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="account_move_template_action" model="ir.actions.act_window">
+        <field name="name">Modèle de pièce comptable</field>
+        <field name="res_model">account.move.template</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="account_move_template_menuitem" name="Modèle de pièce comptable" parent="account.account_account_menu" action="account_move_template_action" sequence="99"/>
+</odoo>

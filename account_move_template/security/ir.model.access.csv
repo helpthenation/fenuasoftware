@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+acces_account_move_template,account.group_account_manager,model_account_move_template,account.group_account_manager,1,1,1,1
+acces_account_move_line_template,account.group_account_manager,model_account_move_line_template,account.group_account_manager,1,1,1,1
+acces_account_move_template_user,account.group_account_manager,model_account_move_template,,1,0,0,0
+acces_account_move_line_template_user,account.group_account_manager,model_account_move_line_template,,1,0,0,0
