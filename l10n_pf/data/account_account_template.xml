@@ -3213,6 +3213,27 @@
         <field name="chart_template_id" ref="l10n_pf_pcg_chart_template"/>
     </record>
 
+    <record id="pcg_60611" model="account.account.template">
+        <field name="name">Eau</field>
+        <field name="code">60611</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="l10n_pf_pcg_chart_template"/>
+    </record>
+
+    <record id="pcg_60612" model="account.account.template">
+        <field name="name">Électricité</field>
+        <field name="code">60612</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="l10n_pf_pcg_chart_template"/>
+    </record>
+
+    <record id="pcg_60613" model="account.account.template">
+        <field name="name">Gaz</field>
+        <field name="code">60613</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="l10n_pf_pcg_chart_template"/>
+    </record>
+
     <record id="pcg_6063" model="account.account.template">
         <field name="name">Fournitures d'entretien et de petit équipement</field>
         <field name="code">6063</field>
@@ -3653,6 +3674,13 @@
     <record id="pcg_626" model="account.account.template">
         <field name="name">Frais postaux et frais de télécommunications</field>
         <field name="code">626</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="l10n_pf_pcg_chart_template"/>
+    </record>
+
+    <record id="pcg_627" model="account.account.template">
+        <field name="name">Services bancaires et assimilés</field>
+        <field name="code">627</field>
         <field name="user_type_id" ref="account.data_account_type_expenses"/>
         <field name="chart_template_id" ref="l10n_pf_pcg_chart_template"/>
     </record>
