@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api
+from odoo import models, fields, api, _
+from odoo.exceptions import UserError
 
 
 class AccountMoveTemplate(models.Model):
@@ -79,7 +80,7 @@ class AccountMoveTemplate(models.Model):
         line_ids = []
 
         if self.type == 'simple':
-            line_ids = self._generate_simple_line_ids()
+            line_ids = self._generate_simple_line_ids(amount_with_taxes)
 
         elif self.type == 'product':
             if self.product and self.journal_id.type == 'purchase':
@@ -90,15 +91,33 @@ class AccountMoveTemplate(models.Model):
 
         return line_ids
 
-    def _generate_simple_line_ids(self):
+    def _generate_simple_line_ids(self, amount_with_taxes):
         line_ids = []
         for line in self.line_ids:
+
+            debit_credit_amount = amount_with_taxes
+            if line.tax_line_id:#Originator Taxe
+                tax_infos = line.tax_line_id.compute_all(amount_with_taxes,
+                                                         currency=self.currency_id,
+                                                         quantity=1.0, product=self.product, partner=None)
+                if len(tax_infos['taxes']) > 0:
+                    debit_credit_amount = tax_infos['taxes'][0].get('amount')
+
+            if line.tax_ids:#Taxes
+                tax_infos = line.tax_ids.compute_all(amount_with_taxes,
+                                                     currency=self.currency_id,
+                                                     quantity=1.0, product=self.product, partner=None)
+                debit_credit_amount = tax_infos['total_excluded']
+
             line_ids.append((0, 0, ({
                 'partner_id': line.partner_id,
                 'name': line.name,
                 'account_id': line.account_id,
-                'debit': line.debit,
-                'credit': line.credit,
+                'tax_line_id': line.tax_line_id,
+                'tax_ids': line.tax_ids,
+                'debit_credit': line.debit_credit,
+                'debit': debit_credit_amount if line.debit_credit == 'debit' else 0,
+                'credit': debit_credit_amount if line.debit_credit == 'credit' else 0,
             })))
         return line_ids
 
@@ -209,6 +228,7 @@ class AccountMoveLineTemplate(models.Model):
     tax_ids = fields.Many2many('account.tax', string='Taxes')
     tax_line_id = fields.Many2one('account.tax', string='Originator tax')
 
+    debit_credit = fields.Selection([('debit', 'Au débit'), ('credit', 'Au crédit')], default='debit')
     debit = fields.Monetary(default=0.0, currency_field='company_currency_id')
     credit = fields.Monetary(default=0.0, currency_field='company_currency_id')
 
@@ -225,3 +245,4 @@ class AccountMoveLineTemplate(models.Model):
             self.name = self.account_id.name
 
         self.partner_id = self.account_move_template.partner_id
+        self.tax_ids = self.account_id.tax_ids
