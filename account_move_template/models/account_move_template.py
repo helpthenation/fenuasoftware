@@ -218,3 +218,10 @@ class AccountMoveLineTemplate(models.Model):
                                           readonly=True, help='Utility field to express amount currency', store=True)
     company_id = fields.Many2one('res.company', related='account_id.company_id', string='Company', store=True,
                                  readonly=True)
+
+    @api.onchange('account_id')
+    def onchange_account_id(self):
+        if self.account_move_template.type == 'simple':
+            self.name = self.account_id.name
+
+        self.partner_id = self.account_move_template.partner_id
