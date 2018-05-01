@@ -2,8 +2,10 @@
 {
     'name': "Journal Item Template",
     'summary': """
+    Ajoute la fonctionnalité de modèle de pièce comptable.
     """,
     'description': """
+    Dans une pièce comptable, lorsqu'on choisit un modèle, la pièce comptable se remplis avec les données du modèle. De plus l'utilisateur peut saisir un montant et la pièce comptable se recalcule automatiquement.
     """,
     'author': "Fenua Softw@re",
     'website': "https://www.fenuasoftware.com",
