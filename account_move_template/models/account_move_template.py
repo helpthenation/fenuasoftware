@@ -27,6 +27,7 @@ class AccountMoveTemplate(models.Model):
 
     name = fields.Char(string="Nom")
     journal_id = fields.Many2one('account.journal', string='Journal', required=True, default=_get_default_journal)
+    journal_type = fields.Selection(related='journal_id.type', string="Type de journal", readonly=True)
     partner_id = fields.Many2one('res.partner')
     type = fields.Selection([('simple', 'Modèle simple'), ('product', 'Généré depuis un produit')], default="simple",
                             required=True)
