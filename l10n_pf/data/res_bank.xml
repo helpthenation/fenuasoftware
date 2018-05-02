@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="BQT" model="res.bank">
+            <field name="name">Banque de Tahiti</field>
+            <field name="bic">BQT</field>
+            <field name="phone"> + 689 - 40 50 52 60*</field>
+            <field name="email">contact@bt.pf</field>
+        </record>
+        <record id="BDP" model="res.bank">
+            <field name="name">Banque de Polynésie</field>
+            <field name="bic">BDP</field>
+            <field name="phone"></field>
+            <field name="email"></field>
+        </record>
+        <record id="SOC" model="res.bank">
+            <field name="name">SOCREDO</field>
+            <field name="bic">SOC</field>
+            <field name="phone"></field>
+            <field name="email"></field>
+        </record>
+        <record id="CCP" model="res.bank">
+            <field name="name">Banque Postale</field>
+            <field name="bic">CCP</field>
+            <field name="phone"></field>
+            <field name="email"></field>
+        </record>
+    </data>
+</odoo>

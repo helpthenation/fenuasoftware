@@ -30,6 +30,7 @@ This module applies to companies based in French Polynesia.
         'data/account_chart_template.xml',
         'data/account_account_template.xml',
         'data/account_tax_group.xml',
+        'data/res_bank.xml',
 
         #views
         'views/mail_template_views.xml',
