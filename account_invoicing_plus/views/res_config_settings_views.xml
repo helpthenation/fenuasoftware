@@ -16,7 +16,9 @@
                                 <div class="o_setting_right_pane">
                                     <label for="module_account_move_template" class="o_form_label"/>
                                     <div class="text-muted">
-                                        Modèle de Pièce Comptable.
+                                        Permet de créer des modèles de pièce comptable.
+                                        Puis de créer une pièce comptable en sélectionnant le modèle.
+                                        Ensuite, on saisie simplement le montant TTC.
                                     </div>
                                 </div>
                             </div>
