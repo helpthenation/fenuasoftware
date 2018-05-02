@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- EAU -->
+        <record id="charge_eau" model="account.move.template">
+            <field name="name">Paiement de l'eau</field>
+            <field name="type">simple</field>
+            <field name="journal_id">2</field>
+        </record>
+        <record id="charge_eau_pcg_6061" model="account.move.line.template">
+            <field name="account_move_template" ref="charge_eau"/>
+            <field name="name">Eau</field>
+            <field name="account_id" ref="l10n_pf.pcg_6061"/>
+            <field name="tax_ids" eval="[(6,0,[ref('l10n_pf.tva_13_acq_normale')])]"/>
+            <field name="debit_credit">debit</field>
+        </record>
+        <record id="charge_eau_pcg_44566" model="account.move.line.template">
+            <field name="account_move_template" ref="charge_eau"/>
+            <field name="name">TVA déductible sur autres biens et services</field>
+            <field name="account_id" ref="l10n_pf.pcg_44566"/>
+            <field name="tax_line_id" ref="l10n_pf.tva_13_acq_normale"/>
+            <field name="debit_credit">debit</field>
+        </record>
+        <record id="charge_eau_pf_pcg_pay" model="account.move.line.template">
+            <field name="account_move_template" ref="charge_eau"/>
+            <field name="name">Fournisseurs - Achats de biens et prestations de services</field>
+            <field name="account_id" ref="l10n_pf.pf_pcg_pay"/>
+            <field name="debit_credit">credit</field>
+        </record>
+
+        <!-- ELECTRICITE -->
+        <record id="charge_electricite" model="account.move.template">
+            <field name="name">Paiement de l'électricité</field>
+            <field name="type">simple</field>
+            <field name="journal_id">2</field>
+        </record>
+        <record id="charge_electricite_pcg_60612" model="account.move.line.template">
+            <field name="account_move_template" ref="charge_electricite"/>
+            <field name="name">Électricité</field>
+            <field name="account_id" ref="l10n_pf.pcg_60612"/>
+            <field name="tax_ids" eval="[(6,0,[ref('l10n_pf.tva_13_acq_normale')])]"/>
+            <field name="debit_credit">debit</field>
+        </record>
+        <record id="charge_electricite_pcg_44566" model="account.move.line.template">
+            <field name="account_move_template" ref="charge_electricite"/>
+            <field name="name">TVA déductible sur autres biens et services</field>
+            <field name="account_id" ref="l10n_pf.pcg_44566"/>
+            <field name="tax_line_id" ref="l10n_pf.tva_13_acq_normale"/>
+            <field name="debit_credit">debit</field>
+        </record>
+        <record id="charge_electricite_pf_pcg_pay" model="account.move.line.template">
+            <field name="account_move_template" ref="charge_electricite"/>
+            <field name="name">Fournisseurs - Achats de biens et prestations de services</field>
+            <field name="account_id" ref="l10n_pf.pf_pcg_pay"/>
+            <field name="debit_credit">credit</field>
+        </record>
+    </data>
+</odoo>
