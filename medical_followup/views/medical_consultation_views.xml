@@ -7,13 +7,24 @@
             <field name="arch" type="xml">
                 <form string="Consultations Médicales">
                     <sheet>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
                         <div class="oe_left">
                             <group>
-                                <field name="patient"/>
-                                <field name="date"/>
+                                <group col="1">
+                                    <field name="patient"/>
+                                    <field name="type"/>
+                                    <field name="date"/>
+                                </group>
+                                <group attrs="{'invisible': [('type', '!=', 'crop')]}">
+                                    <field name="operator"/>
+                                    <field name="anesthetist"/>
+                                    <field name="reason"/>
+                                </group>
+                                <label for="description"/>
+                                <field name="description" default_focus="1"/>
                             </group>
-                            <label for="description"/>
-                            <field name="description" default_focus="1"/>
                         </div>
                     </sheet>
                 </form>
