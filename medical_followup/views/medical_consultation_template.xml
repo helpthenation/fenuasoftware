@@ -6,23 +6,18 @@
             <t t-foreach="docs" t-as="doc">
                 <t t-call="web.external_layout">
                     <div class="page">
-                        <div t-if="doc.type==False" class="row">
-                            <h2>Consultations médicales</h2>
-                            <p>
-                                <strong>Patient</strong>
-                                <h3>
-                                    <span t-field="doc.name"/>
-                                </h3>
-                            </p>
-                            <t t-foreach="doc.medical_consultations" t-as="l">
-                                <div style="margin-top: 25px">
-                                    <strong>
-                                        <span t-field="l.date" t-field-options='{"format": "d MMMM y"}'/>
-                                    </strong>
-                                    <hr/>
-                                    <span t-field="l.description"/>
-                                </div>
-                            </t>
+                        <div t-if="doc.type==False" class="row text-center">
+                            <h1>Consultations médicales</h1>
+                            <h3 t-field="doc.patient.display_name"/>
+
+                            <br/>
+                            <div class="text-left">
+                                <span t-field="doc.date"/>
+                                <hr/>
+                                <p>
+                                    <span t-field="doc.description"/>
+                                </p>
+                            </div>
                         </div>
                         <div t-if="doc.type in ['crop']" class="row">
                             <div class="text-center">
