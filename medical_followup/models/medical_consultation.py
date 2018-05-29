@@ -22,6 +22,7 @@ class Partner(models.Model):
 class MedicalConsultation(models.Model):
     _description = 'Consultation Médicale'
     _name = "medical.consultation"
+    _inherit = ['mail.thread']
 
     def _default_date(self):
         return fields.Date.context_today(self)
@@ -31,7 +32,7 @@ class MedicalConsultation(models.Model):
     date = fields.Date(string="Date de consultation médicale", default=_default_date)
     patient = fields.Many2one('res.partner', string="Patient")
     description = fields.Text(string="Description")
-    user_id = fields.Many2one('res.users', compute="_compute_user_id")
+    user_id = fields.Many2one('res.users', default=lambda self: self._uid)
 
     type = fields.Selection([
         ('crop', 'Compte Rendu Opératoire'),
@@ -59,9 +60,6 @@ class MedicalConsultation(models.Model):
             locale = self.env.context.get('lang') or 'en_US'
             ttyme = datetime.fromtimestamp(time.mktime(time.strptime(self.date, "%Y-%m-%d")))
             self.name = "Intervention du " + tools.ustr(babel.dates.format_date(date=ttyme, format='dd MMMM y', locale=locale))
-
-    def _compute_user_id(self):
-        self.user_id = self.env.user
 
     def _get_printed_report_name(self):
         return "INTERVENTIONS_MEDICAL"

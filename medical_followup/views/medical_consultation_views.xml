@@ -10,12 +10,10 @@
                         <h1>
                             <field name="name"/>
                         </h1>
-                        <group>
-                            <field name="medical_consultation_template"/>
-                        </group>
                         <div class="oe_left">
                             <group>
-                                <group col="1">
+                                <field name="medical_consultation_template"/>
+                                <group>
                                     <field name="patient"/>
                                     <field name="type"/>
                                     <field name="date"/>
@@ -30,6 +28,10 @@
                             </group>
                         </div>
                     </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
                 </form>
             </field>
         </record>
