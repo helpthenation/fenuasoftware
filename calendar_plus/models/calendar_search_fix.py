@@ -19,8 +19,7 @@ class Meeting(models.Model):
         Corriger un bug dans le calendrier lorsqu'on est en affichage par Jour, tous les événements ne s'affichent pas.
         Un ticket à été remonté sur le repos d'Odoo : [11.0] Calendar Event not showing in Calendar's Day Mode #23246
         """
-        if calendar_search_fix_enable:
-            self._fixargs(args)
+        self._fixargs(args)
         res = super(Meeting, self).search(args, offset, limit, order, count)
         return res
 
