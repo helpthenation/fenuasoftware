@@ -12,6 +12,7 @@
     'depends': ['website'],
     'data': [
         'views/mail_channel_data.xml',
+        'views/portal_templates.xml',
         'views/website_templates.xml',
         'views/website_views.xml',
     ],

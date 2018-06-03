@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template name="Hide Header" id="header_hidden" inherit_id="portal.frontend_layout" customize_show="True" active="False">
+        <xpath expr="//div[@id='wrapwrap']/header" position="attributes">
+            <attribute name="class">hidden</attribute>
+        </xpath>
+    </template>
+</odoo>
