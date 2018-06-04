@@ -26,12 +26,6 @@ This module applies to companies based in French Polynesia.
 
     # always loaded
     'data': [
-        #data
-        'data/account_chart_template.xml',
-        'data/account_account_template.xml',
-        'data/account_tax_group.xml',
-        'data/res_bank.xml',
-
         #views
         'views/mail_template_views.xml',
         'views/res_company_views.xml',
