@@ -5,4 +5,9 @@
             <attribute name="class">hidden</attribute>
         </xpath>
     </template>
+    <template name="Entête éditable" id="frontend_layout" inherit_id="portal.frontend_layout" customize_show="True" active="False">
+        <xpath expr="//div[@id='wrapwrap']/header/div[contains(@class, 'navbar')]" position="before">
+            <div class="oe_structure"/>
+        </xpath>
+    </template>
 </odoo>
