@@ -5,9 +5,9 @@
             <attribute name="class">hidden</attribute>
         </xpath>
     </template>
-    <template name="Entête éditable" id="frontend_layout" inherit_id="portal.frontend_layout" customize_show="True" active="False">
+    <template name="Entête éditable" id="frontend_layout" inherit_id="portal.frontend_layout" customize_show="True" active="True">
         <xpath expr="//div[@id='wrapwrap']/header/div[contains(@class, 'navbar')]" position="before">
-            <div class="oe_structure"/>
+            <div class="oe_structure oe_empty o_editable note-air-editor note-editable"/>
         </xpath>
     </template>
 </odoo>
