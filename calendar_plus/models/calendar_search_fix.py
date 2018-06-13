@@ -29,7 +29,10 @@ class Meeting(models.Model):
         :param args: liste d'arguement à traiter
         :customer concerns: Cyrille SERRA
         """
+        index = -1
         for arg in args:
+            index += 1
             if 'start' in arg:
                 start = datetime.strptime(arg[2], DEFAULT_SERVER_DATETIME_FORMAT)
-                arg[2] = (start + timedelta(days=2)).strftime('%Y-%m-%d 00:00:00')
+                start = (start + timedelta(days=2)).strftime('%Y-%m-%d 00:00:00')
+                args[index] = ('start', arg[1], start)
