@@ -21,6 +21,19 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="module_sale_order_html_documentation"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_sale_order_html_documentation" class="o_form_label"/>
+                                    <div class="text-muted">
+                                        Ajoute la possibilité de mettre des documents sur les devis et les bon de commandes
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </field>

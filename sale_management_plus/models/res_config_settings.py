@@ -7,6 +7,7 @@ class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
 
     read_price_from_template = fields.Boolean(string='Lire le prix de vente dans le modèle de devis', help='Key is : sale_management_plus.read_price_from_template')
+    module_sale_order_html_documentation = fields.Boolean("Ajouter des documents aux devis et bon de commandes")
 
     @api.model
     def get_values(self):
