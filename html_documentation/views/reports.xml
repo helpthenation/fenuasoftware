@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+                id="document_report_action"
+                model="html.document"
+                string="Imprimer"
+                report_type="qweb-pdf"
+                name="html_documentation.report_html_document"
+                file="html_documentation.report_html_document"
+        />
+    </data>
+</odoo>

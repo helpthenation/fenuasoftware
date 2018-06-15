@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_html_documentation_html_document,html_documentation.html_document,model_html_document,,1,1,1,1
