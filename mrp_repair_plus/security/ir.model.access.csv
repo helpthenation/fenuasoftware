@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mrp_repair_plus_mrp_calendar_repair,mrp_repair_plus.mrp_calendar_repair,model_mrp_calendar_repair,,1,1,1,1

@@ -41,6 +41,7 @@
             <field name="arch" type="xml">
                 <field name="partner_id" position="after">
                     <field name="repairer"/>
+                    <field name="calendar"/>
                     <field name="intervention_date"/>
                     <field name="intervention_duration" widget="float_time"/>
                 </field>
