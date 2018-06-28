@@ -14,6 +14,7 @@ class MedicalInformationDocument(models.Model):
     _inherit = ['mail.thread']
 
     name = fields.Char(string="Nom du document")
+    title = fields.Char(string="Titre du document")
     content = fields.Html(string="Contenu")
     sale_order = fields.Many2one('sale.order')
 

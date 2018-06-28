@@ -11,6 +11,7 @@
                             <field name="name"/>
                         </h1>
                         <group>
+                            <field name="title"/>
                             <field name="content" widget="html"/>
                         </group>
                     </sheet>
