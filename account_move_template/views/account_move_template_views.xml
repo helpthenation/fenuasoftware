@@ -35,6 +35,7 @@
                         <page string="Journal Items">
                             <field name="line_ids" widget="one2many_list">
                                 <tree editable="bottom" string="Journal Items">
+                                    <field name="sequence" widget="handle"/>
                                     <field name="account_id"
                                            domain="[('company_id', '=', parent.company_id), ('deprecated', '=', False)]"/>
                                     <field name="partner_id"/>
@@ -45,7 +46,7 @@
                                            groups="base.group_multi_currency"/>
                                     <field name="tax_ids" widget="many2many_tags"/>
                                     <field name="tax_line_id"/>
-                                    <field name="other_amount"/>
+                                    <field name="amount_type"/>
                                     <field name="debit_credit"/>
                                     <field name="debit" sum="Total Debit"/>
                                     <field name="credit" sum="Total Credit"/>

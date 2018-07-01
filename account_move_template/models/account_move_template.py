@@ -75,14 +75,14 @@ class AccountMoveTemplate(models.Model):
         line_ids = self.generate_line_ids(self.amount_with_taxes, self.other_amount)
         self.update({'line_ids': line_ids})
 
-    def generate_line_ids(self, amount_with_taxes, other_amount):
+    def generate_line_ids(self, amount_with_taxes, other_amount, base_amount_0, base_amount_1, base_amount_2, base_amount_3):
         '''
             Génère les lignes en fonction des données du modèle
         '''
         line_ids = []
 
         if self.type == 'simple':
-            line_ids = self._generate_simple_line_ids(amount_with_taxes, other_amount)
+            line_ids = self._generate_simple_line_ids(amount_with_taxes, other_amount, base_amount_0, base_amount_1, base_amount_2, base_amount_3)
 
         elif self.type == 'product':
             if self.product and self.journal_id.type == 'purchase':
@@ -93,20 +93,34 @@ class AccountMoveTemplate(models.Model):
 
         return line_ids
 
-    def _generate_simple_line_ids(self, amount_with_taxes, other_amount):
+    def _generate_simple_line_ids(self, amount_with_taxes, other_amount, base_amount_0, base_amount_1, base_amount_2, base_amount_3):
         line_ids = []
         for line in self.line_ids:
 
+            price_unit = 0.0
+            if line.amount_type == '0':
+                price_unit = base_amount_0
+            elif line.amount_type =='1':
+                price_unit = base_amount_1
+            elif line.amount_type =='2':
+                price_unit = base_amount_2
+            elif line.amount_type =='3':
+                price_unit = base_amount_3
+            elif line.amount_type =='total':
+                price_unit = amount_with_taxes
+            else:
+                raise UserError(_("No Amount Type match"))
+
             debit_credit_amount = amount_with_taxes
             if line.tax_line_id:#Originator Taxe
-                tax_infos = line.tax_line_id.compute_all(amount_with_taxes - other_amount,
+                tax_infos = line.tax_line_id.compute_all(price_unit,
                                                          currency=self.currency_id,
                                                          quantity=1.0, product=self.product, partner=None)
                 if len(tax_infos['taxes']) > 0:
                     debit_credit_amount = tax_infos['taxes'][0].get('amount')
 
             if line.tax_ids:#Taxes
-                tax_infos = line.tax_ids.compute_all(amount_with_taxes - other_amount,
+                tax_infos = line.tax_ids.compute_all(price_unit,
                                                      currency=self.currency_id,
                                                      quantity=1.0, product=self.product, partner=None)
                 debit_credit_amount = tax_infos['total_excluded']
@@ -114,17 +128,18 @@ class AccountMoveTemplate(models.Model):
             if line.other_amount:#Autres montant
                 debit_credit_amount = other_amount
 
-            line_ids.append((0, 0, ({
-                'partner_id': line.partner_id,
-                'name': line.name,
-                'account_id': line.account_id,
-                'tax_line_id': line.tax_line_id,
-                'tax_ids': line.tax_ids,
-                'other_amount': line.other_amount,
-                'debit_credit': line.debit_credit,
-                'debit': debit_credit_amount if line.debit_credit == 'debit' else 0,
-                'credit': debit_credit_amount if line.debit_credit == 'credit' else 0,
-            })))
+            if debit_credit_amount != 0:
+                line_ids.append((0, 0, ({
+                    'partner_id': line.partner_id,
+                    'name': line.name,
+                    'account_id': line.account_id,
+                    'tax_line_id': line.tax_line_id,
+                    'tax_ids': line.tax_ids,
+                    'other_amount': line.other_amount,
+                    'debit_credit': line.debit_credit,
+                    'debit': debit_credit_amount if line.debit_credit == 'debit' else 0,
+                    'credit': debit_credit_amount if line.debit_credit == 'credit' else 0,
+                })))
         return line_ids
 
     def _generate_purchase_line_ids(self, amount_with_taxes):
@@ -224,6 +239,7 @@ class AccountMoveLineTemplate(models.Model):
             currency = self.env['account.journal'].browse(context['default_journal_id']).currency_id
         return currency
 
+    sequence = fields.Integer('Sequence', default=0)
     name = fields.Char(string="Label")
     account_move_template = fields.Many2one('account.move.template', 'Modèle')
     account_id = fields.Many2one('account.account', string='Account', required=True, index=True, ondelete="cascade",
@@ -235,6 +251,7 @@ class AccountMoveLineTemplate(models.Model):
     tax_line_id = fields.Many2one('account.tax', string='Originator tax')
 
     other_amount = fields.Boolean(default=False, string="Autres montant")
+    amount_type = fields.Selection([('0', 'H.T 0'), ('1', 'H.T 1'), ('2', 'H.T 2'), ('3', 'H.T 3'), ('total', 'Total T.T.C')], default=False)
 
     debit_credit = fields.Selection([('debit', 'Au débit'), ('credit', 'Au crédit')], default='debit')
     debit = fields.Monetary(default=0.0, currency_field='company_currency_id')

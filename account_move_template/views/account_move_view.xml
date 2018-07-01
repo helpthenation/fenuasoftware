@@ -22,6 +22,12 @@
                     <field name="other_amount"/>
                     <field name="amount_with_taxes"/>
                 </group>
+                <group>
+                    <field name="base_tva0_amount" string="H.T 0"/>
+                    <field name="base_tva1_amount" string="H.T 1"/>
+                    <field name="base_tva2_amount" string="H.T 2"/>
+                    <field name="base_tva3_amount" string="H.T 3"/>
+                </group>
             </xpath>
             <xpath expr="//field[@name='line_ids']/tree/field[@name='debit']" position="before">
                 <field name="tax_line_id" invisible="True"/>
@@ -39,10 +45,13 @@
                 <field name="account_move_template_type" invisible="True"/>
                 <field name="ref"/>
                 <field name="partner_id" readonly="True"/>
-                <field name="other_amount"/>
-                <field name="amount_with_taxes"/>
+                <field name="base_tva0_amount" string="H.T 0"/>
+                <field name="base_tva1_amount" string="H.T 1"/>
+                <field name="base_tva2_amount" string="H.T 2"/>
+                <field name="base_tva3_amount" string="H.T 3"/>
+                <field name="amount_with_taxes" string="T.T.C"/>
                 <field name="amount" invisible="True"/>
-                <field name="state"/>
+                <field name="state" invisible="True"/>
                 <field name='company_id' options="{'no_create': True}" groups="base.group_multi_company" />
                 <field name="currency_id" invisible="1"/>
                 <field name="line_ids" invisible="1">
