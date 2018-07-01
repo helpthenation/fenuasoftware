@@ -45,10 +45,10 @@ class AccountMoveTemplate(models.Model):
 
     line_ids = fields.One2many('account.move.line.template', 'account_move_template', string='Journal Items', copy=True)
 
-    @api.onchange('journal_id')
-    def onchange_journal_id(self):
-        line_ids = self.generate_line_ids(self.amount_with_taxes, self.other_amount)
-        self.update({'line_ids': line_ids})
+    @api.onchange('partner_id')
+    def onchange_partner_id(self):
+        for line in self.line_ids:
+            line.update({'partner_id': self.partner_id})
 
     @api.onchange('type')
     def onchange_type(self):
