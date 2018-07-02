@@ -16,12 +16,12 @@ class AccountMove(models.Model):
     def onchange_account_move_template(self):
         self.ref = self.account_move_template.name
         self.journal_id = self.account_move_template.journal_id
-        self.update({'line_ids': self.account_move_template.generate_line_ids(self.amount, self.base_tva0_amount, self.base_tva1_amount, self.base_tva2_amount, self.base_tva3_amount)})
+        self.update({'line_ids': self.account_move_template.generate_line_ids(self.base_tva0_amount, self.base_tva1_amount, self.base_tva2_amount, self.base_tva3_amount)})
 
     @api.onchange('base_tva0_amount', 'base_tva1_amount', 'base_tva2_amount', 'base_tva3_amount')
     def update_line_ids(self):
-        self.update({'line_ids': self.account_move_template.generate_line_ids(self.amount, self.base_tva0_amount, self.base_tva1_amount, self.base_tva2_amount, self.base_tva3_amount)})
+        self.update({'line_ids': self.account_move_template.generate_line_ids(self.base_tva0_amount, self.base_tva1_amount, self.base_tva2_amount, self.base_tva3_amount)})
 
     @api.onchange('amount')
     def onchange_amount(self):
-        self.update({'line_ids': self.account_move_template.generate_line_ids(self.amount, self.base_tva0_amount, self.base_tva1_amount, self.base_tva2_amount, self.base_tva3_amount)})
+        self.update({'line_ids': self.account_move_template.generate_line_ids(self.base_tva0_amount, self.base_tva1_amount, self.base_tva2_amount, self.base_tva3_amount)})

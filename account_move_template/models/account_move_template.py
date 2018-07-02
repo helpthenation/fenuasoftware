@@ -55,8 +55,10 @@ class AccountMoveTemplate(models.Model):
         for line in self.line_ids:
             line.update({'partner_id': self.partner_id})
 
-    def generate_line_ids(self, amount, base_amount_0, base_amount_1, base_amount_2, base_amount_3):
+    def generate_line_ids(self, base_amount_0, base_amount_1, base_amount_2, base_amount_3):
         line_ids = []
+
+        total = 0.0 # used for total aomount_type
         for line in self.line_ids:
 
             price_unit = 0.0
@@ -69,7 +71,7 @@ class AccountMoveTemplate(models.Model):
             elif line.amount_type =='3':
                 price_unit = base_amount_3
             elif line.amount_type =='total':
-                price_unit = amount
+                price_unit = total
             else:
                 raise UserError(_("No Amount Type match"))
 
@@ -88,6 +90,7 @@ class AccountMoveTemplate(models.Model):
                 debit_credit_amount = tax_infos['total_excluded']
 
             if debit_credit_amount != 0:
+                total = total + debit_credit_amount;
                 line_ids.append((0, 0, ({
                     'partner_id': line.partner_id,
                     'name': line.name,
