@@ -16,20 +16,6 @@
                             <field name="company_id" required="1" groups="base.group_multi_company"/>
                             <field name="product" attrs="{'invisible': [('type', 'not in', ('product'))]}"/>
                         </group>
-                        <group>
-                            <!--
-                            <div class="o_td_label">
-                                <label for="amount_with_taxes"/>&amp;nbsp;
-                                <field name="with_or_without_tax" nolabel="1"/>
-                            </div>
-                            <div class="oe_inline">
-                                <label string=" " class="oe_inline"/>
-                                <field name="amount_with_taxes" nolabel="1" class="oe_inline"/>
-                            </div>
-                            -->
-                            <field name="other_amount"/>
-                            <field name="amount_with_taxes"/>
-                        </group>
                     </group>
                     <notebook>
                         <page string="Journal Items">

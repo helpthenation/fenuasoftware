@@ -19,7 +19,6 @@
                 <group>
                     <field name="account_move_template"/>
                     <field name="account_move_template_type" invisible="True"/>
-                    <field name="other_amount"/>
                     <field name="amount_with_taxes"/>
                 </group>
                 <group>
