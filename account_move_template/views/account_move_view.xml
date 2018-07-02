@@ -45,7 +45,7 @@
                 <field name="base_tva1_amount" string="H.T 1"/>
                 <field name="base_tva2_amount" string="H.T 2"/>
                 <field name="base_tva3_amount" string="H.T 3"/>
-                <field name="amount" invisible="False"/>
+                <field name="amount" invisible="False" sum="NET A PAYER"/>
                 <field name="state" invisible="True"/>
                 <field name='company_id' options="{'no_create': True}" groups="base.group_multi_company" />
                 <field name="currency_id" invisible="1"/>
