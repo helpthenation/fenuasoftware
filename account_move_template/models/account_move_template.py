@@ -3,6 +3,17 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 
+class ResPartner(models.Model):
+    _inherit = 'res.partner'
+
+    quick_account_move_template = fields.Many2one(compute='get_quick_account_move_template')
+
+    @api.model
+    def get_quick_account_move_template(self):
+        for this in self:
+            res = self.env['account.move.template'].search([('partner_id', '=', this.id)])
+            if len(res) > 0:
+                this.quick_account_move_template = res[0].id
 
 class AccountMoveTemplate(models.Model):
     _name = 'account.move.template'
