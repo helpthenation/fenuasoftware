@@ -40,7 +40,6 @@ class AccountMoveTemplate(models.Model):
                                           readonly=True, help='Utility field to express amount currency', store=True)
 
     product = fields.Many2one('product.template', string='Product')
-    amount_with_taxes = fields.Monetary(default=0.0, string="Montant T.T.C", currency_field='company_currency_id')
 
     line_ids = fields.One2many('account.move.line.template', 'account_move_template', string='Journal Items', copy=True)
 
@@ -54,45 +53,37 @@ class AccountMoveTemplate(models.Model):
         if self.type == 'simple':
             self.line_ids = False
             self.product = False
-            self.amount_with_taxes = False
 
     @api.onchange('product')
     def onchange_product(self):
         line_ids = []
         if self.product and self.journal_id.type == 'purchase':
-            self.amount_with_taxes = self.product.standard_price
-            line_ids = self._generate_purchase_line_ids(self.amount_with_taxes)
+            line_ids = self._generate_purchase_line_ids(0)
 
         elif self.product and self.journal_id.type == 'sale':
-            self.amount_with_taxes = self.product.lst_price
-            line_ids = self._generate_sale_line_ids(self.amount_with_taxes)
+            line_ids = self._generate_sale_line_ids(0)
 
         self.update({'line_ids': line_ids})
 
-    @api.onchange('amount_with_taxes')
-    def onchange_amount_with_taxes(self):
-        line_ids = self.generate_line_ids(self.amount_with_taxes)
-        self.update({'line_ids': line_ids})
-
-    def generate_line_ids(self, amount_with_taxes, base_amount_0, base_amount_1, base_amount_2, base_amount_3):
+    def generate_line_ids(self, amount, base_amount_0, base_amount_1, base_amount_2, base_amount_3):
         '''
             Génère les lignes en fonction des données du modèle
         '''
         line_ids = []
 
         if self.type == 'simple':
-            line_ids = self._generate_simple_line_ids(amount_with_taxes, base_amount_0, base_amount_1, base_amount_2, base_amount_3)
+            line_ids = self._generate_simple_line_ids(amount, base_amount_0, base_amount_1, base_amount_2, base_amount_3)
 
         elif self.type == 'product':
             if self.product and self.journal_id.type == 'purchase':
-                line_ids = self._generate_purchase_line_ids(amount_with_taxes)
+                line_ids = self._generate_purchase_line_ids(amount)
 
             elif self.product and self.journal_id.type == 'sale':
-                line_ids = self._generate_sale_line_ids(amount_with_taxes)
+                line_ids = self._generate_sale_line_ids(amount)
 
         return line_ids
 
-    def _generate_simple_line_ids(self, amount_with_taxes, base_amount_0, base_amount_1, base_amount_2, base_amount_3):
+    def _generate_simple_line_ids(self, amount, base_amount_0, base_amount_1, base_amount_2, base_amount_3):
         line_ids = []
         for line in self.line_ids:
 
@@ -106,11 +97,11 @@ class AccountMoveTemplate(models.Model):
             elif line.amount_type =='3':
                 price_unit = base_amount_3
             elif line.amount_type =='total':
-                price_unit = amount_with_taxes
+                price_unit = amount
             else:
                 raise UserError(_("No Amount Type match"))
 
-            debit_credit_amount = amount_with_taxes
+            debit_credit_amount = price_unit
             if line.tax_line_id:#Originator Taxe
                 tax_infos = line.tax_line_id.compute_all(price_unit,
                                                          currency=self.currency_id,
@@ -137,9 +128,9 @@ class AccountMoveTemplate(models.Model):
                 })))
         return line_ids
 
-    def _generate_purchase_line_ids(self, amount_with_taxes):
+    def _generate_purchase_line_ids(self, amount):
         line_ids = []
-        tax_infos = self.product.supplier_taxes_id.compute_all(amount_with_taxes, currency=self.currency_id,
+        tax_infos = self.product.supplier_taxes_id.compute_all(amount, currency=self.currency_id,
                                                                quantity=1.0, product=self.product, partner=None)
 
         # Ligne de l'article au crédit
@@ -179,9 +170,9 @@ class AccountMoveTemplate(models.Model):
 
         return line_ids
 
-    def _generate_sale_line_ids(self, amount_with_taxes):
+    def _generate_sale_line_ids(self, amount):
         line_ids = []
-        tax_infos = self.product.taxes_id.compute_all(amount_with_taxes, currency=self.currency_id, quantity=1.0,
+        tax_infos = self.product.taxes_id.compute_all(amount, currency=self.currency_id, quantity=1.0,
                                                       product=self.product, partner=None)
 
         # Ligne de l'article au débit

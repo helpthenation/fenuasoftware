@@ -19,7 +19,6 @@
                 <group>
                     <field name="account_move_template"/>
                     <field name="account_move_template_type" invisible="True"/>
-                    <field name="amount_with_taxes"/>
                 </group>
                 <group>
                     <field name="base_tva0_amount" string="H.T 0"/>
@@ -48,7 +47,6 @@
                 <field name="base_tva1_amount" string="H.T 1"/>
                 <field name="base_tva2_amount" string="H.T 2"/>
                 <field name="base_tva3_amount" string="H.T 3"/>
-                <field name="amount_with_taxes" string="T.T.C"/>
                 <field name="amount" invisible="True"/>
                 <field name="state" invisible="True"/>
                 <field name='company_id' options="{'no_create': True}" groups="base.group_multi_company" />
