@@ -6,6 +6,7 @@
         <field name="inherit_id" ref="account.view_account_move_filter"/>
         <field name="arch" type="xml">
             <field name="date" position="after">
+                <field name="account_move_template" string="Modèle"/>
                 <filter name="draft" string="Unposted" domain="[('state','=','draft')]" invisible="True"/>
             </field>
         </field>
