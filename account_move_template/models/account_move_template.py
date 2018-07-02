@@ -29,8 +29,6 @@ class AccountMoveTemplate(models.Model):
     journal_id = fields.Many2one('account.journal', string='Journal', required=True, default=_get_default_journal)
     journal_type = fields.Selection(related='journal_id.type', string="Type de journal", readonly=True)
     partner_id = fields.Many2one('res.partner')
-    type = fields.Selection([('simple', 'Modèle simple'), ('product', 'Généré depuis un produit')], default="simple",
-                            required=True)
 
     company_id = fields.Many2one('res.company', related='journal_id.company_id', string='Company', store=True,
                                  readonly=True, default=lambda self: self.env.user.company_id)
@@ -39,8 +37,6 @@ class AccountMoveTemplate(models.Model):
     company_currency_id = fields.Many2one('res.currency', related='company_id.currency_id', string="Company Currency",
                                           readonly=True, help='Utility field to express amount currency', store=True)
 
-    product = fields.Many2one('product.template', string='Product')
-
     line_ids = fields.One2many('account.move.line.template', 'account_move_template', string='Journal Items', copy=True)
 
     @api.onchange('partner_id')
@@ -48,42 +44,7 @@ class AccountMoveTemplate(models.Model):
         for line in self.line_ids:
             line.update({'partner_id': self.partner_id})
 
-    @api.onchange('type')
-    def onchange_type(self):
-        if self.type == 'simple':
-            self.line_ids = False
-            self.product = False
-
-    @api.onchange('product')
-    def onchange_product(self):
-        line_ids = []
-        if self.product and self.journal_id.type == 'purchase':
-            line_ids = self._generate_purchase_line_ids(0)
-
-        elif self.product and self.journal_id.type == 'sale':
-            line_ids = self._generate_sale_line_ids(0)
-
-        self.update({'line_ids': line_ids})
-
     def generate_line_ids(self, amount, base_amount_0, base_amount_1, base_amount_2, base_amount_3):
-        '''
-            Génère les lignes en fonction des données du modèle
-        '''
-        line_ids = []
-
-        if self.type == 'simple':
-            line_ids = self._generate_simple_line_ids(amount, base_amount_0, base_amount_1, base_amount_2, base_amount_3)
-
-        elif self.type == 'product':
-            if self.product and self.journal_id.type == 'purchase':
-                line_ids = self._generate_purchase_line_ids(amount)
-
-            elif self.product and self.journal_id.type == 'sale':
-                line_ids = self._generate_sale_line_ids(amount)
-
-        return line_ids
-
-    def _generate_simple_line_ids(self, amount, base_amount_0, base_amount_1, base_amount_2, base_amount_3):
         line_ids = []
         for line in self.line_ids:
 
@@ -105,14 +66,14 @@ class AccountMoveTemplate(models.Model):
             if line.tax_line_id:#Originator Taxe
                 tax_infos = line.tax_line_id.compute_all(price_unit,
                                                          currency=self.currency_id,
-                                                         quantity=1.0, product=self.product, partner=None)
+                                                         quantity=1.0, product=None, partner=None)
                 if len(tax_infos['taxes']) > 0:
                     debit_credit_amount = tax_infos['taxes'][0].get('amount')
 
             if line.tax_ids:#Taxes
                 tax_infos = line.tax_ids.compute_all(price_unit,
                                                      currency=self.currency_id,
-                                                     quantity=1.0, product=self.product, partner=None)
+                                                     quantity=1.0, product=None, partner=None)
                 debit_credit_amount = tax_infos['total_excluded']
 
             if debit_credit_amount != 0:
@@ -127,91 +88,6 @@ class AccountMoveTemplate(models.Model):
                     'credit': debit_credit_amount if line.debit_credit == 'credit' else 0,
                 })))
         return line_ids
-
-    def _generate_purchase_line_ids(self, amount):
-        line_ids = []
-        tax_infos = self.product.supplier_taxes_id.compute_all(amount, currency=self.currency_id,
-                                                               quantity=1.0, product=self.product, partner=None)
-
-        # Ligne de l'article au crédit
-        account_id = self.product.property_account_expense_id
-        if account_id is False or len(account_id) == 0:
-            account_id = self.product.categ_id.property_account_expense_categ_id
-        line_ids.append((0, 0, ({
-            'account_move_template': self.id,
-            'partner_id': self.partner_id,
-            'name': self.product.display_name,
-            'account_id': account_id.id,
-            'debit': 0,
-            'credit': tax_infos['total_excluded'],
-        })))
-
-        # Ligne de tax au crédit
-        if len(tax_infos['taxes']) > 0:
-            line_ids.append((0, 0, ({
-                'account_move_template': self.id,
-                'partner_id': self.partner_id,
-                'name': tax_infos['taxes'][0].get('name'),
-                'account_id': tax_infos['taxes'][0].get('account_id'),
-                'tax_line_id': tax_infos['taxes'][0].get('id'),
-                'debit': 0,
-                'credit': tax_infos['taxes'][0].get('amount'),
-            })))
-
-        # Ligne du vendor au débit
-        line_ids.append((0, 0, ({
-            'account_move_template': self.id,
-            'partner_id': self.partner_id,
-            'name': self.journal_id.default_debit_account_id.display_name,
-            'account_id': self.journal_id.default_debit_account_id,
-            'debit': tax_infos['total_included'],
-            'credit': 0,
-        })))
-
-        return line_ids
-
-    def _generate_sale_line_ids(self, amount):
-        line_ids = []
-        tax_infos = self.product.taxes_id.compute_all(amount, currency=self.currency_id, quantity=1.0,
-                                                      product=self.product, partner=None)
-
-        # Ligne de l'article au débit
-        account_id = self.product.property_account_income_id
-        if account_id is False or len(account_id) == 0:
-            account_id = self.product.categ_id.property_account_income_categ_id
-        line_ids.append((0, 0, ({
-            'account_move_template': self.id,
-            'partner_id': self.partner_id,
-            'name': self.product.display_name,
-            'account_id': account_id.id,
-            'debit': tax_infos['total_excluded'],
-            'credit': 0,
-        })))
-
-        # Ligne de tax au débit
-        if len(tax_infos['taxes']) > 0:
-            line_ids.append((0, 0, ({
-                'account_move_template': self.id,
-                'partner_id': self.partner_id,
-                'name': tax_infos['taxes'][0].get('name'),
-                'account_id': tax_infos['taxes'][0].get('account_id'),
-                'tax_line_id': tax_infos['taxes'][0].get('id'),
-                'debit': tax_infos['taxes'][0].get('amount'),
-                'credit': 0,
-            })))
-
-        # Ligne du client au crédit
-        line_ids.append((0, 0, ({
-            'account_move_template': self.id,
-            'partner_id': self.partner_id,
-            'name': self.journal_id.default_credit_account_id.display_name,
-            'account_id': self.journal_id.default_credit_account_id,
-            'debit': 0,
-            'credit': tax_infos['total_included'],
-        })))
-
-        return line_ids
-
 
 class AccountMoveLineTemplate(models.Model):
     _name = 'account.move.line.template'
@@ -251,8 +127,6 @@ class AccountMoveLineTemplate(models.Model):
 
     @api.onchange('account_id')
     def onchange_account_id(self):
-        if self.account_move_template.type == 'simple':
-            self.name = self.account_id.name
-
+        self.name = self.account_id.name
         self.partner_id = self.account_move_template.partner_id
         self.tax_ids = self.account_id.tax_ids

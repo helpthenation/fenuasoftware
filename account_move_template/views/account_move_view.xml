@@ -18,7 +18,6 @@
             <xpath expr="//sheet/group" position="inside">
                 <group>
                     <field name="account_move_template"/>
-                    <field name="account_move_template_type" invisible="True"/>
                 </group>
                 <group groups="base.group_no_one">
                     <field name="base_tva0_amount" string="H.T 0"/>
@@ -40,7 +39,6 @@
             <tree editable="bottom" decoration-info="state == 'draft'" string="Journal Entries">
                 <field name="date"/>
                 <field name="account_move_template"/>
-                <field name="account_move_template_type" invisible="True"/>
                 <field name="ref"/>
                 <field name="partner_id" readonly="True" groups="base.group_no_one"/>
                 <field name="base_tva0_amount" string="H.T 0"/>

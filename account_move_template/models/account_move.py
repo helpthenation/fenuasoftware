@@ -7,7 +7,6 @@ class AccountMove(models.Model):
     _inherit = 'account.move'
 
     account_move_template = fields.Many2one('account.move.template', 'Modèle')
-    account_move_template_type = fields.Selection(related='account_move_template.type', readonly=True)
     base_tva0_amount = fields.Monetary(default=0.0, string="H.T 0", currency_field='currency_id')
     base_tva1_amount = fields.Monetary(default=0.0, string="H.T 1", currency_field='currency_id')
     base_tva2_amount = fields.Monetary(default=0.0, string="H.T 2", currency_field='currency_id')
