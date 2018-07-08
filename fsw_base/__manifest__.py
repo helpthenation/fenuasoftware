@@ -8,7 +8,7 @@
     'author': "Fenua Software",
     'website': "https://fenuasoftware.com/",
     'category': 'Technical Settings',
-    'version': '0.1',
+    'version': '0.2',
     'depends': ['base', 'mail', 'calendar', 'board'],
     'data': [
         'data/on_update.xml',

@@ -3,7 +3,10 @@
     <t t-extend="UserMenu.Actions">
         <t t-jquery="li:eq(0)" t-operation="replace">
             <li>
-                <a target="_blank" href="https://www.fenuasoftware.com/slides/canal-des-partenaires-2">Documentation</a>
+                <a target="_blank" href="https://www.fenuasoftware.com/slides/canal-des-partenaires-2">Documentations</a>
+            </li>
+            <li>
+                <a target="_blank" href="https://fenuasoftware.thinkific.com/">Formations</a>
             </li>
         </t>
     </t>
