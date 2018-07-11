@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <t t-extend="UserMenu.Actions">
-        <t t-jquery="li:eq(0)" t-operation="replace">
+        <t t-jquery="li > a[data-menu='documentation']" t-operation="replace">
             <li>
                 <a target="_blank" href="https://www.fenuasoftware.com/slides/canal-des-partenaires-2">Documentations</a>
             </li>
@@ -9,16 +9,12 @@
                 <a target="_blank" href="https://fenuasoftware.thinkific.com/">Formations</a>
             </li>
         </t>
-    </t>
-    <t t-extend="UserMenu.Actions">
-        <t t-jquery="li:eq(1)" t-operation="replace">
+        <t t-jquery="li > a[data-menu='support']" t-operation="replace">
             <li>
                 <a target="_blank" href="https://www.fenuasoftware.com/helpdesk/support-1/submit">Support</a>
             </li>
         </t>
-    </t>
-    <t t-extend="UserMenu.Actions">
-        <t t-jquery="li:eq(4)" t-operation="replace">
+        <t t-jquery="li > a[data-menu='account']" t-operation="replace">
             <li>
                 <a target="_blank" href="https://fenuasoftware.com/web/login">Mon compte sur FenuaSoftw@re.com</a>
             </li>
