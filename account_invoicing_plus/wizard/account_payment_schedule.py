@@ -14,6 +14,8 @@ logger = logging.getLogger(__name__)
 class AccountPayment(models.Model):
     _inherit = "account.payment"
 
+    invoiced_schedule = fields.Many2one('account.invoice')
+
     def action_validate_and_schedule_payments(self):
         self.action_validate_invoice_payment()
         return {
@@ -24,6 +26,14 @@ class AccountPayment(models.Model):
             "context": {'active_id': self.id}
         }
 
+    @api.multi
+    def action_assign_invoiced_schedule(self):
+        for move_line in self.move_line_ids:
+            if move_line.account_id == self.invoiced_schedule.account_id:
+                self.invoiced_schedule.register_payment(move_line)
+                return True
+
+        raise UserError(_("No move line matching current payment!"))
 
 class AccountPaymentSchedule(models.TransientModel):
     _name = "account.payment.schedule"
@@ -37,6 +47,10 @@ class AccountPaymentSchedule(models.TransientModel):
     day_of_month = fields.Selection([('5', '5'), ('30', '30'), ], default='5', required=True)
     split_number = fields.Integer(required=True)
     start_this_month = fields.Boolean(default=False)
+
+    def action_test(self):
+        account_payment = self.env['account.payment'].browse(self._context['active_id'])
+        self.update({'invoices_payment_scheduled': (6, False, account_payment.invoice_ids)})
 
     def action_schedule_payments(self):
         if self.split_number == 0:
@@ -53,6 +67,7 @@ class AccountPaymentSchedule(models.TransientModel):
         account_payment = self.env['account.payment'].browse(self._context['active_id'])
         amount = self.amount / self.split_number
         count = 0
+        iteration = 1
         max_count = self.split_number
         while count < max_count:
             count += 1
@@ -84,7 +99,19 @@ class AccountPaymentSchedule(models.TransientModel):
                 else:
                     raise UserError(_("Day of month not recognize"))
 
+            # COMMUNICATION
+            iteration += 1
+            communication = account_payment.communication + "RGLT: " + str(iteration) + "/" + str(self.split_number)
+
+            #INVOICED_SCHEDULE
+            invoice = account_payment.invoice_ids[0]
+
             # RECORD
-            new_account_payment = account_payment.copy({'payment_date': payment_date, 'amount': amount})
+            new_account_payment = account_payment.copy({
+                'payment_date': payment_date,
+                'amount': amount,
+                'communication': communication,
+                'invoiced_schedule': invoice.id
+            })
             new_account_payment.post()
         return True
