@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from . import account, account_invoice, res_config_settings
+from . import account, account_invoice, invoice_report, res_config_settings

@@ -10,6 +10,16 @@
                 <field name="date_invoice" position="after">
                     <field name="period"/>
                 </field>
+                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='quantity']" position="replace">
+                    <field name="price_cost" invisible="True"/>
+                    <field name="raw_margin" invisible="True"/>
+                    <field name="margin_rate" invisible="True"/>
+                    <field name="marque_rate" invisible="True"/>
+                    <field name="multiplier" invisible="True"/>
+                </xpath>
+                <field name="residual" position="after">
+                    <field name="raw_margin"/>
+                </field>
             </field>
         </record>
 
