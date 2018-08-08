@@ -1,7 +1,18 @@
 # -*- coding: utf-8 -*-
 
 import random
+from datetime import date, timedelta
 from odoo import api, fields, models, _
+
+STATE = [
+    ('none', 'Non Member'),
+    ('canceled', 'Cancelled Member'),
+    ('old', 'Old Member'),
+    ('waiting', 'Waiting Member'),
+    ('invoiced', 'Invoiced Member'),
+    ('free', 'Free Member'),
+    ('paid', 'Paid Member'),
+]
 
 
 class MembershipInvoice(models.TransientModel):
@@ -72,6 +83,15 @@ class MembershipInscription(models.Model):
     name = fields.Char()
     date = fields.Datetime()
     member = fields.Many2one('res.partner')
+    membership_state = fields.Selection(STATE,
+                                        string='Current Membership Status', store=True,
+                                        help='It indicates the membership state.\n'
+                                             '-Non Member: A partner who has not applied for any membership.\n'
+                                             '-Cancelled Member: A member who has cancelled his membership.\n'
+                                             '-Old Member: A member whose membership date has expired.\n'
+                                             '-Waiting Member: A member who has applied for the membership and whose invoice is going to be created.\n'
+                                             '-Invoiced Member: A member whose invoice has been created.\n'
+                                             '-Paying member: A member who has paid the membership fee.')
 
     @api.model
     def check_code(self, code):
@@ -80,6 +100,7 @@ class MembershipInscription(models.Model):
         res = {}
         if len(results) == 1:
             member = results[0]
+            self.create(self.prepare_data(member))
             res = {
                 'name': member.name,
                 'membership_start': member.membership_state,
@@ -91,3 +112,12 @@ class MembershipInscription(models.Model):
                 'status': 'unknown',
             }
         return res
+
+    def prepare_data(self, member):
+        data = {
+            'name': '',
+            'date': fields.datetime.now(),
+            'member': member.id,
+            'membership_state': member.membership_state,
+        }
+        return data

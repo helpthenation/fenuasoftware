@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="membership_inscription_tree" model="ir.ui.view">
+        <field name="name">membership.inscription.tree</field>
+        <field name="model">membership.inscription</field>
+        <field name="arch" type="xml">
+            <tree string="Inscriptions"
+                  decoration-danger="membership_state in ('none','canceled', 'old')"
+                  decoration-bf="membership_state in ('none','canceled', 'old')"
+                  decoration-success="membership_state in ('waiting','invoiced','paid')"
+                  decoration-muted="membership_state in ('free')">
+                <field name="member"/>
+                <field name="date"/>
+                <field name="membership_state"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="action_membership_inscriptions" model="ir.actions.act_window">
+        <field name="name">Inscriptions</field>
+        <field name="res_model">membership.inscription</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to add a new Member
+            </p>
+            <p>
+                Odoo helps you easily track all activities related to a member:
+                Current Membership Status, Discussions and History of Membership, etc.
+            </p>
+        </field>
+    </record>
+
+    <menuitem name="Inscription" id="menu_inscription" sequence="0" parent="membership.menu_association" action="action_membership_inscriptions"/>
+</odoo>
