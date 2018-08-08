@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates xml:space="preserve">
+
+    <t t-name="membership_inscription_barcode">
+        <div class="o_membership_inscription_barcode_main_menu_container o_app_switcher_background">
+            <div class="o_membership_inscription_barcode_main_menu">
+                <div>
+                    <h3>Taper votre code + ENTER</h3>
+                    <input type="text" class="o_text_code" name="code"/>
+                </div>
+            </div>
+            <div class="o_membership_inscription_barcode_result hidden">
+                <h2>Bienvenue <span id="member_name">MEMBER_NAME</span></h2>
+
+                <div class="o_unknown hidden">
+                    <p>CODE INVALIDE</p>
+                </div>
+                <div class="o_none hidden">
+                    <p>AUCUN ABONNEMENT</p>
+                </div>
+                <div class="o_canceled hidden">
+                    <p>ABONNEMENT ANNULÉ</p>
+                </div>
+                <div class="o_old hidden">
+                    <p>ABONNEMENT TROP VIEUX</p>
+                </div>
+                <div class="o_waiting hidden">
+                    <p>ABONNEMENT EN ATTENTE DE FACTURATION</p>
+                </div>
+                <div class="o_invoiced hidden">
+                    <p>ABONNEMENT FACTURÉ NON RÉGLÉ</p>
+                </div>
+                <div class="o_free hidden">
+                    <p>MEMBRE GRATUIT</p>
+                </div>
+                <div class="o_paid hidden">
+                    <h4>L'ABONNNEMENT SE TERMINE LE <span id="membership_stop">MEMBERSHIP_STOP</span></h4>
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>

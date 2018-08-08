@@ -46,6 +46,7 @@ class Partner(models.Model):
     _inherit = 'res.partner'
 
     membership_barcode = fields.Char()
+    membership_inscriptions = fields.One2many('membership.inscription', 'member')
 
     def generate_membership_barcode(self):
         self.membership_barcode = "".join(random.sample("abcdefghijklmnopqrstuvwxyz01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()?", 12))
@@ -63,3 +64,30 @@ class Partner(models.Model):
                         member_line.date_to = datas.get('date_to')
 
         return invoice_list
+
+
+class MembershipInscription(models.Model):
+    _name = 'membership.inscription'
+
+    name = fields.Char()
+    date = fields.Datetime()
+    member = fields.Many2one('res.partner')
+
+    @api.model
+    def check_code(self, code):
+        domain = [('membership_barcode', '=', code)]
+        results = self.env['res.partner'].search(domain)
+        res = {}
+        if len(results) == 1:
+            member = results[0]
+            res = {
+                'name': member.name,
+                'membership_start': member.membership_state,
+                'membership_stop': member.membership_stop,
+                'status': member.membership_state,
+            }
+        else:
+            res = {
+                'status': 'unknown',
+            }
+        return res

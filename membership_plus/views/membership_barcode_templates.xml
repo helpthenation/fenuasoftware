@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="assets_backend" name="membership_inscription_barcode assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/membership_plus/static/src/js/membership_inscription_barcode.js"></script>
+                <link rel="stylesheet" href="/membership_plus/static/src/less/membership_inscription_barcode.less"/>
+            </xpath>
+        </template>
+    </data>
+</odoo>

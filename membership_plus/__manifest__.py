@@ -13,9 +13,14 @@
     'data': [
         'reports/membership_card_template.xml',
         'reports/membership_card_report.xml',
+        'views/membership_barcode_templates.xml',
+        'views/membership_barcode_views.xml',
         'views/membership_invoice_views.xml',
         'views/res_config_settings_views.xml',
         'views/templates.xml',
-        'wizard/membership_check_wizard.xml',
     ],
+    'qweb': [
+        "static/src/xml/membership_inscription_barcode.xml",
+    ],
+
 }
