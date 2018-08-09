@@ -7,7 +7,7 @@
             <div class="o_membership_inscription_barcode_main_menu">
                 <div>
                     <h3>Taper votre code + ENTER</h3>
-                    <input type="text" class="o_text_code" name="code"/>
+                    <input type="password" class="o_text_code" name="code"/>
                 </div>
             </div>
             <div class="o_membership_inscription_barcode_result hidden">
