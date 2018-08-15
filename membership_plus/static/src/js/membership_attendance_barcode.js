@@ -5,12 +5,12 @@ odoo.define('membership_plus.MainMenu', function (require) {
     var Widget = require('web.Widget');
     var Dialog = require('web.Dialog');
     var Session = require('web.session');
+    var QWeb = core.qweb;
+
 
     var _t = core._t;
 
     var MainMenu = Widget.extend({
-        template: 'membership_attendance_barcode',
-
         events: {
             "change .o_text_code": function (event) {
                 this.check_code($("input[name='code']").val());
@@ -28,9 +28,18 @@ odoo.define('membership_plus.MainMenu', function (require) {
 
         start: function () {
             var self = this;
-            return this._super().then(function () {
-                $('.o_text_code').focus();
+            self.session = Session;
+            var def = this._rpc({
+                model: 'res.company',
+                method: 'search_read',
+                args: [[['id', '=', this.session.company_id]], ['name']],
+            }).then(function (companies) {
+                self.company_name = companies[0].name;
+                self.company_image_url = self.session.url('/web/image', {model: 'res.company', id: self.session.company_id, field: 'logo',});
+                self.$el.html(QWeb.render("membership_attendance_barcode", {widget: self}));
             });
+            return $.when(def, this._super.apply(this, arguments));
+
         },
 
         destroy: function () {

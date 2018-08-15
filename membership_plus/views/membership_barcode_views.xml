@@ -3,6 +3,7 @@
     <record id="membership_barcode_attendance_action_main_menu" model="ir.actions.client">
         <field name="name">S'inscrire</field>
         <field name="tag">membership_barcode_attendance</field>
+        <field name="target">fullscreen</field>
     </record>
 
     <menuitem
