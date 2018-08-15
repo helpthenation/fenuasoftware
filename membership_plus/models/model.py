@@ -60,7 +60,8 @@ class Partner(models.Model):
     membership_attendances = fields.One2many('membership.attendance', 'member')
 
     def generate_membership_barcode(self):
-        self.membership_barcode = "".join(random.sample("abcdefghijklmnopqrstuvwxyz01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()?", 12))
+        #self.membership_barcode = "".join(random.sample("abcdefghijklmnopqrstuvwxyz01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()?", 12))
+        self.membership_barcode = "".join(random.sample("01234567890", 4))
         print(self.membership_barcode)
 
     @api.multi

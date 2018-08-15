@@ -21,7 +21,7 @@
                 <field name="free_member" position="after">
                     <label for="membership_barcode"/>
                     <div>
-                        <field name="membership_barcode" password="True" class="oe_inline"/>
+                        <field name="membership_barcode" class="oe_inline"/>
                         <button type="object" name="generate_membership_barcode" string="Générer code" icon="fa-cogs" class="oe_inline oe_link"/>
                     </div>
                 </field>
