@@ -37,9 +37,17 @@ odoo.define('membership_plus.MainMenu', function (require) {
                 self.company_name = companies[0].name;
                 self.company_image_url = self.session.url('/web/image', {model: 'res.company', id: self.session.company_id, field: 'logo',});
                 self.$el.html(QWeb.render("membership_attendance_barcode", {widget: self}));
+                self.start_clock();
             });
             return $.when(def, this._super.apply(this, arguments));
+        },
 
+        start_clock: function () {
+            this.clock_start = setInterval(function () {
+                this.$(".o_membership_attendance_clock").text(new Date().toLocaleTimeString(navigator.language, {hour: '2-digit', minute: '2-digit'}));
+            }, 500);
+            // First clock refresh before interval to avoid delay
+            this.$(".o_membership_attendance_clock").text(new Date().toLocaleTimeString(navigator.language, {hour: '2-digit', minute: '2-digit'}));
         },
 
         destroy: function () {
