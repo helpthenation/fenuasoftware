@@ -13,7 +13,7 @@
     'data': [
         'reports/membership_card_template.xml',
         'reports/membership_card_report.xml',
-        'views/membership_barcode_templates.xml',
+        'views/membership_attendance_templates.xml',
         'views/membership_barcode_views.xml',
         'views/membership_invoice_views.xml',
         'views/membership_views.xml',
@@ -21,7 +21,7 @@
         'views/templates.xml',
     ],
     'qweb': [
-        "static/src/xml/membership_inscription_barcode.xml",
+        "static/src/xml/membership_attendance_barcode.xml",
     ],
 
 }

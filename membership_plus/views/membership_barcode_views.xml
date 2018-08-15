@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="membership_barcode_inscription_action_main_menu" model="ir.actions.client">
-        <field name="name">Inscription</field>
-        <field name="tag">membership_barcode_inscription</field>
+    <record id="membership_barcode_attendance_action_main_menu" model="ir.actions.client">
+        <field name="name">S'inscrire</field>
+        <field name="tag">membership_barcode_attendance</field>
     </record>
 
     <menuitem
-            id="membership_barcode_inscription_menu"
-            action="membership_barcode_inscription_action_main_menu"
+            id="membership_barcode_attendance_menu"
+            action="membership_barcode_attendance_action_main_menu"
             icon="fa-barcode"
             web_icon="membership_plus,static/src/img/icon.png"
             sequence="50"/>

@@ -2,15 +2,15 @@
 
 <templates xml:space="preserve">
 
-    <t t-name="membership_inscription_barcode">
-        <div class="o_membership_inscription_barcode_main_menu_container o_app_switcher_background">
-            <div class="o_membership_inscription_barcode_main_menu">
+    <t t-name="membership_attendance_barcode">
+        <div class="o_membership_attendance_barcode_main_menu_container o_app_switcher_background">
+            <div class="o_membership_attendance_barcode_main_menu">
                 <div>
                     <h3>Taper votre code + ENTER</h3>
                     <input type="password" class="o_text_code" name="code"/>
                 </div>
             </div>
-            <div class="o_membership_inscription_barcode_result hidden">
+            <div class="o_membership_attendance_barcode_result hidden">
                 <h2>Bienvenue <span id="member_name">MEMBER_NAME</span></h2>
 
                 <div class="o_unknown hidden">

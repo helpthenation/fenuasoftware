@@ -9,7 +9,7 @@ odoo.define('membership_plus.MainMenu', function (require) {
     var _t = core._t;
 
     var MainMenu = Widget.extend({
-        template: 'membership_inscription_barcode',
+        template: 'membership_attendance_barcode',
 
         events: {
             "change .o_text_code": function (event) {
@@ -40,17 +40,17 @@ odoo.define('membership_plus.MainMenu', function (require) {
         check_code: function (code) {
             var self = this;
             return this._rpc({
-                model: 'membership.inscription',
+                model: 'membership.attendance',
                 method: 'check_code',
                 args: [code],
             }).then(function (result) {
                 console.log(result);
 
-                $('.o_membership_inscription_barcode_main_menu').addClass('hidden');
+                $('.o_membership_attendance_barcode_main_menu').addClass('hidden');
 
                 $('#member_name').text(result['name']);
                 $('#membership_stop').text(result['membership_stop']);
-                $('.o_membership_inscription_barcode_result').removeClass('hidden');
+                $('.o_membership_attendance_barcode_result').removeClass('hidden');
                 switch (result['status']) {
                     case 'unknown':
                         $('.o_unknown').removeClass('hidden');
@@ -85,7 +85,7 @@ odoo.define('membership_plus.MainMenu', function (require) {
         },
 
         reset_ui: function () {
-            $('.o_membership_inscription_barcode_result').addClass('hidden');
+            $('.o_membership_attendance_barcode_result').addClass('hidden');
 
             $('.o_text_code').val('')
             $('.o_unknown').addClass('hidden');
@@ -97,11 +97,11 @@ odoo.define('membership_plus.MainMenu', function (require) {
             $('.o_free').addClass('hidden');
             $('.o_paid').addClass('hidden');
             $('.o_text_code').focus();
-            $('.o_membership_inscription_barcode_main_menu').removeClass('hidden')
+            $('.o_membership_attendance_barcode_main_menu').removeClass('hidden')
         },
     });
 
-    core.action_registry.add('membership_barcode_inscription', MainMenu);
+    core.action_registry.add('membership_barcode_attendance', MainMenu);
 
     return {
         MainMenu: MainMenu,

@@ -57,7 +57,7 @@ class Partner(models.Model):
     _inherit = 'res.partner'
 
     membership_barcode = fields.Char()
-    membership_inscriptions = fields.One2many('membership.inscription', 'member')
+    membership_attendances = fields.One2many('membership.attendance', 'member')
 
     def generate_membership_barcode(self):
         self.membership_barcode = "".join(random.sample("abcdefghijklmnopqrstuvwxyz01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()?", 12))
@@ -77,8 +77,9 @@ class Partner(models.Model):
         return invoice_list
 
 
-class MembershipInscription(models.Model):
-    _name = 'membership.inscription'
+class MembershipAttendance(models.Model):
+    _name = 'membership.attendance'
+    _description = 'Fréquentation'
 
     name = fields.Char()
     date = fields.Datetime()
