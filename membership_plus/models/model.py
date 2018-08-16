@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import random
-from datetime import date, timedelta
+from dateutil.relativedelta import relativedelta
+from datetime import date
 from odoo import api, fields, models, _
 
 STATE = [
@@ -26,6 +27,16 @@ class MembershipInvoice(models.TransientModel):
     def onchange_product_id(self):
         if self.product_id:
             self.membership_counter = self.product_id.membership_counter
+        self.date_from = fields.date.today()
+        self.onchange_date_from()
+
+    @api.onchange('date_from')
+    def onchange_date_from(self):
+        if self.product_id.membership_recurring_interval:
+            if self.product_id.membership_recurring_interval == 'month':
+                self.date_to = fields.Date.to_string(fields.Date.from_string(self.date_from) + relativedelta(months=+1, days=-1))
+            elif self.product_id.membership_recurring_interval == 'year':
+                self.date_to = fields.Date.to_string(fields.Date.from_string(self.date_from) + relativedelta(years=+1, days=-1))
 
     @api.multi
     def membership_invoice(self):

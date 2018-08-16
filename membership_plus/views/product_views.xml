@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <field name="list_price" position="before">
                 <field name="membership_counter"/>
+                <field name="membership_recurring_interval"/>
             </field>
         </field>
     </record>
