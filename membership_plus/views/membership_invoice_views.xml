@@ -7,6 +7,9 @@
             <field name="arch" type="xml">
                 <group position="after">
                     <group>
+                        <field name="membership_counter"/>
+                    </group>
+                    <group>
                         <field name="date_from"/>
                         <field name="date_to"/>
                     </group>
@@ -29,11 +32,15 @@
                     <attribute name="readonly">0</attribute>
                 </field>
                 <xpath expr="//field[@name='member_lines']/tree/field[@name='state']" position="after">
+                    <field name="display_warning"/>
+                    <field name="membership_counter"/>
                     <field name="date_from"/>
                     <field name="date_to"/>
+                    <button icon="fas fa-exclamation-triangle" string="Avoir des dates avec un compteur signifie qu'au terme du compteur, l'abonnement restera actif jusqu'à la fin de la période." attrs="{'invisible':[('display_warning','=', False)]}"/>
                 </xpath>
                 <xpath expr="//field[@name='member_lines']/form/group" position="inside">
                     <group>
+                        <field name="membership_counter"/>
                         <field name="date_from"/>
                         <field name="date_to"/>
                     </group>

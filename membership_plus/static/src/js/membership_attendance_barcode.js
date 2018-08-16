@@ -61,8 +61,6 @@ odoo.define('membership_plus.MainMenu', function (require) {
                 method: 'check_code',
                 args: [code],
             }).then(function (result) {
-                console.log(result);
-
                 $('.o_membership_attendance_barcode_main_menu').addClass('hidden');
 
                 $('#member_name').text(result['name']);
@@ -92,6 +90,13 @@ odoo.define('membership_plus.MainMenu', function (require) {
                         break;
                     case 'paid':
                         $('.o_paid').removeClass('hidden');
+                        if (result['membership_counter'] >= 1) {
+                            $('.o_counter').removeClass('hidden');
+                            $('#membership_counter').text(result['membership_counter']);
+                        } else {
+                            $('.o_period').removeClass('hidden');
+                        }
+
                         break;
                 }
 
@@ -113,6 +118,8 @@ odoo.define('membership_plus.MainMenu', function (require) {
             $('.o_invoiced').addClass('hidden');
             $('.o_free').addClass('hidden');
             $('.o_paid').addClass('hidden');
+            $('.o_counter').addClass('hidden');
+            $('.o_period').addClass('hidden');
             $('.o_text_code').focus();
             $('.o_membership_attendance_barcode_main_menu').removeClass('hidden')
         },

@@ -20,6 +20,12 @@ class MembershipInvoice(models.TransientModel):
 
     date_from = fields.Date(string='From')
     date_to = fields.Date(string='To')
+    membership_counter = fields.Integer(string="Compteur")
+
+    @api.onchange('product_id')
+    def onchange_product_id(self):
+        if self.product_id:
+            self.membership_counter = self.product_id.membership_counter
 
     @api.multi
     def membership_invoice(self):
@@ -29,6 +35,7 @@ class MembershipInvoice(models.TransientModel):
                 'amount': self.member_price,
                 'date_from': self.date_from,
                 'date_to': self.date_to,
+                'membership_counter': self.membership_counter,
             }
         invoice_list = self.env['res.partner'].browse(self._context.get('active_ids')).create_membership_invoice(datas=datas)
 
@@ -51,6 +58,16 @@ class MembershipLine(models.Model):
 
     date_from = fields.Date(string='From', readonly=False)
     date_to = fields.Date(string='To', readonly=False)
+    membership_counter = fields.Integer(string="Compteur")
+    display_warning = fields.Boolean(compute='_compute_display_warning')
+
+    @api.depends('date_from', 'date_to', 'membership_counter')
+    def _compute_display_warning(self):
+        for this in self:
+            if this.date_from is not False and this.date_to is not False and this.membership_counter:
+                this.display_warning = True
+            else:
+                this.display_warning = False
 
 
 class Partner(models.Model):
@@ -60,7 +77,7 @@ class Partner(models.Model):
     membership_attendances = fields.One2many('membership.attendance', 'member')
 
     def generate_membership_barcode(self):
-        #self.membership_barcode = "".join(random.sample("abcdefghijklmnopqrstuvwxyz01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()?", 12))
+        # self.membership_barcode = "".join(random.sample("abcdefghijklmnopqrstuvwxyz01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()?", 12))
         self.membership_barcode = "".join(random.sample("01234567890", 4))
         print(self.membership_barcode)
 
@@ -74,6 +91,7 @@ class Partner(models.Model):
                     for member_line in member_lines:
                         member_line.date_from = datas.get('date_from')
                         member_line.date_to = datas.get('date_to')
+                        member_line.membership_counter = datas.get('membership_counter')
 
         return invoice_list
 
@@ -100,19 +118,28 @@ class MembershipAttendance(models.Model):
         domain = [('membership_barcode', '=', code)]
         results = self.env['res.partner'].search(domain)
         res = {}
+        membership_counter = 0
         if len(results) == 1:
             member = results[0]
+            for mline in member.member_lines:
+                if mline.membership_counter > 0:
+                    mline.update({'membership_counter': mline.membership_counter - 1})
+                    membership_counter = mline.membership_counter
+
             self.create(self.prepare_data(member))
             res = {
                 'name': member.name,
-                'membership_start': member.membership_state,
+                'membership_start': member.membership_start,
                 'membership_stop': member.membership_stop,
+                'membership_counter': membership_counter,
                 'status': member.membership_state,
             }
+            member._compute_membership_state()
         else:
             res = {
                 'status': 'unknown',
             }
+
         return res
 
     def prepare_data(self, member):

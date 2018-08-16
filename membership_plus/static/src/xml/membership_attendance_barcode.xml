@@ -37,7 +37,8 @@
                     <p>MEMBRE GRATUIT</p>
                 </div>
                 <div class="o_paid hidden">
-                    <h4>L'ABONNNEMENT SE TERMINE LE <span id="membership_stop">MEMBERSHIP_STOP</span></h4>
+                    <h4 class="o_period hidden">L'ABONNNEMENT SE TERMINE LE <span id="membership_stop">MEMBERSHIP_STOP</span></h4>
+                    <h4 class="o_counter hidden">IL VOUS RESTE <span id="membership_counter">MEMBERSHIP_COUNTER</span> SUR VOTRE CARTE</h4>
                 </div>
             </div>
             <div class="o_membership_attendance_clock"></div>

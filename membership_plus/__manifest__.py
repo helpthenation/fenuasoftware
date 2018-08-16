@@ -17,6 +17,7 @@
         'views/membership_barcode_views.xml',
         'views/membership_invoice_views.xml',
         'views/membership_views.xml',
+        'views/product_views.xml',
         'views/res_config_settings_views.xml',
         'views/templates.xml',
     ],
