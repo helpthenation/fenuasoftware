@@ -1,14 +1,23 @@
 #!/bin/sh
 # Initialise l'environnement de production pour Odoo
 
-echo "Installing Odoo - Enterprise"
-git clone -b 11.0 https://github.com/odoo/enterprise.git
+echo "Installing Odoo - Enterprise : MDP : 34yRnE@@"
+git clone -b 11.0 https://fenuasoftware@github.com/odoo/enterprise.git
 
 echo "Installing fenuasoftware"
 git clone -b 11.0 https://heifara@bitbucket.org/fenuasoftware/fenuasoftware.git
 
+echo "Installing fenuasoftware_ee"
+git clone -b 11.0 git clone https://heifara@bitbucket.org/fenuasoftware/fenuasoftware_ee.git
+
 echo "Installing notfenuasoftware"
 git clone -b 11.0 https://heifara@bitbucket.org/fenuasoftware/notfenuasoftware.git
+
+echo "Installing Acespritech"
+git clone -b 11.0 https://heifara@bitbucket.org/fenuasoftware/acespritech.git
+
+echo "Installing 73lines"
+git clone -b 11.0 https://heifara@bitbucket.org/fenuasoftware/73lines.git
 
 echo "Installing odoolog"
 sudo ln -s /opt/odoo/fenuasoftware/odoolog.sh /usr/local/bin/odoolog
@@ -48,4 +57,8 @@ sudo pip3 install pyOpenSSL==16.2.0
 
 sudo pip3 install num2words xlwt
 sudo pip3 install phonenumbers
+sudo pip3 install vobject qrcode
+sudo apt install libldap2-dev libsasl2-dev
+sudo pip3 install pyldap
+
 
