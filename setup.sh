@@ -2,25 +2,19 @@
 # Initialise l'environnement de production pour Odoo
 
 echo "Installing Odoo - Enterprise"
-git clone https://Heifara@github.com/odoo/enterprise.git
+git clone -b 11.0 https://github.com/odoo/enterprise.git
 
 echo "Installing fenuasoftware"
-git clone https://Heifara@github.com/Heifara/fenuasoftware.git
+git clone -b 11.0 https://heifara@bitbucket.org/fenuasoftware/fenuasoftware.git
 
 echo "Installing notfenuasoftware"
-git clone https://Heifara@github.com/Heifara/notfenuasoftware.git
+git clone -b 11.0 https://heifara@bitbucket.org/fenuasoftware/notfenuasoftware.git
 
 echo "Installing odoolog"
-chmod 777 /home/admin/fenuasoftware/odoolog.sh
-sudo ln -s /home/admin/fenuasoftware/odoolog.sh /usr/local/bin/odoolog
+sudo ln -s /opt/odoo/fenuasoftware/odoolog.sh /usr/local/bin/odoolog
 
 echo "Installing odooalldb"
-chmod 777 /home/admin/fenuasoftware/odooalldb.sh
-sudo ln -s /home/admin/fenuasoftware/odooall.sh /usr/local/bin/odooall
-
-echo "Installing odooupgrade"
-chmod 777 /home/admin/fenuasoftware/odooupgrade.sh
-sudo ln -s /home/admin/fenuasoftware/odooupgrade.sh /usr/local/bin/odooupgrade
+sudo ln -s /opt/odoo/fenuasoftware/odooall.sh /usr/local/bin/odooall
 
 echo "Installing Gdebi"
 sudo apt-get install gdebi
