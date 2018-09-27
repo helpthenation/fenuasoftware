@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+        <record id="pos_session_view_inherit_view" model="ir.ui.view">
+            <field name="name">pos.session.inherit.view</field>
+            <field name="model">pos.session</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_session_form"/>
+            <field name="arch" type="xml">
+                <button name="action_pos_session_validate" position="attributes">
+                    <attribute name="confirm">Êtes vous certain de vouloir cloturer la session et poster les écritures en comptabilités ?</attribute>
+                </button>
+                <xpath expr="//button[@name='action_pos_session_closing_control'][2]" position="attributes">
+                    <attribute name="confirm">Êtes vous certain de vouloir cloturer la session et poster les écritures en comptabilités ?</attribute>
+                </xpath>
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button class="oe_stat_button" name="point_of_sale.act_pos_session_orders" type="action" icon="fa-level-down">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_text">
+                                <field name="order_count"/>
+                            </span>
+                            <span class="o_stat_text">Commandes</span>
+                        </div>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

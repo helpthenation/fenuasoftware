@@ -1,26 +1,29 @@
 #!/bin/sh
 # Initialise l'environnement de production pour Odoo
 
-echo "Installing Odoo - Enterprise"
-git clone https://Heifara@github.com/odoo/enterprise.git
+echo "Installing Odoo - Enterprise : MDP : 34yRnE@@"
+git clone -b 11.0 https://fenuasoftware@github.com/odoo/enterprise.git
 
 echo "Installing fenuasoftware"
-git clone https://Heifara@github.com/Heifara/fenuasoftware.git
+git clone -b 11.0 https://heifara@bitbucket.org/fenuasoftware/fenuasoftware.git
+
+echo "Installing fenuasoftware_ee"
+git clone -b 11.0 git clone https://heifara@bitbucket.org/fenuasoftware/fenuasoftware_ee.git
 
 echo "Installing notfenuasoftware"
-git clone https://Heifara@github.com/Heifara/notfenuasoftware.git
+git clone -b 11.0 https://heifara@bitbucket.org/fenuasoftware/notfenuasoftware.git
+
+echo "Installing Acespritech"
+git clone -b 11.0 https://heifara@bitbucket.org/fenuasoftware/acespritech.git
+
+echo "Installing 73lines"
+git clone -b 11.0 https://heifara@bitbucket.org/fenuasoftware/73lines.git
 
 echo "Installing odoolog"
-chmod 777 /home/admin/fenuasoftware/odoolog.sh
-sudo ln -s /home/admin/fenuasoftware/odoolog.sh /usr/local/bin/odoolog
+sudo ln -s /opt/odoo/fenuasoftware/odoolog.sh /usr/local/bin/odoolog
 
 echo "Installing odooalldb"
-chmod 777 /home/admin/fenuasoftware/odooalldb.sh
-sudo ln -s /home/admin/fenuasoftware/odooall.sh /usr/local/bin/odooall
-
-echo "Installing odooupgrade"
-chmod 777 /home/admin/fenuasoftware/odooupgrade.sh
-sudo ln -s /home/admin/fenuasoftware/odooupgrade.sh /usr/local/bin/odooupgrade
+sudo ln -s /opt/odoo/fenuasoftware/odooall.sh /usr/local/bin/odooall
 
 echo "Installing Gdebi"
 sudo apt-get install gdebi
@@ -54,4 +57,8 @@ sudo pip3 install pyOpenSSL==16.2.0
 
 sudo pip3 install num2words xlwt
 sudo pip3 install phonenumbers
+sudo pip3 install vobject qrcode
+sudo apt install libldap2-dev libsasl2-dev
+sudo pip3 install pyldap
+
 
