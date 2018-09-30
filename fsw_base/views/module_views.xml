@@ -11,6 +11,7 @@
                 <filter name="Fenua Soft@re" domain="[('author', 'ilike', 'fenua soft')]"/>
                 <filter name="Odoo Community Association" domain="[('author', 'ilike', 'OCA')]"/>
                 <separator/>
+                <filter name="IT-Projects LLC" domain="[('author', 'ilike', 'IT-Projects LLC')]"/>
                 <filter name="73Lines" domain="[('author', 'ilike', '73lines')]"/>
                 <filter name="Acespritech Solutions Pvt. Ltd." domain="[('author', 'ilike', 'Acespritech')]"/>
                 <filter name="MuK IT" domain="[('author', 'ilike', 'MuK')]"/>
