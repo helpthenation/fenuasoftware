@@ -36,6 +36,14 @@ class CalendarEvent(models.Model):
     def _get_partner_details(self):
         for event in self:
             event.partner_details = ""
-            for partner_id in event.partner_ids:
-                event.partner_details += (partner_id.name if partner_id.name else "") + " " + (str(partner_id.mobile) if partner_id.mobile else "") + " " + (str(partner_id.birthdate) if partner_id.birthdate else "")
-                event.partner_details += ", "
+            hide_user_in_calendar_event = self.env['ir.config_parameter'].sudo().get_param('calendar_plus.hide_user_in_calendar_event')
+            if hide_user_in_calendar_event:
+                for partner_id in event.partner_ids:
+                    is_a_user = self.env['res.users'].search_count([('partner_id', '=', partner_id.id)])
+                    if is_a_user == 0:
+                        event.partner_details += (partner_id.name if partner_id.name else "") + " " + (str(partner_id.mobile) if partner_id.mobile else "") + " " + (str(partner_id.birthdate) if partner_id.birthdate else "")
+                        event.partner_details += ", "
+            else:
+                for partner_id in event.partner_ids:
+                    event.partner_details += (partner_id.name if partner_id.name else "") + " " + (str(partner_id.mobile) if partner_id.mobile else "") + " " + (str(partner_id.birthdate) if partner_id.birthdate else "")
+                    event.partner_details += ", "

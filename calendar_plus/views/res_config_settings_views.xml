@@ -11,17 +11,6 @@
                         <div class="row mt16 o_settings_container">
                             <div class="col-xs-12 col-md-6 o_setting_box">
                                 <div class="o_setting_left_pane">
-                                    <field name="module_calendar_display_mac5"/>
-                                </div>
-                                <div class="o_setting_right_pane">
-                                    <label for="module_calendar_display_mac5" class="o_form_label"/>
-                                    <div class="text-muted">
-                                        Affiche le nom des participants dans les événements de calendrier
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-md-6 o_setting_box">
-                                <div class="o_setting_left_pane">
                                     <field name="module_web_calendar_config_mac5"/>
                                 </div>
                                 <div class="o_setting_right_pane">
@@ -31,7 +20,17 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="hide_user_in_calendar_event"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="hide_user_in_calendar_event" class="o_form_label"/>
+                                    <div class="text-muted">
+                                        Dans les événements de calendrier, le nom des utilisateurs ne s'affiche pas.
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
