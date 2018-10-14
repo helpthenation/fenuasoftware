@@ -38,7 +38,11 @@ class AccountInvoice(models.Model):
 class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"
 
-    price_cost = fields.Float(compute="_compute_price_cost", store=True)
+    def _default_price_cost(self):
+        if self.product_id:
+            self.price_cost = self.product_id.standard_price
+
+    price_cost = fields.Float(default=_default_price_cost)
     raw_margin = fields.Float(compute="_compute_margin",
                               store=True,
                               help="La marge brute correspond à la différente entre le prix de vente HT et le prix d’achat HT des marchandises vendues. Formule : Prix de vente HT - Prix d’achat HT = Marge Brute HT")
@@ -51,11 +55,9 @@ class AccountInvoiceLine(models.Model):
     multiplier = fields.Float(compute="_compute_margin", store=True, string="Coefficient multiplicateur",
                               help="De nombreux commerçants utilisent le coefficient multiplicateur pour déterminer leur prix de vente TTC à partir du prix d’achat HT de leurs marchandises.")
 
-    @api.depends('product_id')
-    def _compute_price_cost(self):
-        for this in self:
-            if this.product_id:
-                this.price_cost = this.product_id.standard_price
+    @api.onchange('product_id')
+    def _assign_standard_price(self):
+        self._default_price_cost()
 
     @api.depends('price_unit', 'quantity', 'price_cost')
     def _compute_margin(self):
