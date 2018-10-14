@@ -35,7 +35,7 @@ class AccountInvoice(models.Model):
                 this.raw_margin += invoice_line.raw_margin
 
 
-class AccountInvoice(models.Model):
+class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"
 
     price_cost = fields.Float(compute="_compute_price_cost", store=True)
