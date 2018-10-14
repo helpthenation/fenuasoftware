@@ -9,18 +9,18 @@
     'website': "https://fenuasoftware.com/",
     'category': 'Technical Settings',
     'version': '0.2',
-    'depends': ['base', 'mail', 'calendar', 'board'],
+    'auto_install': True,
+    'depends': ['web', 'base', 'mail'],
     'data': [
         'data/on_update.xml',
         'security/ir_model_access.xml',
         'views/base_menu.xml',
         'views/mail_template_views.xml',
-        'views/mail_templates.xml',
         'views/module_views.xml',
         'views/res_config_settings_views.xml',
         'views/webclient_templates.xml',
     ],
     'qweb': [
-        "static/src/xml/*.xml",
+        "static/src/xml/base.xml",
     ],
 }

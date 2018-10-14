@@ -1,185 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="res_config_settings_view_form" model="ir.ui.view">
-        <field name="name">res.config.settings.view.form.inherit.fenuasoftware</field>
-        <field name="model">res.config.settings</field>
-        <field name="priority" eval="100"/>
-        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//div[hasclass('settings')]" position="inside">
-                <div class="app_settings_block" data-string="Fenua Softw@re" data-key="fsw_base">
-                    <div id="fenuasoftware">
-                        <div id="account_invoicing_plus">
-                            <h2>Facturation +</h2>
-                            <div class="row mt16 o_settings_container">
-                                <div class="col-xs-12 col-md-6 o_setting_box">
-                                    <div class="o_setting_left_pane">
-                                        <field name="module_account_invoicing_plus"/>
-                                    </div>
-                                    <div class="o_setting_right_pane">
-                                        <label for="module_account_invoicing_plus" class="o_form_label"/>
-                                        <div class="text-muted">
-                                            Installe le module Facturation + qui apporte de nouvelle fonctionnalitées.
-                                        </div>
+    <data>
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.fenuasoftware</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="100"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div class="app_settings_block" data-string="Fenua Software" string="Fenua Software" data-key="fsw_base">
+                        <h2>Facturation+</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-6 o_setting_box" title="Ajoute des fonctionnalités liée à la facturation et à la comptabilité">
+                                <div class="o_setting_left_pane">
+                                    <field name="module_account_invoicing_plus"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_account_invoicing_plus"/>
+                                    <div class="text-muted">
+                                        Ajoute des fonctionnalités liée à la facturation et à la comptabilité
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div id="calendar_plus">
-                            <h2>Calendrier +</h2>
-                            <div class="row mt16 o_settings_container">
-                                <div class="col-xs-12 col-md-6 o_setting_box">
-                                    <div class="o_setting_left_pane">
-                                        <field name="module_calendar_plus"/>
-                                    </div>
-                                    <div class="o_setting_right_pane">
-                                        <label for="module_calendar_plus" class="o_form_label"/>
-                                        <div class="text-muted">
-                                            Installe le module Calendrier + qui apporte de nouvelle fonctionnalitées.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="fsw_l10n_pf">
-                            <h2>Comptabilité</h2>
-                            <div class="row mt16 o_settings_container">
-                                <div class="col-xs-12 col-md-6 o_setting_box">
-                                    <div class="o_setting_left_pane">
-                                        <field name="module_l10n_pf"/>
-                                    </div>
-                                    <div class="o_setting_right_pane">
-                                        <label string="Polynésie Française - Comptabilité" class="o_form_label"/>
-                                        <div class="text-muted">
-                                            Installer le module de comptabilité de la Polynésie Française avec les 3 TVA et la devise en XPF
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-md-6 o_setting_box">
-                                    <div class="o_setting_left_pane">
-                                        <field name="module_l10n_pf_hr_payroll"/>
-                                    </div>
-                                    <div class="o_setting_right_pane">
-                                        <label string="Polynésie Française - Paie" class="o_form_label"/>
-                                        <div class="text-muted">
-                                            Installer le module de gestion de paie en Polynésie Française
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="contacts_plus">
-                            <h2>Contact +</h2>
-                            <div class="row mt16 o_settings_container">
-                                <div class="col-xs-12 col-md-6 o_setting_box">
-                                    <div class="o_setting_left_pane">
-                                        <field name="module_contacts_plus"/>
-                                    </div>
-                                    <div class="o_setting_right_pane">
-                                        <label for="module_contacts_plus" class="o_form_label"/>
-                                        <div class="text-muted">
-                                            Installe le module Contact + qui apporte de nouvelle fonctionnalitées.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="crm_plus">
-                            <h2>CRM +</h2>
-                            <div class="row mt16 o_settings_container">
-                                <div id="crm_plus_infos" class="col-xs-12 col-md-6 o_setting_box">
-                                    <div class="o_setting_left_pane">
-                                        <field name="module_crm_plus"/>
-                                    </div>
-                                    <div class="o_setting_right_pane">
-                                        <label for="module_account_invoicing_plus" class="o_form_label"/>
-                                        <div class="text-muted">
-                                            Installe le module CRM + qui apporte de nouvelle fonctionnalitées.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="membership_plus">
-                            <h2>Gestion des Membres +</h2>
-                            <div class="row mt16 o_settings_container">
-                                <div class="col-xs-12 col-md-6 o_setting_box">
-                                    <div class="o_setting_left_pane">
-                                        <field name="module_membership_plus"/>
-                                    </div>
-                                    <div class="o_setting_right_pane">
-                                        <label for="module_membership_plus" class="o_form_label"/>
-                                        <div class="text-muted">
-                                            Installe le module Gestion des Membres + qui apporte de nouvelles fonctionnalitées.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="point_of_sale_plus">
-                            <h2>Point de Vente +</h2>
-                            <div class="row mt16 o_settings_container">
-                                <div class="col-xs-12 col-md-6 o_setting_box">
-                                    <div class="o_setting_left_pane">
-                                        <field name="module_point_of_sale_plus"/>
-                                    </div>
-                                    <div class="o_setting_right_pane">
-                                        <label for="module_point_of_sale_plus" class="o_form_label"/>
-                                        <div class="text-muted">
-                                            Installe le module Point de Vente + qui apporte de nouvelle fonctionnalitées.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="fleet_plus">
-                            <h2>Parc Automobile +</h2>
-                            <div class="row mt16 o_settings_container">
-                                <div class="col-xs-12 col-md-6 o_setting_box">
-                                    <div class="o_setting_left_pane">
-                                        <field name="module_fleet_plus"/>
-                                    </div>
-                                    <div class="o_setting_right_pane">
-                                        <label for="module_fleet_plus" class="o_form_label"/>
-                                        <div class="text-muted">
-                                            Installe le module Parc Automobile + qui apporte de nouvelle fonctionnalitées.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="sale_management_plus">
-                            <h2>Ventes +</h2>
-                            <div class="row mt16 o_settings_container">
-                                <div class="col-xs-12 col-md-6 o_setting_box">
-                                    <div class="o_setting_left_pane">
-                                        <field name="module_sale_management_plus"/>
-                                    </div>
-                                    <div class="o_setting_right_pane">
-                                        <label for="module_sale_management_plus" class="o_form_label"/>
-                                        <div class="text-muted">
-                                            Installe le module Ventes + qui apporte de nouvelle fonctionnalitées.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
-                </div>
-            </xpath>
-        </field>
-    </record>
-    <record id="fsw_config_settings_action" model="ir.actions.act_window">
-        <field name="name">Settings</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">res.config.settings</field>
-        <field name="view_id" ref="res_config_settings_view_form"/>
-        <field name="view_mode">form</field>
-        <field name="target">inline</field>
-        <field name="context">{'module' : 'fsw_base'}</field>
-    </record>
-    <menuitem id="fsw_menu_root" name="Fenua Softw@re" web_icon="fsw_base,static/description/icon.png" sequence="6" groups="base.group_no_one"/>
-    <menuitem id="fsw_menu_config" name="Configuration" parent="fsw_menu_root" sequence="25"/>
-    <menuitem id="fsw_config_settings_menu" name="Settings" parent="fsw_menu_config" action="fsw_config_settings_action" sequence="0"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
 </odoo>
+

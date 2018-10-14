@@ -30,12 +30,4 @@
             </div>
         </t>
     </template>
-    <template id="menu_secondary_submenu" name="Login Layout" inherit_id="web.menu_secondary">
-        <xpath expr="//div[@class='o_sub_menu_footer']" position="replace">
-            Powered by
-            <a href="http://www.fenuasoftware.com" target="_blank">
-                <span>Fenua Softw@re</span>
-            </a>
-        </xpath>
-    </template>
 </odoo>
