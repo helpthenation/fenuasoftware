@@ -10,12 +10,12 @@
                 <field name="date_invoice" position="after">
                     <field name="period"/>
                 </field>
-                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='quantity']" position="replace">
-                    <field name="price_cost" invisible="True"/>
-                    <field name="raw_margin" invisible="True"/>
-                    <field name="margin_rate" invisible="True"/>
-                    <field name="marque_rate" invisible="True"/>
-                    <field name="multiplier" invisible="True"/>
+                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='quantity']" position="after">
+                    <field name="price_cost" groups="base.group_no_one"/>
+                    <field name="raw_margin" groups="base.group_no_one"/>
+                    <field name="margin_rate" groups="base.group_no_one"/>
+                    <field name="marque_rate" groups="base.group_no_one"/>
+                    <field name="multiplier" groups="base.group_no_one"/>
                 </xpath>
                 <field name="residual" position="after">
                     <field name="raw_margin"/>
