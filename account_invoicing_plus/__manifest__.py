@@ -9,14 +9,12 @@
     'website': "https://www.fenuasoftware.com",
     'category': 'Invoicing Management',
     'version': '0.1',
-    'depends': ['fsw_base', 'account_invoicing', 'base_import'],
+    'depends': ['fsw_base', 'account', 'base_import'],
     'data': [
-        'data/account_payment_action_server.xml',
+        # 'data/account_payment_action_server.xml',
         'views/res_config_settings_views.xml',
         'views/account_invoicing_plus_views.xml',
-        'views/report_invoice.xml',
-        'wizard/account_bank_statement_import_views.xml',
-        'wizard/account_payment_schedule_views.xml',
+        # 'views/report_invoice.xml',
         'security/security.xml',
     ],
 }
