@@ -14,6 +14,7 @@
         <field name="code_digits" eval="6"/>
         <field name="bank_account_code_prefix">512</field>
         <field name="cash_account_code_prefix">53</field>
+        <field name="transfer_account_code_prefix">58</field>
         <field name="transfer_account_id" ref="pcg_58"/>
         <field name="complete_tax_set" eval="True" />
     </record>
