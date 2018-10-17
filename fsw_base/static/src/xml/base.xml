@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <t t-extend="UserMenu.Actions">
-        <t t-jquery="a[data-menu='documentation']" t-operation="replace">
-            <a target="_blank" class="dropdown-item d-none d-md-inline-block" href="https://www.fenuasoftware.com/slides/canal-des-partenaires-2">Documentations</a>
-            <a target="_blank" class="dropdown-item d-none d-md-inline-block" href="https://fenuasoftware.thinkific.com/">Formations</a>
+        <t t-jquery="li > a[data-menu='documentation']" t-operation="replace">
+            <li>
+                <a target="_blank" href="https://www.fenuasoftware.com/slides/canal-des-partenaires-2">Documentations</a>
+            </li>
+            <li>
+                <a target="_blank" href="https://fenuasoftware.thinkific.com/">Formations</a>
+            </li>
         </t>
-        <t t-jquery="a[data-menu='support']" t-operation="replace">
-            <a target="_blank" class="dropdown-item d-none d-md-inline-block" href="https://www.fenuasoftware.com/helpdesk/support-1/submit">Support</a>
+        <t t-jquery="li > a[data-menu='support']" t-operation="replace">
+            <li>
+                <a target="_blank" href="https://www.fenuasoftware.com/helpdesk/support-1/submit">Support</a>
+            </li>
         </t>
-        <t t-jquery="a[data-menu='account']" t-operation="replace">
-            <a target="_blank" class="dropdown-item d-none d-md-inline-block" href="https://fenuasoftware.com/web/login">Mon compte sur FenuaSoftw@re.com</a>
+        <t t-jquery="li > a[data-menu='account']" t-operation="replace">
+            <li>
+                <a target="_blank" href="https://fenuasoftware.com/web/login">Mon compte sur FenuaSoftw@re.com</a>
+            </li>
         </t>
     </t>
 </odoo>
