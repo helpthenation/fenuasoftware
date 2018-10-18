@@ -13,10 +13,12 @@
     'depends': ['web', 'base', 'mail'],
     'data': [
         'data/on_update.xml',
+        'security/ir.model.access.csv',
         'security/ir_model_access.xml',
         'views/base_menu.xml',
         'views/mail_template_views.xml',
         'views/module_views.xml',
+        'views/res_company_views.xml',
         'views/res_config_settings_views.xml',
         'views/webclient_templates.xml',
     ],

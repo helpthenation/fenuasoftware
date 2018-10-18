@@ -1,0 +1,3 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+l10n_pf_access_account_reconcile_model_template,account.reconcile.model.template,account.model_account_reconcile_model_template,account.group_account_manager,1,0,0,0
+fsw_base_access_ir_rule_group_system,ir.rule,base.model_ir_rule,base.group_system,1,1,1,1
