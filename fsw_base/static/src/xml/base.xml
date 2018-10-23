@@ -2,14 +2,14 @@
 <odoo>
     <t t-extend="UserMenu.Actions">
         <t t-jquery="a[data-menu='documentation']" t-operation="replace">
-            <a target="_blank" class="dropdown-item d-none d-md-inline-block" href="https://www.fenuasoftware.com/slides/canal-des-partenaires-2">Documentations</a>
-            <a target="_blank" class="dropdown-item d-none d-md-inline-block" href="https://fenuasoftware.thinkific.com/">Formations</a>
+            <a target="_blank" class="dropdown-item" href="https://www.fenuasoftware.com/slides/canal-des-partenaires-2">Documentations</a>
+            <a target="_blank" class="dropdown-item" href="https://fenuasoftware.thinkific.com/">Formations</a>
         </t>
         <t t-jquery="a[data-menu='support']" t-operation="replace">
-            <a target="_blank" class="dropdown-item d-none d-md-inline-block" href="https://www.fenuasoftware.com/helpdesk/support-1/submit">Support</a>
+            <a target="_blank" class="dropdown-item" href="https://www.fenuasoftware.com/helpdesk/support-1/submit">Support</a>
         </t>
         <t t-jquery="a[data-menu='account']" t-operation="replace">
-            <a target="_blank" class="dropdown-item d-none d-md-inline-block" href="https://fenuasoftware.com/web/login">Mon compte sur FenuaSoftw@re.com</a>
+            <a target="_blank" class="dropdown-item" href="https://fenuasoftware.com/web/login">Mon compte sur FenuaSoftw@re.com</a>
         </t>
     </t>
 </odoo>
