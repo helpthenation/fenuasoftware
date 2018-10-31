@@ -90,6 +90,15 @@
                 </search>
             </field>
         </record>
+        <record id="medical_consultation_template_search_view" model="ir.ui.view">
+            <field name="name">medical.consultation.template.search.view</field>
+            <field name="model">medical.consultation.template</field>
+            <field name="arch" type="xml">
+                <search string="Search Medical Consultation Template">
+                    <filter name="crop" string="Compte Rendu d'Opération" domain="[('type', '=', 'crop')]"/>
+                </search>
+            </field>
+        </record>
 
         <!-- Action -->
         <record id="medical_consultation_template_action" model="ir.actions.act_window">
@@ -97,6 +106,14 @@
             <field name="res_model">medical.consultation.template</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
+        </record>
+        <record id="operative_report_template_action" model="ir.actions.act_window">
+            <field name="name">Modèles de compte rendu opératoire</field>
+            <field name="res_model">medical.consultation.template</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('type', '=', 'crop')]</field>
+            <field name="context">{'default_type': 'crop'}</field>
         </record>
         <record id="medical_consultation_tree_action" model="ir.actions.act_window">
             <field name="name">Consultations Médicales</field>
@@ -115,5 +132,6 @@
         <!-- MenuItem -->
         <menuitem id="medical_consultation_menuitem" parent="database_menuitem" action="medical_consultation_tree_action" sequence="102"/>
         <menuitem id="medical_consultation_template_menuitem" parent="settings_menuitem" action="medical_consultation_template_action" sequence="102"/>
+        <menuitem id="operative_report_template_menuitem" parent="settings_menuitem" action="operative_report_template_action" sequence="102"/>
     </data>
 </odoo>
