@@ -77,4 +77,4 @@ class MedicalConsultationTemplate(models.Model):
     operator = fields.Many2one('res.partner', string="Opérateur")
     anesthetist = fields.Many2one('res.partner', string="Anesthésiste")
     reason = fields.Char(string="Motif d'hospitalisation")
-    description = fields.Text(string="Description")
+    description = fields.Html(string="Description")
