@@ -7,12 +7,15 @@
             <field name="arch" type="xml">
                 <form string="Consultations Médicales">
                     <sheet>
+                        <label for="name"/>
                         <h1>
                             <field name="name"/>
                         </h1>
                         <div class="oe_left">
                             <group>
-                                <label for="medical_consultation_template"/>
+                                <b>
+                                    <label for="medical_consultation_template"/>
+                                </b>
                                 <field name="medical_consultation_template"/>
                                 <group>
                                     <field name="patient"/>
@@ -24,9 +27,12 @@
                                     <field name="anesthetist"/>
                                     <field name="reason"/>
                                 </group>
-                                <label for="description"/>
-                                <field name="description" default_focus="1"/>
                             </group>
+                            <notebook>
+                                <page string="Description">
+                                    <field name="description" default_focus="1"/>
+                                </page>
+                            </notebook>
                         </div>
                     </sheet>
                     <div class="oe_chatter">
