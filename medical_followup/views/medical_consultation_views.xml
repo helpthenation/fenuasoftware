@@ -42,22 +42,25 @@
             <field name="arch" type="xml">
                 <form string="Modèle de Consultations Médicales">
                     <sheet>
+                        <label for="name"/>
                         <h1>
                             <field name="name"/>
                         </h1>
                         <div class="oe_left">
                             <group>
-                                <group col="1">
+                                <group>
                                     <field name="type"/>
-                                    <group attrs="{'invisible': [('type', '!=', 'crop')]}">
-                                        <field name="operator"/>
-                                        <field name="anesthetist"/>
-                                        <field name="reason"/>
-                                    </group>
                                 </group>
-                                <label for="description"/>
-                                <field name="description" default_focus="1"/>
+                                <group attrs="{'invisible': [('type', '!=', 'crop')]}">
+                                    <field name="operator"/>
+                                    <field name="anesthetist"/>
+                                    <field name="reason"/>
+                                </group>
                             </group>
+                            <h2>
+                                <label for="description"/>
+                            </h2>
+                            <field name="description" default_focus="1"/>
                         </div>
                     </sheet>
                 </form>
