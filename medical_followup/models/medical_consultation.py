@@ -31,7 +31,7 @@ class MedicalConsultation(models.Model):
     name = fields.Char(readonly=True, compute="_compute_name")
     date = fields.Date(string="Date de consultation médicale", default=_default_date)
     patient = fields.Many2one('res.partner', string="Patient")
-    description = fields.Text(string="Description")
+    description = fields.Html(string="Description")
     user_id = fields.Many2one('res.users', default=lambda self: self._uid)
 
     type = fields.Selection([
