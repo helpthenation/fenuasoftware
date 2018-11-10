@@ -27,5 +27,4 @@
         'views/sale_quote_views.xml',
         'views/sale_views.xml',
     ],
-    'auto_install': True,
 }

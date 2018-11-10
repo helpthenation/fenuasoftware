@@ -20,5 +20,4 @@ Design gorgeous mails
         'views/sample_theme_template.xml',
     ],
     'qweb': [],
-    'installable': True,
 }

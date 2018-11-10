@@ -14,5 +14,4 @@
         'views/mail_template_views.xml',
         'views/purchase_views.xml',
     ],
-    'auto_install': True,
 }

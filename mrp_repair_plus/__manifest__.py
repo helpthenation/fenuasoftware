@@ -17,5 +17,4 @@
         'views/mrp_repair_views.xml',
         'views/purchase_order_views.xml',
     ],
-    'auto_install': True,
 }
