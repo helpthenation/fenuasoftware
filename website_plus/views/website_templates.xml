@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="layout_footer_copyright" inherit_id="website.layout_footer_copyright" name="Footer Copyright +">
-        <xpath expr="//div[@class='pull-right']" position="replace">
-            <div class="pull-right" t-ignore="true" t-if="not editable">
-                Create a <a target="_blank" href="http://www.fenuasoftware.com">free website</a> with
-                <a target="_blank" class="label label-danger" href="http://www.fenuasoftware.com">Fenua Softw@re</a>
-            </div>
+    <template id="layout_footer_copyright" inherit_id="website.brand_promotion" name="Brand Promotion +">
+        <xpath expr="//div[@class='o_brand_promotion']" position="replace">
+            Create a <a target="_blank" href="http://www.fenuasoftware.com">free website</a> with
+            <a target="_blank" class="badge badge-danger" href="http://www.fenuasoftware.com">Fenua Softw@re</a>
         </xpath>
     </template>
 </odoo>
