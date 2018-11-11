@@ -10,11 +10,11 @@
     'category': 'Technical Settings',
     'version': '0.2',
     'auto_install': True,
-    'depends': ['web', 'base', 'mail'],
+    'depends': ['web', 'base'],
     'data': [
         'data/on_update.xml',
-        'security/ir.model.access.csv',
         'security/ir_model_access.xml',
+        'security/ir.model.access.csv',
         'views/base_menu.xml',
         'views/module_views.xml',
         'views/res_company_views.xml',

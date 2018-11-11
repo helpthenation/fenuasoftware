@@ -2,10 +2,17 @@
 <odoo>
     <data>
         <function id="_update_user_groups_view" model="res.groups" name="_update_user_groups_view"/>
-        <record id="limit_access_right_users_visibility" model="ir.rule">
-            <field name="name">Limit Access Right Users Visibility</field>
+        <record id="can_see_admin" model="ir.rule">
+            <field name="name">Can See Administrator</field>
             <field name="model_id" ref="base.model_res_users"/>
             <field name="domain_force">[('id','>',1)]</field>
+            <field name="groups" eval="[(4, ref('base.group_system'))]"/>
+        </record>
+        <function id="_update_user_groups_view" model="res.groups" name="_update_user_groups_view"/>
+        <record id="cant_see_admin" model="ir.rule">
+            <field name="name">Can't See Administrator</field>
+            <field name="model_id" ref="base.model_res_users"/>
+            <field name="domain_force">[('id','>',2)]</field>
             <field name="groups" eval="[(4, ref('base.group_erp_manager'))]"/>
         </record>
     </data>

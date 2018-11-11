@@ -1,40 +1,27 @@
 <?xml version="1.0"?>
 <odoo>
     <data>
-        <!-- Groupe : Acces Rights -->
-        <record id="base.access_res_groups_group_erp_manager" model="ir.model.access">
+        <!--
+            Groupe : Acces Rights` Updated from base/security/ir.model.access.csv
+         -->
+
+        <!--
+        "access_res_users_all","res_users all","model_res_users",,1,0,0,0
+        -->
+        <record id="base.access_res_users_all" model="ir.model.access">
             <field name="perm_read" eval="1"/>
             <field name="perm_create" eval="0"/>
-            <field name="perm_write" eval="0"/>
-            <field name="perm_unlink" eval="0"/>
-        </record>
-        <record id="base.access_ir_model_group_erp_manager" model="ir.model.access">
-            <field name="perm_read" eval="1"/>
-            <field name="perm_create" eval="0"/>
-            <field name="perm_write" eval="0"/>
-            <field name="perm_unlink" eval="0"/>
-        </record>
-        <record id="base.access_ir_model_fields_group_erp_manager" model="ir.model.access">
-            <field name="perm_read" eval="1"/>
-            <field name="perm_create" eval="0"/>
-            <field name="perm_write" eval="0"/>
-            <field name="perm_unlink" eval="0"/>
-        </record>
-        <record id="base.access_ir_rule_group_erp_manager" model="ir.model.access">
-            <field name="perm_read" eval="1"/>
-            <field name="perm_create" eval="0"/>
-            <field name="perm_write" eval="0"/>
-            <field name="perm_unlink" eval="0"/>
-        </record>
-        <record id="base.access_res_users_group_erp_manager" model="ir.model.access">
-            <field name="perm_read" eval="1"/>
-            <field name="perm_create" eval="1"/>
             <field name="perm_write" eval="1"/>
             <field name="perm_unlink" eval="0"/>
         </record>
-        <record id="base.access_res_company_group_erp_manager" model="ir.model.access">
+
+
+        <!--
+        "access_res_users_group_erp_manager","res_users group_erp_manager","model_res_users","group_erp_manager",1,1,1,1
+        -->
+        <record id="base.access_res_users_group_erp_manager" model="ir.model.access">
             <field name="perm_read" eval="1"/>
-            <field name="perm_create" eval="1"/>
+            <field name="perm_create" eval="0"/>
             <field name="perm_write" eval="1"/>
             <field name="perm_unlink" eval="0"/>
         </record>
