@@ -1,58 +1,26 @@
 # -*- coding: utf-8 -*-
-
 import logging
 import datetime
+from odoo import models, fields, api, _
 from dateutil.relativedelta import relativedelta
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
-
-from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 
 logger = logging.getLogger(__name__)
 
+class account_abstract_payment(models.AbstractModel):
+    _inherit = "account.abstract.payment"
 
-class AccountPayment(models.Model):
-    _inherit = "account.payment"
+    SELECTION = [('open', 'Keep open'), ('reconcile', 'Mark invoice as fully paid')]
 
+    payment_difference_handling = fields.Selection(SELECTION, default='open', string="Payment Difference Handling", copy=False)
+
+    day_of_month = fields.Selection([('5', '5'), ('30', '30'), ], default='5', required=True)
+    split_number = fields.Integer()
+    start_this_month = fields.Boolean(default=False)
     invoiced_schedule = fields.Many2one('account.invoice')
 
-    def action_validate_and_schedule_payments(self):
-        self.action_validate_invoice_payment()
-        return {
-            "type": "ir.actions.act_window",
-            "res_model": "account.payment.schedule",
-            "views": [[False, "form"]],
-            "target": "new",
-            "context": {'active_id': self.id}
-        }
-
-    @api.multi
-    def action_assign_invoiced_schedule(self):
-        for move_line in self.move_line_ids:
-            if move_line.account_id == self.invoiced_schedule.account_id:
-                self.invoiced_schedule.register_payment(move_line)
-                return True
-
-        raise UserError(_("No move line matching current payment!"))
-
-class AccountPaymentSchedule(models.TransientModel):
-    _name = "account.payment.schedule"
-    _description = "Payment Schedule"
-
-    def _default_amount(self):
-        account_payment = self.env['account.payment'].browse(self._context['active_id'])
-        return account_payment.invoice_ids[0].residual if len(account_payment.invoice_ids) > 0 else False
-
-    amount = fields.Float(default=_default_amount, required=True)
-    day_of_month = fields.Selection([('5', '5'), ('30', '30'), ], default='5', required=True)
-    split_number = fields.Integer(required=True)
-    start_this_month = fields.Boolean(default=False)
-
-    def action_test(self):
-        account_payment = self.env['account.payment'].browse(self._context['active_id'])
-        self.update({'invoices_payment_scheduled': (6, False, account_payment.invoice_ids)})
-
-    def action_schedule_payments(self):
+    def _schedule_payments(self, amount):
         if self.split_number == 0:
             raise UserError(_("Split Number can not be 0"))
 
@@ -64,10 +32,9 @@ class AccountPaymentSchedule(models.TransientModel):
                     DEFAULT_SERVER_DATE_FORMAT) + " exceed next payment date: " + payment_date.strftime(
                     DEFAULT_SERVER_DATE_FORMAT)))
 
-        account_payment = self.env['account.payment'].browse(self._context['active_id'])
-        amount = self.amount / self.split_number
+        amount = amount / self.split_number
         count = 0
-        iteration = 1
+        iteration = 0
         max_count = self.split_number
         while count < max_count:
             count += 1
@@ -101,17 +68,40 @@ class AccountPaymentSchedule(models.TransientModel):
 
             # COMMUNICATION
             iteration += 1
-            communication = account_payment.communication + "RGLT: " + str(iteration) + "/" + str(self.split_number)
+            communication = self.communication + " RGLT: " + str(iteration) + "/" + str(self.split_number)
 
-            #INVOICED_SCHEDULE
-            invoice = account_payment.invoice_ids[0]
+            # INVOICE
+            active_ids = self._context.get('active_ids')
+            invoices = self.env['account.invoice'].browse(active_ids)
 
             # RECORD
-            new_account_payment = account_payment.copy({
+            new_account_payment = self.copy({
                 'payment_date': payment_date,
                 'amount': amount,
                 'communication': communication,
-                'invoiced_schedule': invoice.id
+                'invoiced_schedule': invoices[0].id,
+                'invoice_ids': False,
             })
             new_account_payment.post()
         return True
+
+
+class AccountPayment(models.Model):
+    _inherit = "account.payment"
+
+    invoiced_schedule = fields.Many2one('account.invoice')
+
+    def action_validate_invoice_payment(self):
+        amount = self.payment_difference  # hack to avoid having difference after action_validate_invoice_payment()
+        super(AccountPayment, self).action_validate_invoice_payment()
+        if self.payment_difference_handling == 'schedule':
+            self._schedule_payments(amount)
+
+    @api.multi
+    def action_assign_invoiced_schedule(self):
+        for move_line in self.move_line_ids:
+            if move_line.account_id == self.invoiced_schedule.account_id:
+                self.invoiced_schedule.register_payment(move_line)
+                return True
+
+        raise UserError(_("No move line matching current payment!"))
