@@ -19,6 +19,6 @@ class ResConfigSettings(models.TransientModel):
     @api.multi
     def set_values(self):
         super(ResConfigSettings, self).set_values()
-        self.env['ir.config_parameter'].sudo().set_param('web_plus.customize_background', self.read_price_from_template)
+        self.env['ir.config_parameter'].sudo().set_param('web_plus.customize_background', self.customize_background)
         view = self.env.ref('web_plus.report_assets_common_inherited')
         view.update({'active': self.customize_background})
