@@ -45,7 +45,7 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//div[@class='oe_title']" position="inside">
+                <xpath expr="//div[hasclass('oe_title')]" position="inside">
                     <field name="quick_account_move_template" invisible="True"/>
                 </xpath>
                 <xpath expr="//div[@name='button_box']" position="inside">

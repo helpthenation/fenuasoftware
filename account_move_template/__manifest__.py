@@ -13,6 +13,7 @@
     'version': '0.1',
     'depends': ['account'],
     'data': [
+        'security/ir.model.access.csv',
         'views/account_move_template_views.xml',
         'views/account_move_view.xml',
         'views/res_partner_views.xml',

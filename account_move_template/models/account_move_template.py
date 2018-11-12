@@ -6,7 +6,7 @@ from odoo.exceptions import UserError
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-    quick_account_move_template = fields.Many2one(compute='get_quick_account_move_template')
+    quick_account_move_template = fields.Many2one('account.move.template', compute='get_quick_account_move_template')
 
     @api.model
     def get_quick_account_move_template(self):
