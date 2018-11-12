@@ -5,8 +5,8 @@
             <field name="model">res.config.settings</field>
             <field name="inherit_id" ref="fsw_base.res_config_settings_view_form"/>
             <field name="arch" type="xml">
-                <div id="point_of_sale_plus" position="replace">
-                    <div id="point_of_sale_plus">
+                <div name="point_of_sale_plus" position="replace">
+                    <div name="point_of_sale_plus">
                         <h2>Point de Vente +</h2>
                         <div class="row mt16 o_settings_container">
                             <div class="col-xs-12 col-md-6 o_setting_box">
