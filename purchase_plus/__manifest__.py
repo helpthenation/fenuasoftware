@@ -11,7 +11,6 @@
     'version': '0.1',
     'depends': ['purchase'],
     'data': [
-        'views/mail_template_views.xml',
         'views/purchase_views.xml',
     ],
 }
