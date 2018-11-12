@@ -12,7 +12,6 @@
     'depends': ['crm'],
     'data': [
         'views/crm_views.xml',
-        'views/mail_template_data.xml',
         'views/res_config_settings_views.xml',
     ],
 }
