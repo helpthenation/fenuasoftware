@@ -15,6 +15,7 @@
         'views/res_config_settings_views.xml',
         'views/account_invoicing_plus_views.xml',
         # 'views/report_invoice.xml',
+        'wizard/account_payment_schedule_views.xml',
         'security/security.xml',
     ],
 }
