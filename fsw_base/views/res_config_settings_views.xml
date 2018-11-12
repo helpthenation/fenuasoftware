@@ -61,6 +61,23 @@
                                 </div>
                             </div>
                         </div>
+                        <div name="crm_plus">
+                            <h2>CRM+</h2>
+                            <div class="row mt16 o_settings_container">
+                                <div class="col-12 col-lg-6 o_setting_box"
+                                     title="Ajoute des fonctionnalités liée au module CRM">
+                                    <div class="o_setting_left_pane">
+                                        <field name="module_crm_plus"/>
+                                    </div>
+                                    <div class="o_setting_right_pane">
+                                        <label for="module_crm_plus"/>
+                                        <div class="text-muted">
+                                            Ajoute des fonctionnalités liée au module CRM
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </xpath>
             </field>
