@@ -6,7 +6,7 @@
             <field name="res_model">fleet.vehicle</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <field name="context">[()]</field>
+            <field name="context">{}</field>
             <field name="domain">[('driver_id', '=', active_id)]</field>
         </record>
         <record id="view_partner_form" model="ir.ui.view">
@@ -15,7 +15,7 @@
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//div[@name='button_box']" position="inside">
-                    <button type="action" class="oe_stat_button" icon="fa fa-car" name="fleet_contacts.fleet_contacts_action">
+                    <button type="action" class="oe_stat_button" icon="fa-car" name="fleet_contacts.fleet_contacts_action">
                         <div class="o_form_field o_stat_info">
                             <span class="o_stat_value">
                                 <field name="vehicle_counts"/>
