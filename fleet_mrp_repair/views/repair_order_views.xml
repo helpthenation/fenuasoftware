@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_repair_order_form" model="ir.ui.view">
+            <field name="name">mrp.repair.form</field>
+            <field name="model">repair.order</field>
+            <field name="inherit_id" ref="repair.view_repair_order_form"/>
+            <field name="arch" type="xml">
+                <field name="product_id" position="before">
+                    <field name="vehicle" domain="[('driver_id','=',partner_id)]"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- Calendar -->
+        <record id="view_repair_order_calendar_inherited" model="ir.ui.view">
+            <field name="name">repair.order.calendar</field>
+            <field name="model">repair.order</field>
+            <field name="arch" type="xml">
+                <calendar quick_add="False" string="Planning" date_start="intervention_date" date_delay="intervention_duration">
+                    <field name="name"/>
+                    <field name="vehicle"/>
+                    <field name="partner_id"/>
+                </calendar>
+            </field>
+        </record>
+
+        <!-- Kanban -->
+        <record id="view_repair_order_kanban_inherited" model="ir.ui.view">
+            <field name="name">repair.order.kanban</field>
+            <field name="model">repair.order</field>
+            <field name="inherit_id" ref="repair.view_repair_kanban"/>
+            <field name="arch" type="xml">
+                <field name="state" position="after">
+                    <field name="vehicle"/>
+                </field>
+                <div class="row" position="inside">
+                    <div class="col-xs-6">
+                        <field name="vehicle"/>
+                    </div>
+                </div>
+            </field>
+        </record>
+
+        <!-- Search -->
+        <record id="view_repair_order_form_filter_inherited" model="ir.ui.view">
+            <field name="name">repair.order.select</field>
+            <field name="model">repair.order</field>
+            <field name="inherit_id" ref="repair.view_repair_order_form_filter"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="vehicle"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

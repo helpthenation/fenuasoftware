@@ -11,9 +11,9 @@
     'website': "http://www.fenuasoftware.com",
     'category': 'Link',
     'version': '0.1',
-    'depends': ['fleet_plus', 'mrp_repair'],
+    'depends': ['fleet_plus', 'repair_plus'],
     'data': [
-        'views/mrp_repair_views.xml',
+        'views/repair_order_views.xml',
         'views/account_invoice_views.xml',
     ],
 }

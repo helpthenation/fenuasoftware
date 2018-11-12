@@ -5,7 +5,7 @@ from odoo import api, fields, models, _
 
 
 class Repair(models.Model):
-    _inherit = 'mrp.repair'
+    _inherit = 'repair.order'
 
     vehicle = fields.Many2one('fleet.vehicle', string='Vehicle', readonly=True, states={'draft': [('readonly', False)]})
 

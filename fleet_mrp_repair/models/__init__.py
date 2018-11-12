@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from . import account_invoice, mrp_repair
+from . import account_invoice, repair
