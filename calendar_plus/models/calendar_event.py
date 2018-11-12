@@ -6,7 +6,7 @@ from odoo import api, fields, models, _
 class CalendarEvent(models.Model):
     _inherit = 'calendar.event'
 
-    partner_details = fields.Char(compute='_get_partner_details', string='Attendees')
+    partner_details = fields.Char(compute='_get_partner_details', string='Participants')
 
     @api.model
     def create(self, values):
