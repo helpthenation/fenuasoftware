@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record model="ir.ui.view" id="view_sale_quote_template_form">
-        <field name="name">sale.quote.template.form</field>
-        <field name="model">sale.quote.template</field>
-        <field name="inherit_id" ref="website_quote.view_sale_quote_template_form"/>
+    <record model="ir.ui.view" id="view_sale_order_template_form">
+        <field name="name">sale.order.template.form</field>
+        <field name="model">sale.order.template</field>
+        <field name="inherit_id" ref="sale_management.sale_order_template_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='quote_line']/tree/field[@name='price_unit']" position="replace">
-                <field name="price_unit" invisible="0"/>
+            <xpath expr="//field[@name='sale_order_template_line_ids']/tree/field[@name='price_unit']" position="attributes">
+                <attribute name="invisible">0</attribute>
             </xpath>
         </field>
     </record>
