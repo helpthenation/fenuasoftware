@@ -7,7 +7,7 @@ from datetime import date, datetime
 
 
 class Repair(models.Model):
-    _inherit = 'mrp.repair'
+    _inherit = 'repair.order'
 
     repairer = fields.Many2one('res.users', string='Réparateur', index=True)
     intervention_date = fields.Datetime(string="Date d'intervention")

@@ -11,10 +11,9 @@
     'website': "https://www.fenuasoftware.com",
     'category': 'Manufacturing',
     'version': '0.1',
-    'depends': ['mrp_repair', 'purchase'],
+    'depends': ['repair'],
     'data': [
         'security/ir.model.access.csv',
-        'views/mrp_repair_views.xml',
-        'views/purchase_order_views.xml',
+        'views/repair_order_views.xml',
     ],
 }
