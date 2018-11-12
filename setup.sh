@@ -1,15 +1,12 @@
 #!/bin/sh
-# Initialise l'environnement de production pour Odoo
-echo "Installing Gdebi"
+echo -e "\n--- Installing wkhtmltopdf --"
 sudo apt-get install gdebi
-	
-echo "Installing wkhtmltopdf"
 wget -O wkhtmltox.deb "https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.1/wkhtmltox-0.12.1_linux-trusty-amd64.deb"
 sudo gdebi wkhtmltox.deb
 sudo rm wkhtmltox.deb
 sudo ln -s /usr/local/bin/wkhtmltopdf /usr/bin/Wkhtmltopdf
 
-echo "Installing PostgreSQL"
+echo -e "\n--- Installing PostgreSQL --"
 sudo apt-get install postgresql -y
 
 echo -e "\n--- Installing Python 3 + pip3 --"
@@ -28,18 +25,18 @@ echo -e "\n---- Install python libraries ----"
 # This is for compatibility with Ubuntu 16.04. Will work on 14.04, 15.04 and 16.04
 sudo apt-get install python3-suds
 
-echo -e "\n--- Install other required packages"
+echo -e "\n--- Install other required packages ----"
 sudo apt-get install node-clean-css -y
 sudo apt-get install node-less -y
 sudo apt-get install python-gevent -y
 
-echo "Upgrade pip"
+echo -e "\n--- Upgrade pip ----"
 sudo pip3 install --upgrade pip
 
-echo "Installing pysftp"
+echo -e "\n--- Install more python packages ----"
 sudo pip3 install ofxparse pysftp num2words xlwt phonenumbers vobject qrcode pyldap
 
-echo "Installing Odoo - Community"
+echo -e "\n---- Installing Odoo - Community ----"
 sudo wget -O - https://nightly.odoo.com/odoo.key | apt-key add -
 sudo echo "deb http://nightly.odoo.com/12.0/nightly/deb/ ./" >> /etc/apt/sources.list.d/odoo.list
 sudo apt-get update && apt-get install odoo
