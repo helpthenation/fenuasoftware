@@ -12,5 +12,6 @@
     'depends': ['web'],
     'data': [
         'views/report_templates.xml',
+        'views/res_config_settings_views.xml',
     ],
 }

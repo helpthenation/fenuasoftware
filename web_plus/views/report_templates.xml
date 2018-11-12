@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <!-- Assets for reports -->
-    <template id="report_assets_common_inherited" inherit_id="web.report_assets_common">
+    <template id="report_assets_common_inherited" inherit_id="web.report_assets_common" active="False" name="Background Layout Inherited">
         <xpath expr="." position="inside">
-            <link href="/web_plus/static/src/less/layout_background.less" rel="stylesheet" type="text/less"/>
+            <link href="/web_plus/static/src/scss/layout_background.scss" rel="stylesheet" type="text/scss"/>
         </xpath>
     </template>
 </odoo>
