@@ -1,4 +1,9 @@
 #!/bin/sh
+echo -e "\n--- Créer /opt/odoo & /opt/odoo/backups --"
+sudo mkdir /opt/odoo
+sudo mkdir /opt/odoo/backups
+sudo mkdir /opt/odoo/addons
+
 echo -e "\n--- Installing wkhtmltopdf --"
 sudo apt-get install gdebi
 wget -O wkhtmltox.deb "https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.1/wkhtmltox-0.12.1_linux-trusty-amd64.deb"
@@ -42,25 +47,20 @@ sudo echo "deb http://nightly.odoo.com/12.0/nightly/deb/ ./" >> /etc/apt/sources
 sudo apt-get update && apt-get install odoo
 
 echo "Installing Odoo - Enterprise : MDP : 34yRnE@@"
-#git clone -b 12.0 https://fenuasoftware@github.com/odoo/enterprise.git
+git clone -b 12.0 https://fenuasoftware@github.com/odoo/enterprise.git /opt/odoo/addons/enterprise
 
 echo "Installing fenuasoftware"
-#it clone -b 12.0 https://heifara@bitbucket.org/fenuasoftware/fenuasoftware.git
-
-echo "Installing fenuasoftware_ee"
-#git clone -b 12.0 git clone https://heifara@bitbucket.org/fenuasoftware/fenuasoftware_ee.git
+git clone -b 12.0 https://heifara@bitbucket.org/fenuasoftware/fenuasoftware.git /opt/odoo/addons/fenuasoftware
 
 echo "Installing notfenuasoftware"
-#git clone -b 12.0 https://heifara@bitbucket.org/fenuasoftware/notfenuasoftware.git
+git clone -b 12.0 https://heifara@bitbucket.org/fenuasoftware/notfenuasoftware.git /opt/odoo/addons/notfenuasoftware
 
-echo "Installing Acespritech"
-#git clone -b 12.0 https://heifara@bitbucket.org/fenuasoftware/acespritech.git
+#echo "Installing Acespritech"
+#git clone -b 12.0 https://heifara@bitbucket.org/fenuasoftware/acespritech.git /opt/odoo/addons/acespritech
 
-echo "Installing 73lines"
-#git clone -b 12.0 https://heifara@bitbucket.org/fenuasoftware/73lines.git
+#echo "Installing 73lines"
+#git clone -b 12.0 https://heifara@bitbucket.org/fenuasoftware/73lines.git /opt/odoo/addons/73lines
 
-echo "Installing odoolog"
+#echo "Installing odoolog & odooall.sh"
 #sudo ln -s /opt/odoo/addons/fenuasoftware/odoolog.sh /usr/local/bin/odoolog
-
-echo "Installing odooalldb"
 #sudo ln -s /opt/odoo/addons/fenuasoftware/odooall.sh /usr/local/bin/odooall
