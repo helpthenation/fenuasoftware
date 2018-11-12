@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
-import time
-from datetime import datetime, timedelta
-from dateutil import relativedelta
+from datetime import date, datetime, time
 
 import babel
 import logging
 
 from odoo import api, fields, models, tools, _
-from odoo.exceptions import UserError
 
 logger = logging.getLogger(__name__)
 
@@ -24,7 +21,7 @@ class AccountInvoice(models.Model):
     def _compute_period(self):
         if self.date_invoice:
             locale = self.env.context.get('lang') or 'en_US'
-            ttyme = datetime.fromtimestamp(time.mktime(time.strptime(self.date_invoice, "%Y-%m-%d")))
+            ttyme = datetime.combine(fields.Date.from_string(self.date_invoice), time.min)
             self.period = tools.ustr(babel.dates.format_date(date=ttyme, format='MMMM y', locale=locale))
 
     @api.depends('invoice_line_ids')
