@@ -12,6 +12,7 @@ class ResConfigSettings(models.TransientModel):
     module_crm_plus = fields.Boolean("CRM+")
     module_l10n_pf = fields.Boolean("Comptabilité Polynésie Française")
     module_purchase_plus = fields.Boolean("Achats+")
+    module_repair_plus = fields.Boolean("Repair+")
 
     #NOT MIGRATE
     module_l10n_pf_hr_payroll = fields.Boolean("Paie Polynésie Française")
