@@ -3,7 +3,7 @@
     <data>
         <template id="web_calendar_color_assets_backend" name="Backend Assets (used in backend interface)/Calendar" inherit_id="web.assets_backend">
             <xpath expr="." position="inside">
-                <link rel="stylesheet" type="text/less" href="/calendar_plus/static/src/less/web_calendar.less"/>
+                <link rel="stylesheet" type="text/less" href="/calendar_plus/static/src/scss/web_calendar.scss"/>
             </xpath>
         </template>
     </data>

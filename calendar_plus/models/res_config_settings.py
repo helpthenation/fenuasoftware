@@ -6,7 +6,6 @@ from odoo import api, fields, models, _
 class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
 
-    module_calendar_display_mac5 = fields.Boolean("Calendar Display")
     module_web_calendar_config_mac5 = fields.Boolean("Web Calendar Configuration")
     hide_user_in_calendar_event = fields.Boolean("Masquer utilisateur dans les événements de calendrier ")
 
