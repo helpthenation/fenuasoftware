@@ -2,7 +2,7 @@
 <odoo>
     <data>
         <template id="report_invoice_document_inherited" inherit_id="account.report_invoice_document">
-            <xpath expr="//div[@class='page']/div[2]/div[2]" position="after">
+            <xpath expr="//div[hasclass('page')]/div[2]/div[2]" position="after">
                 <div name="period" class="col-xs-2" t-if="o.period">
                     <strong>Période:</strong>
                     <p t-field="o.period"/>
