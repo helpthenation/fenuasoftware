@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hide_schedule_value_in_payment_difference_handling" model="ir.ui.view">
+        <field name="name">hide_schedule_value_in_payment_difference_handling</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_invoice_form"/>
+        <field name="active" eval="False"/>
+        <field name="arch" type="xml">
+            <field name="payment_difference_handling" position="replace">
+                <field name="payment_difference_handling">
+                    <select class="form-control" name="payment_difference_handling">
+                        <option t-attf-value="'open'">Keep open</option>
+                        <option t-attf-value="'reconcile'">Mark invoice as fully paid</option>
+                    </select>
+                </field>
+            </field>
+        </field>
+        </record>
+        <record id="account_invoice_form_inherited" model="ir.ui.view">
+            <field name="name">account.payment.invoice.form</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_invoice_form"/>
+            <field name="active" eval="False"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group/group[3]/div/div" position="attributes">
+                    <attribute name="attrs">{'invisible': [('payment_difference_handling','in',('open', 'schedule'))]}</attribute>
+                </xpath>
+                <field name="payment_difference_handling" position="after">
+                    <div attrs="{'invisible': [('payment_difference_handling','in',('open', 'reconcile'))]}">
+                        <label for="start_this_month" class="oe_edit_only"/>
+                        <field name="start_this_month"
+                               attrs="{'required': [('payment_difference_handling', '=', 'schedule')]}"/>
+                        <br/>
+                        <label for="day_of_month" class="oe_edit_only"/>
+                        <field name="day_of_month"
+                               attrs="{'required': [('payment_difference_handling', '=', 'schedule')]}"/>
+                        <label for="split_number" class="oe_edit_only"/>
+                        <field name="split_number"
+                               attrs="{'required': [('payment_difference_handling', '=', 'schedule')]}"/>
+                    </div>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>
