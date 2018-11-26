@@ -10,7 +10,7 @@
     'category': 'Technical Settings',
     'version': '0.2',
     'auto_install': True,
-    'depends': ['web', 'base'],
+    'depends': ['web', 'web_tour', 'base'],
     'data': [
         'data/on_update.xml',
         'security/ir_model_access.xml',
