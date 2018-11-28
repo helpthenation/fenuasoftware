@@ -20,7 +20,7 @@
         />
         <report
                 id="medical_information_document_report_action"
-                model="medical.information.document	"
+                model="medical.information.document"
                 string="Formulaire d'Information Médical"
                 report_type="qweb-pdf"
                 name="medical_followup.report_medical_information_document"
