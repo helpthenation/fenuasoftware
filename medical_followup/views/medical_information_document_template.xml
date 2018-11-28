@@ -8,7 +8,7 @@
                     <div class="page">
                         <div class="row">
                             <h1>
-                                <span t-esc="doc.titlte"/>
+                                <span t-esc="doc.title"/>
                             </h1>
                             <div>
                                 <span t-esc="doc.content"/>
