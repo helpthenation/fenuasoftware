@@ -11,7 +11,7 @@
                                 <span t-esc="doc.title"/>
                             </h1>
                             <div>
-                                <span t-esc="doc.content"/>
+                                <span t-raw="doc.content"/>
                             </div>
                         </div>
                     </div>
