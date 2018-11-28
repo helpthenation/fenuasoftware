@@ -15,6 +15,7 @@
         'security/ir.model.access.csv',
         'views/medical_followup_view.xml',
         'views/medical_information_document.xml',
+        'views/medical_information_document_template.xml',
         'views/medical_consultation_views.xml',
         'views/medical_consultation_template.xml',
         'views/prescription_views.xml',
