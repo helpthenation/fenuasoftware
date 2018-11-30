@@ -19,10 +19,11 @@ class AccountInvoice(models.Model):
 
     @api.depends('date_invoice')
     def _compute_period(self):
-        if self.date_invoice:
-            locale = self.env.context.get('lang') or 'en_US'
-            ttyme = datetime.combine(fields.Date.from_string(self.date_invoice), time.min)
-            self.period = tools.ustr(babel.dates.format_date(date=ttyme, format='MMMM y', locale=locale))
+        for this in self:
+            if this.date_invoice:
+                locale = this.env.context.get('lang') or 'en_US'
+                ttyme = datetime.combine(fields.Date.from_string(this.date_invoice), time.min)
+                this.period = tools.ustr(babel.dates.format_date(date=ttyme, format='MMMM y', locale=locale))
 
     @api.depends('invoice_line_ids')
     def _compute_margin(self):
