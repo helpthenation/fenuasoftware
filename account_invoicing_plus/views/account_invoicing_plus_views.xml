@@ -1,9 +1,9 @@
+<?xml version="1.0"?>
 <odoo>
     <data>
-
         <!-- FormView -->
-        <record id="account_invoice_form_inherited" model="ir.ui.view">
-            <field name="name">account.invoice.form.inherited</field>
+        <record id="account_invoice_view_form_inherit_plus" model="ir.ui.view">
+            <field name="name">account.invoice.view.form.inherit.plus</field>
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
@@ -22,6 +22,7 @@
                 </field>
             </field>
         </record>
+
 
         <!-- Pivot -->
         <record id="view_account_payment_pivot" model="ir.ui.view">
